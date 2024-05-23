@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->foreignId('branch_id');
             $table->boolean('is_system');
-            $table->boolean('user_status');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'current_team_id' => null,
             'branch_id' => 1,
             'is_system' => false,
-            'user_status' => true,
+            'is_active' => true,
         ];
     }
 
