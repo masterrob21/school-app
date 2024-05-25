@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
                         <div class="mt-2">
-                            <a href="" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500">new user</a>
+                            <a href="{{route('user.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500">New User</a>
                         </div>
                         <div class="">
                             <input type="text" class="rounded w-96" placeholder="Search user">

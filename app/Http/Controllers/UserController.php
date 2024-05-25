@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $branches = Branch::orderBy('branch_name')->get();
+
+        return view('user.create')->with('branches', $branches);
     }
 
     /**
@@ -33,7 +36,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'unique:users,email']
+        ]);
+
+        $users = DB::table('users')->insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt('Password1234'),
+            'branch_id' => $request->branch,
+            'is_system' => false,
+            'is_active' => true
+        ]);
+
+        return redirect(route('user.create'))->with('success', 'New user added successfully');
     }
 
     /**
