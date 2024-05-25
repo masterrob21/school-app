@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('user', UserController::class);
+Route::get('user', [UserController::class, 'index'])->name('user.index');
+Route::get('user/{id}', [UserController::class, 'show'])->name('user.show');
 
 Route::middleware([
     'auth:sanctum',
