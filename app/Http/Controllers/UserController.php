@@ -41,8 +41,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $users = DB::table('users')->find($id)
-                                   ;
+        $users = DB::table('users')->where('users.id', $id)
+                                   ->join('branches', 'users.branch_id', '=', 'branches.id')
+                                   ->first();
                                    
         return view('user.show')->with('user', $users);
     }

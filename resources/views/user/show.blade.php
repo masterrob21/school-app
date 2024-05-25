@@ -10,7 +10,7 @@
             <div class="mb-4">
                 <ul class="px-4 py-2 list-none bg-slate-200">
                     <li class=" inline text-lg"><a href="/user" class="text-blue-600 hover:underline">Users</a></li>
-                    <li class="inline text-lg before:p-2 before:content-['/']">show</li>
+                    <li class="inline text-lg before:p-2 before:content-['/']">User Details</li>
                 </ul>
             </div>
 
@@ -31,7 +31,7 @@
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Branch</th>
-                                {{-- <td class="p-3 border border-slate-300 text-xl">{{ $user->branch_name }}</td> --}}
+                                <td class="p-3 border border-slate-300 text-xl">{{ $user->branch_name }}</td>
                             </tr>
 
                             <tr class=" whitespace-nowrap">
