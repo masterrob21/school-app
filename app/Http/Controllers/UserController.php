@@ -60,6 +60,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')->where('users.id', $id)
                                    ->join('branches', 'users.branch_id', '=', 'branches.id')
+                                   ->select('users.id', 'name', 'email', 'branch_name', 'is_active')
                                    ->first();
                                    
         return view('user.show')->with('user', $users);
@@ -70,7 +71,16 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
+        $users = DB::table('users')->where('users.id', $id)
+                                   ->join('branches', 'users.branch_id', '=', 'branches.id')
+                                   ->select('users.id', 'name', 'email','branch_id', 'branch_name', 'is_active')
+                                   ->first();
+
+        $branches = Branch::where('id', '<>', $users->branch_id)
+                            ->orderBy('branch_name')->get();
+
+        return view('user.edit')->with('user', $users)->with('branches', $branches);
     }
 
     /**

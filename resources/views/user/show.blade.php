@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <a href="" class=" rounded bg-blue-300 py-2 px-3 text-lg">Edit</a>
+                        <a href="/user/{{$user->id}}/edit" class=" rounded bg-blue-300 py-2 px-3 text-lg">Edit</a>
                     </div>
                 </div>
             </div>
