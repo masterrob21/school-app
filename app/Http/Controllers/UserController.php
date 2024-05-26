@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $users = DB::table('users')->where('users.id', $id)
                                    ->join('branches', 'users.branch_id', '=', 'branches.id')
-                                   ->select('users.id', 'name', 'email', 'branch_name', 'is_active')
+                                   ->select('users.id', 'name', 'email', 'branch_name', 'is_active', 'users.created_at', 'users.updated_at')
                                    ->first();
                                    
         return view('user.show')->with('user', $users);

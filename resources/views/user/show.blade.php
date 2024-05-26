@@ -41,6 +41,16 @@
                             </tr>
 
                             <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">Created At</th>
+                                <td class="p-3 border border-slate-300 text-xl">{{ $user->created_at }}</td>
+                            </tr>
+
+                            <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">Updated At</th>
+                                <td class="p-3 border border-slate-300 text-xl">{{ $user->updated_at }}</td>
+                            </tr>
+
+                            <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">IsActive</th>
                                 <td class="p-3 border border-slate-300">
                                     <input 
