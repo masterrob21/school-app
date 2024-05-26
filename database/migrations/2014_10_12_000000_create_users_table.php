@@ -21,8 +21,8 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->foreignId('branch_id');
-            $table->boolean('is_system');
-            $table->boolean('is_active');
+            $table->boolean('is_system')->nullable();
+            $table->boolean('is_active')->nullable();
             $table->timestamps();
         });
     }
