@@ -5,6 +5,12 @@
         </h2>
     </x-slot>
 
+    @if (session('status'))
+    <x-alert class="bg-green-400">
+        {{ session('status') }}
+    </x-alert>
+    @endif
+
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-4">

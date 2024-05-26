@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Validate;
 
 class UserController extends Controller
 {
@@ -86,9 +87,21 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        request()->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required']
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'branch_id' => $request->branch,
+            'is_active' => $request->is_active,
+        ]);
+
+        return redirect('/user/' . $user->id)->with('status', 'Record updated successfully.');
     }
 
     /**

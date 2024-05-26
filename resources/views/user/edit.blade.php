@@ -27,9 +27,9 @@
                 <div class="p-6 text-gray-900">
                     <x-validation-errors class="mb-4" />
 
-                    <form method="POST" action="">
+                    <form method="POST" action="/user/{{$user->id}}">
                         @csrf
-                        {{-- @method('PUT') --}}
+                        @method('PATCH')
 
                         <div>
                             <x-label for="name" value="{{ __('Name') }}" />
@@ -55,7 +55,7 @@
                             <label for="is_active">
                                 IsActive
                                 <input 
-                                    id="is_active" type="checkbox" name="is_active" required 
+                                    id="is_active" type="checkbox" name="is_active" value="1"
                                     @if (($user->is_active)===1)
                                         @checked(true)
                                     @endif
