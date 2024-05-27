@@ -6,6 +6,8 @@ use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 use Livewire\Attributes\Validate;
 
 class UserController extends Controller
@@ -107,8 +109,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect(route('user.index'))->with('status' , 'Record deleted successfully');
     }
 }
