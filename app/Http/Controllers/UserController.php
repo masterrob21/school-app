@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -111,8 +112,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        if (Auth()->user()->id !== $user->id) 
+        {
+            $user->delete();
+            return redirect(route('user.index'))->with('status' , 'Record deleted successfully');
+        }  
+        else
+        {  
+            return redirect('/abort');
+        }
 
-        return redirect(route('user.index'))->with('status' , 'Record deleted successfully');
     }
 }

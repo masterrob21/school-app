@@ -26,6 +26,8 @@ Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit'
 Route::patch('/user/{user}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
+Route::view('/abort', 'messages.abort');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
