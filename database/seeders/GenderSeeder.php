@@ -16,6 +16,6 @@ class GenderSeeder extends Seeder
         DB::table('genders')->insert([
             ['gender' => 'Male'],
             ['gender' => 'Female'],
-        ])
+        ]);
     }
 }
