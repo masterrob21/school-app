@@ -17,11 +17,13 @@ return new class extends Migration
             $table->string('other_names');
             $table->string('last_name');
             $table->date('date_of_birth');
-            $table->integer('gender_id');
+            $table->foreignId('gender_id');
             $table->string('address');
             $table->string('phone_number');
             $table->string('email');
             $table->date('enrollment_date');
+            $table->string('photo_path');
+            $table->foreignId('branch_id');
             $table->timestamps();
         });
     }
