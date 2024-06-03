@@ -20,9 +20,9 @@ return new class extends Migration
             $table->foreignId('gender_id');
             $table->string('address');
             $table->string('phone_number');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->date('enrollment_date');
-            $table->string('photo_path');
+            $table->string('photo_path')->nullable();
             $table->foreignId('branch_id');
             $table->timestamps();
         });
