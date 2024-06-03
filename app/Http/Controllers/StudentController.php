@@ -43,7 +43,13 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $students = DB::table('students')->join('genders', 'students.gender_id', '=', 'genders.id')
+                                         ->join('branches', 'students.branch_id', '=', 'branches.id')
+                                         ->select('students.*', 'gender', 'branch_name')
+                                         ->where('students.id', $id)
+                                         ->first();
+                                         
+        return view('student.show')->with('student', $students);
     }
 
     /**
