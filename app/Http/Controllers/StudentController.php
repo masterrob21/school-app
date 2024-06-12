@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
+use App\Models\Gender;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -27,7 +32,11 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $branches = Branch::where('id', Auth()->user()->branch_id)->get();
+        $genders = Gender::all();
+
+        return view('student.create')->with('genders', $genders)
+                                     ->with('branches', $branches );
     }
 
     /**
@@ -35,7 +44,44 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'enrollment_date' => ['required', 'date'],
+            'last_name' => ['required', 'string'],
+            'other_names' => ['required', 'string'],
+            'date_of_birth' => ['required', 'date'],
+            'gender_id' => ['required'],
+            'address' => ['required', 'string'],
+            'phone_number' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'photo_path' => ['nullable' , 'image'],
+            ]);
+
+        if ($request->has('photo_path')) {
+            $photo = $request->photo_path->store('photo', 'public');
+            
+        }
+        else
+        {
+            $photo = null;
+        }
+            
+            
+        Student::create([
+            'enrollment_date' => $request->enrollment_date,
+            'last_name' => $request->last_name,
+            'other_names' => $request->other_names,
+            'date_of_birth' => $request->date_of_birth,
+            'gender_id' => $request->gender_id,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'photo_path' => $photo,
+            'branch_id' => $request->branch_id,
+            'student_id' => Str::random(8),
+        ]);
+
+        return redirect(route('students.create'))->with('success' , 'New student added.');
     }
 
     /**

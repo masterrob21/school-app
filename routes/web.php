@@ -29,8 +29,10 @@ Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.de
 
 Route::view('/abort', 'messages.abort');
 
-Route::get('students', [StudentController::class, 'index'])->name('students.index');
-Route::get('students/{id}', [StudentController::class, 'show'])->name('students.show');
+Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
+Route::post('/students', [StudentController::class, 'store'])->name('students.store');
 
 Route::middleware([
     'auth:sanctum',

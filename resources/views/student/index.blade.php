@@ -17,7 +17,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
                         <div class="mt-2">
-                            <a href="{{route('user.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500">New User</a>
+                            <a href="{{route('students.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500">New Student</a>
                         </div>
                         <div class="">
                             <input type="text" class="rounded w-96" placeholder="Search student">
@@ -68,7 +68,7 @@
                                             </form>
                                         </td>
                                         
-                                        <td class="p-2"><img src="{{asset('storage/'.$student->photo_path)}}" class="h-10 w-10 rounded-full" alt="photo"></td>
+                                        <td class="p-2"><img src="{{asset('storage/'.$student->photo_path)}}" class="h-12 w-12 rounded-full object-cover" alt="photo"></td>
                                         <td class="p-2 capitalize">{{ $student->last_name }}</td>
                                         <td class="p-2 capitalize">{{ $student->other_names }}</td>
                                         <td class="p-2 capitalize">{{ $student->date_of_birth }}</td>
