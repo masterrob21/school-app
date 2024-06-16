@@ -66,6 +66,11 @@
                             </tr>
 
                             <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">Phone</th>
+                                <td class="p-3 border border-slate-300 text-xl">{{ $student->email }}</td>
+                            </tr>
+
+                            <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Branch</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $student->branch_name }}</td>
                             </tr>
@@ -82,7 +87,7 @@
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Photo</th>
-                                <td class="p-3 border border-slate-300 text-xl"><img class="rounded h-16 w-16" src="asset('storage/{{ $student->photo_path }}')" alt="photo"></td>
+                                <td class="p-3 border border-slate-300 text-xl"><img class="rounded h-16 w-16 object-cover" src="{{asset('storage/'.$student->photo_path)}}" alt="photo"></td>
                             </tr>
                         </table>
                     </div>

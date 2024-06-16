@@ -103,15 +103,52 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $students = DB::table('students')->join('genders', 'students.gender_id', '=', 'genders.id')
+                                         ->join('branches', 'students.branch_id', '=', 'branches.id')
+                                         ->select('students.*', 'gender', 'branch_name')
+                                         ->where('students.id', $id)
+                                         ->first();
+
+        $branches = Branch::where('id', '<>', $students->branch_id)->get();
+        $genders = Gender::where('id', '<>', $students->gender_id)->get();
+
+        return view('student.edit')->with('student', $students)
+                                   ->with('branches', $branches)
+                                   ->with('genders', $genders);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'enrollment_date' => ['required', 'date'],
+            'last_name' => ['required', 'string'],
+            'other_names' => ['required', 'string'],
+            'date_of_birth' => ['required', 'date'],
+            'gender_id' => ['required'],
+            'address' => ['required', 'string'],
+            'phone_number' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            
+            ]);
+
+        $student->update([
+            'enrollment_date' => $request->enrollment_date,
+            'last_name' => $request->last_name,
+            'other_names' => $request->other_names,
+            'date_of_birth' => $request->date_of_birth,
+            'gender_id' => $request->gender_id,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'branch_id' => $request->branch_id,
+        ]);
+
+        return redirect('/students/' . $student->id)->with('status', 'Record updated');
+
+
     }
 
     /**

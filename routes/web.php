@@ -33,6 +33,8 @@ Route::get('/students', [StudentController::class, 'index'])->name('students.ind
 Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
 Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 Route::post('/students', [StudentController::class, 'store'])->name('students.store');
+Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
 
 Route::middleware([
     'auth:sanctum',

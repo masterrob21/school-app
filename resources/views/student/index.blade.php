@@ -17,15 +17,15 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
                         <div class="mt-2">
-                            <a href="{{route('students.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500">New Student</a>
+                            <a href="{{route('students.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New Student</a>
                         </div>
                         <div class="">
-                            <input type="text" class="rounded w-96" placeholder="Search student">
+                            <input type="text" class="rounded sm:w-96 w-full" placeholder="Search student">
                         </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="table-auto w-full text-left">
-                            <caption class="caption-top mb-4 text-xl">
+                            <caption class="caption-top mb-4 text-xl font-bold text-left md:text-center">
                                 List of Students
                             </caption>
                             <thead class="bg-blue-200">
