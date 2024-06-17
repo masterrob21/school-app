@@ -35,6 +35,7 @@ Route::get('/students/{id}', [StudentController::class, 'show'])->name('students
 Route::post('/students', [StudentController::class, 'store'])->name('students.store');
 Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
 Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
+Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
 Route::middleware([
     'auth:sanctum',

@@ -152,7 +152,7 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show')">
-                {{ __('Studentss') }}
+                {{ __('Students') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show')">

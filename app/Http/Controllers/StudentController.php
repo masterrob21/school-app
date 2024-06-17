@@ -8,6 +8,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 
@@ -58,7 +59,7 @@ class StudentController extends Controller
             ]);
 
         if ($request->has('photo_path')) {
-            $photo = $request->photo_path->store('photo', 'public');
+            $photo = $request->photo_path->store('photo');
             
         }
         else
@@ -154,8 +155,20 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        if(!empty($student->photo_path)){
+            Storage::delete($student->photo_path);
+            $student->delete();
+
+            return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
+            
+        }else{
+            $student->delete();
+
+            return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
+        }
+        
+
     }
 }
