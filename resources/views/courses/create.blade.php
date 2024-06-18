@@ -40,12 +40,12 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-label for="course_description" value="{{ __('Course Description') }}" />
+                            <x-label for="course_description" value="{{ __('Course Description:') }}" />
                             <textarea class="block mt-1 w-full" name="course_description" id="course_description" cols="30" rows="10" :value="old('course_description')" placeholder="Provide description for the course." autocomplete="description"></textarea>
                         </div>
 
                         <div class="mt-4">
-                            <x-label for="credits" value="{{ __('Credits') }}" />
+                            <x-label for="credits" value="{{ __('Credits:') }}" />
                             <x-input id="credits" class="block mt-1 w-full" type="number" name="credits" :value="old('credits')" required />
                         </div>
 
