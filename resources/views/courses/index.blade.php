@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="mt-3 overflow-x-auto">
-                        {{-- {{ $courses->links() }} --}}
+                        {{ $courses->links() }}
                     </div>
                 </div>
             </div>

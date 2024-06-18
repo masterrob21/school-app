@@ -40,6 +40,7 @@ Route::delete('/students/{student}', [StudentController::class, 'destroy'])->nam
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
 
 Route::middleware([
     'auth:sanctum',

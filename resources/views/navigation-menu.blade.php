@@ -20,7 +20,7 @@
                         {{ __('Students') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show')">
+                    <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show') || request()->routeIs('courses.create')">
                         {{ __('Courses') }}
                     </x-nav-link>
                     
@@ -159,7 +159,7 @@
                 {{ __('Students') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show')">
+            <x-responsive-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show') || request()->routeIs('courses.create')">
                 {{ __('Courses') }}
             </x-responsive-nav-link>
 

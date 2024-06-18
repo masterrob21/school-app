@@ -12,7 +12,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(15);
 
         return view('courses.index')->with('courses', $courses);
     }
@@ -22,7 +22,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -30,7 +30,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'course_code' => ['required', 'string'],
+            'course_name' => ['required', 'string'],
+            'course_description' => ['nullable'],
+            'credits' => ['required', 'integer'],
+        ]);
+
+        Course::create([
+            'course_code' => $request->course_code,
+            'course_name' => $request->course_name,
+            'course_description' => $request->course_description,
+            'credits' => $request->credits,
+        ]);
+
+        return redirect(route('courses.create'))->with('success', 'New course added.');
     }
 
     /**
