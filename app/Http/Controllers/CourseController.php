@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
 {
@@ -31,7 +32,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'course_code' => ['required', 'string'],
+            'course_code' => ['required', 'string', 'unique:courses'],
             'course_name' => ['required', 'string'],
             'course_description' => ['nullable'],
             'credits' => ['required', 'integer'],
@@ -62,15 +63,31 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $course = Course::find($id);
+
+        return view('courses.edit')->with('course', $course);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'course_code' => ['required', 'string', Rule::unique('courses')->ignore($course)],
+            'course_name' => ['required', 'string'],
+            'course_description' => ['nullable'],
+            'credits' => ['required', 'integer'],
+        ]);
+
+        $course->update([
+            'course_code' => $request->course_code,
+            'course_name' => $request->course_name,
+            'course_description' => $request->course_description,
+            'credits' => $request->credits,
+        ]);
+
+        return redirect('/courses/' . $course->id)->with('status', 'Record updated.');
     }
 
     /**
