@@ -44,6 +44,7 @@ Route::post('/courses', [CourseController::class, 'store'])->name('courses.store
 Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
 Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
 Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
 Route::middleware([
     'auth:sanctum',
