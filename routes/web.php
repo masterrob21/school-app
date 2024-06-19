@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,9 @@ Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.sh
 Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
 Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
 Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
+Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
 
 Route::middleware([
     'auth:sanctum',

@@ -57,6 +57,11 @@
                                         {{ __('Courses') }}
                                     </x-dropdown-link>
 
+                                    <!-- department -->
+                                    <x-dropdown-link href="/departments">
+                                        {{ __('Departments') }}
+                                    </x-dropdown-link>
+
                                 </div>
                             </x-slot>
                         </x-dropdown>
@@ -192,6 +197,11 @@
                 <!--Courses -->
                 <x-responsive-nav-link href="/courses" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show') || request()->routeIs('courses.create')">
                     {{ __('Courses') }}
+                </x-responsive-nav-link>
+
+                <!--department -->
+                <x-responsive-nav-link href="/departments" :active="request()->routeIs('departments.index') || request()->routeIs('departments.show') || request()->routeIs('departments.create')">
+                    {{ __('Departments') }}
                 </x-responsive-nav-link>
             </div>
         </div>
