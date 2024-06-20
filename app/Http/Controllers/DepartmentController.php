@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
@@ -49,7 +50,12 @@ class DepartmentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $departments = Department::leftJoin('staff', 'departments.department_head', '=', 'staff.id')
+                                  ->select('departments.id', 'department_name', 'last_name', 'first_name')
+                                  ->where('departments.id', $id)
+                                  ->first();
+
+        return view('departments.show')->with('department', $departments);
     }
 
     /**
@@ -57,15 +63,34 @@ class DepartmentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $departments = Department::leftJoin('staff', 'departments.department_head', '=', 'staff.id')
+                                  ->select('departments.*', 'last_name', 'first_name')
+                                  ->where('departments.id', $id)
+                                  ->first();
+
+        $staffs = Staff::where('id', '<>', $departments->department_head)
+                        ->select('id', 'last_name', 'first_name')
+                        ->get();
+
+        return view('departments.edit')->with('department', $departments)
+                                       ->with('staffs', $staffs);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Department $department)
     {
-        //
+        $request->validate([
+            'department_name' => ['required', 'string', Rule::unique('departments')->ignore($department)],
+        ]);
+
+        $department->update([
+            'department_name' => $request->department_name,
+            'department_head' => $request->department_head,
+        ]);
+
+        return redirect('/departments/' . $department->id)->with('status', 'Record updated.');
     }
 
     /**

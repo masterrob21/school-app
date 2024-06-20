@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('New Department') }}
+           Edit Department: {{ $department->department_name }}
         </h2>
     </x-slot>
 
@@ -12,11 +12,12 @@
     @endif
 
     <div class="py-10">
-        <div class=" max-w-7xl mx-auto px-8">
+        <div class=" max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-4">
                 <ul class="px-4 py-2 list-none bg-slate-200">
                     <li class=" inline text-lg"><a href="/departments" class="text-blue-600 hover:underline">Departments</a></li>
-                    <li class="inline text-lg before:p-2 before:content-['/']">New Department</li>
+                    <li class=" inline text-lg before:p-2 before:content-['/']"><a href="/departments/{{$department->id}}" class="text-blue-600 hover:underline">Department Details</a></li>
+                    <li class="inline text-lg before:p-2 before:content-['/']">Edit Department</li>
                 </ul>
             </div>
         </div>
@@ -26,18 +27,18 @@
                 <div class="p-6 text-gray-900">
                     <x-validation-errors class="mb-4" />
 
-                    <form method="POST" action="{{ route('departments.store') }}">
+                    <form method="POST" action="/departments/{{$department->id}}" >
                         @csrf
-
-                        <div >
+                        @method('PATCH')
+                        <div>
                             <x-label for="department_name" value="{{ __('Department Name:') }}" />
-                            <x-input id="department_name" class="block mt-1 w-full" type="text" name="department_name" :value="old('department_name')" required autofocus />
+                            <x-input id="department_name" class="block mt-1 w-full" type="text" name="department_name" value="{{$department->department_name}}" required />
                         </div>
 
                         <div class="mt-4">
                             <x-label for="department_head" value="{{ __('Department Head:') }}" />
-                            <select class="block mt-1 w-full" name="department_head" id="department_head">
-                                <option value=""> ...</option>
+                            <select class="block mt-1 w-full rounded" name="department_head" id="department_head">
+                                <option value="{{$department->department_head}}">{{$department->last_name . ' ' . $department->first_name}}</option>
                                 @foreach ($staffs as $staff)
                                     <option value="{{staff->id}}">{{$staff->last_name . ' ' . $staff->first_name}}</option>
                                 @endforeach
@@ -46,7 +47,7 @@
 
                         <div class="mt-4">
                             <x-button>
-                                {{ __('Add Course') }}
+                                {{ __('Update Record') }}
                             </x-button>
                         </div>
                     </form>
