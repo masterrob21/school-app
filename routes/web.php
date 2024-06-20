@@ -49,6 +49,7 @@ Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('
 
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
 
 Route::middleware([
     'auth:sanctum',

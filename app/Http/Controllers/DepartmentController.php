@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -21,7 +22,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $staffs = Staff::select('id', 'last_name', 'first_name' )->orderBy('last_name');
+        
+        return view('departments.create')->with('staffs', $staffs);
     }
 
     /**
@@ -29,7 +32,16 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'department_name' => ['required', 'string', 'unique:departments'],
+        ]);
+
+        Department::create([
+            'department_name' => $request->department_name,
+            'department_head' => $request->department_head,
+        ]);
+
+        return redirect(route('departments.create'))->with('success', 'New department added.');
     }
 
     /**
