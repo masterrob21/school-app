@@ -53,6 +53,7 @@ Route::post('/departments', [DepartmentController::class, 'store'])->name('depar
 Route::get('/departments/{id}', [DepartmentController::class, 'show'])->name('departments.show');
 Route::get('/departments/{id}/edit', [DepartmentController::class, 'edit'])->name('departments.edit');
 Route::patch('/departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');
+Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
 Route::middleware([
     'auth:sanctum',
