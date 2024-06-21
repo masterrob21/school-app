@@ -31,8 +31,8 @@
                             </tr>
 
                             <tr class=" whitespace-nowrap">
-                                <th class="p-3 border border-slate-300">Department Head:</th>
-                                <td class="p-3 border border-slate-300 text-xl">{{ $department->department_head }}</td>
+                                <th class="p-3 border border-slate-300 capitalize">Department Head:</th>
+                                <td class="p-3 border border-slate-300 text-xl capitalize">{{ $department->last_name . ' ' . $department->first_name }}</td>
                             </tr>
                         </table>
                     </div>

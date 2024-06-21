@@ -36,10 +36,10 @@
 
                         <div class="mt-4">
                             <x-label for="department_head" value="{{ __('Department Head:') }}" />
-                            <select class="block mt-1 w-full" name="department_head" id="department_head">
+                            <select class="block mt-1 w-full rounded" name="department_head" id="department_head">
                                 <option value=""> ...</option>
                                 @foreach ($staffs as $staff)
-                                    <option value="{{staff->id}}">{{$staff->last_name . ' ' . $staff->first_name}}</option>
+                                    <option value="{{$staff->id}}">{{$staff->last_name . ' ' . $staff->first_name}}</option>
                                 @endforeach
                             </select>
                         </div>

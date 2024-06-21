@@ -14,7 +14,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::paginate();
+        $departments = Department::leftJoin('staff', 'departments.department_head', 'staff.id')
+                                  ->select('departments.*', 'last_name', 'first_name')
+                                  ->paginate(10);
         return view('departments.index')->with('departments', $departments);
     }
 
@@ -23,7 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $staffs = Staff::select('id', 'last_name', 'first_name' )->orderBy('last_name');
+        $staffs = Staff::select('id', 'last_name', 'first_name' )->orderBy('last_name')->get();
         
         return view('departments.create')->with('staffs', $staffs);
     }

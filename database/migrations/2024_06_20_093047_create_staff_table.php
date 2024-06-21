@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->foreignId('gender_id');
             $table->string('address');
+            $table->string('phone_number');
             $table->string('email');
             $table->date('hire_date');
             $table->foreignId('department_id');

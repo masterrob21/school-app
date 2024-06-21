@@ -16,15 +16,15 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show')">
+                    <x-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show') || request()->routeIs('students.create')">
                         {{ __('Students') }}
                     </x-nav-link>
 
-                    {{-- <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show') || request()->routeIs('courses.create')">
-                        {{ __('Courses') }}
-                    </x-nav-link> --}}
+                    <x-nav-link href="{{ route('staffs.index') }}" :active="request()->routeIs('staffs.index') || request()->routeIs('staffs.show') || request()->routeIs('staffs.create')">
+                        {{ __('Staff') }}
+                    </x-nav-link>
                     
-                    <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show')">
+                    <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show') || request()->routeIs('user.create')">
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
@@ -140,11 +140,15 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show')">
+            <x-responsive-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show') || request()->routeIs('students.create')">
                 {{ __('Students') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show')">
+            <x-responsive-nav-link href="{{ route('staffs.index') }}" :active="request()->routeIs('staffs.index') || request()->routeIs('staffs.show') || request()->routeIs('staffs.create')">
+                {{ __('Staff') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show') || request()->routeIs('user.create')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,14 @@ Route::get('/departments/{id}', [DepartmentController::class, 'show'])->name('de
 Route::get('/departments/{id}/edit', [DepartmentController::class, 'edit'])->name('departments.edit');
 Route::patch('/departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');
 Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+
+Route::get('/staffs', [StaffController::class, 'index'])->name('staffs.index');
+Route::get('/staffs/create', [StaffController::class, 'create'])->name('staffs.create');
+Route::post('/staffs', [StaffController::class, 'store'])->name('staffs.store');
+Route::get('/staffs/{id}', [StaffController::class, 'show'])->name('staffs.show');
+Route::get('/staffs/{id}/edit', [StaffController::class, 'edit'])->name('staffs.edit');
+Route::patch('/staffs/{staff}', [StaffController::class, 'update'])->name('staffs.update');
+Route::delete('/staffs/{staff}', [StaffController::class, 'destroy'])->name('staffs.destroy');
 
 Route::middleware([
     'auth:sanctum',
