@@ -92,6 +92,7 @@ class StaffController extends Controller
                        ->select('staff.*', 'genders.gender', 'branches.branch_name', 'departments.department_name')
                        ->where('staff.id', $id)
                        ->first();
+                       
         return view('staffs.show')->with('staff', $staff);
     }
 
@@ -100,15 +101,55 @@ class StaffController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $staff = Staff::join('genders', 'staff.gender_id', '=', 'genders.id')
+                       ->join('branches', 'staff.branch_id', '=', 'branches.id')
+                       ->join('departments', 'staff.department_id', '=', 'departments.id')
+                       ->select('staff.*', 'genders.gender', 'branches.branch_name', 'departments.department_name')
+                       ->where('staff.id', $id)
+                       ->first();
+        
+        $genders = Gender::where('id', '<>', $staff->gender_id)->get();
+        $branches = Branch::where('id', '<>', $staff->branch_id)->get();
+        $departments = Department::where('id', '<>', $staff->department_id)->get();
+        
+        return view('staffs.edit')->with('staff', $staff)
+                                  ->with('genders', $genders)
+                                  ->with('branches', $branches)
+                                  ->with('departments', $departments);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Staff $staff)
     {
-        //
+        $request->validate([
+            'hire_date' => ['required', 'date'],
+            'last_name' => ['required', 'string'],
+            'first_name' => ['required', 'string'],
+            'date_of_birth' => ['required', 'date'],
+            'gender_id' => ['required'],
+            'address' => ['required', 'string'],
+            'phone_number' => ['required', 'numeric', 'min_digits:11'],
+            'email' => ['required', 'email'],
+            'branch_id' => ['required'],
+            'department_id' => ['required'],
+            ]);
+
+        $staff->update([
+            'hire_date' => $request->hire_date,
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'date_of_birth' => $request->date_of_birth,
+            'gender_id' => $request->gender_id,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'branch_id' => $request->branch_id,
+            'department_id' => $request->department_id,
+        ]);
+
+        return redirect('/staffs/' . $staff->id)->with('status', 'Record updated.');
     }
 
     /**
