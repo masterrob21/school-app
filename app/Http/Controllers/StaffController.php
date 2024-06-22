@@ -54,6 +54,7 @@ class StaffController extends Controller
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'numeric', 'min_digits:11'],
             'email' => ['required', 'email'],
+            'branch_id' => ['required'],
             'department_id' => ['required'],
             ]);
 
@@ -85,7 +86,13 @@ class StaffController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $staff = Staff::join('genders', 'staff.gender_id', '=', 'genders.id')
+                       ->join('branches', 'staff.branch_id', '=', 'branches.id')
+                       ->join('departments', 'staff.department_id', '=', 'departments.id')
+                       ->select('staff.*', 'genders.gender', 'branches.branch_name', 'departments.department_name')
+                       ->where('staff.id', $id)
+                       ->first();
+        return view('staffs.show')->with('staff', $staff);
     }
 
     /**
