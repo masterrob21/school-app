@@ -155,8 +155,10 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Staff $staff)
     {
-        //
+        $staff->delete();
+
+        return redirect(route('staffs.index'))->with('status', 'Record has being deleted.');
     }
 }
