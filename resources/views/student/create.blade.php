@@ -36,12 +36,12 @@
 
                         <div class="mt-4">
                             <x-label for="last_name" value="{{ __('LastName') }}" />
-                            <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autocomplete="last_name" />
+                            <x-input id="last_name" class="block mt-1 w-full capitalize" type="text" name="last_name" :value="old('last_name')" required autocomplete="last_name" />
                         </div>
 
                         <div class="mt-4">
                             <x-label for="other_names" value="{{ __('OtherNames') }}" />
-                            <x-input id="other_names" class="block mt-1 w-full" type="text" name="other_names" :value="old('other_names')" required autocomplete="other_names" />
+                            <x-input id="other_names" class="block mt-1 w-full capitalize" type="text" name="other_names" :value="old('other_names')" required autocomplete="other_names" />
                         </div>
 
                         <div class="mt-4">
