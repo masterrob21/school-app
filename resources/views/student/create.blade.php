@@ -51,12 +51,12 @@
 
                         <div class="mt-4">
                             <x-label for="gender_id" value="{{ __('Gender') }}" />
-                            <select name="gender_id" id="gender_id" class="block mt-1 w-full" :value="old('gender_id')" required>
+                            <x-select name="gender_id" id="gender_id" class="block mt-1 w-full" :value="old('gender_id')" required>
                                 <option value=""> ...</option>
                                 @foreach ($genders as $gender)
                                     <option value="{{$gender->id}}">{{$gender->gender}}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="mt-4">
@@ -76,12 +76,12 @@
 
                         <div class="mt-4">
                             <x-label for="branch_id" value="{{ __('Branch') }}" />
-                            <select name="branch_id" id="branch_id" class="block mt-1 w-full" :value="old('branch_id')" required>
+                            <x-select name="branch_id" id="branch_id" class="block mt-1 w-full rounded" :value="old('branch_id')" required >
                                 <option value=""> ...</option>
                                 @foreach ($branches as $branch)
                                     <option value="{{$branch->id}}">{{$branch->branch_name}}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="mt-4">
