@@ -46,7 +46,10 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $count = Student::count();
+        $number = $count + 1;
+        $student_id = sprintf('%05d', $number);
+
         $request->validate([
             'enrollment_date' => ['required', 'date'],
             'last_name' => ['required', 'string'],
@@ -80,7 +83,7 @@ class StudentController extends Controller
             'email' => $request->email,
             'photo_path' => $photo,
             'branch_id' => $request->branch_id,
-            'student_id' => Str::random(8),
+            'student_id' => $student_id,
         ]);
 
         return redirect(route('students.create'))->with('success' , 'New student added.');
