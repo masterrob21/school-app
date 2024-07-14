@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
@@ -63,6 +64,9 @@ Route::get('/staffs/{id}', [StaffController::class, 'show'])->name('staffs.show'
 Route::get('/staffs/{id}/edit', [StaffController::class, 'edit'])->name('staffs.edit');
 Route::patch('/staffs/{staff}', [StaffController::class, 'update'])->name('staffs.update');
 Route::delete('/staffs/{staff}', [StaffController::class, 'destroy'])->name('staffs.destroy');
+
+Route::get('/education-history/create', [EducationHistoryController::class, 'create'])->name('education-history.create');
+Route::post('/education-history', [EducationHistoryController::class, 'store'])->name('education-history.store');
 
 Route::middleware([
     'auth:sanctum',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\EducationalHistory;
 use App\Models\Gender;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -96,7 +97,15 @@ class StudentController extends Controller
                                          ->where('students.id', $id)
                                          ->first();
                                          
-        return view('student.show')->with('student', $students);
+        $education_history = EducationalHistory::where('student_id', $id)->get();
+
+        session([
+            'student_id' => $id,
+            'name' => $students->other_names . ' ' . $students->last_name,
+        ]);
+
+        return view('student.show')->with('student', $students)
+                                   ->with('education_histories', $education_history);
     }
 
     /**
