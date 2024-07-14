@@ -104,6 +104,8 @@
                         <div class="mb-3">
                             <a href="{{route('education-history.create')}}" class="p-3 rounded bg-blue-400 text-white font-bold">Add Education</a>
                         </div>
+                        
+                        @if (count($education_histories)>0)
                         <div class="overflow-x-auto">
                             <table class="table-auto border-collapse border border-slate-400 w-full text-left">
                                 <caption class="text-xl mb-4 text-left md:text-center">Educational History</caption>
@@ -151,6 +153,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
