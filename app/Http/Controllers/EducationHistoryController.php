@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class EducationHistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,14 +38,6 @@ class EducationHistoryController extends Controller
         ]);
 
         return redirect('/students/' . $request->student_id)->with('status', 'Previous school added');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -90,8 +75,10 @@ class EducationHistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(EducationalHistory $education_history)
     {
-        //
+        $education_history->delete();
+
+        return redirect('/students/' . session('student_id'))->with('warning', 'Record deleted.');
     }
 }

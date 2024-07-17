@@ -69,6 +69,7 @@ Route::get('/education-history/create', [EducationHistoryController::class, 'cre
 Route::post('/education-history', [EducationHistoryController::class, 'store'])->name('education-history.store');
 Route::get('/education-history/{id}/edit', [EducationHistoryController::class, 'edit'])->name('education-history.edit');
 Route::patch('/education-history/{education_history}', [EducationHistoryController::class, 'update'])->name('education-history.update');
+Route::delete('/education-history/{education_history}', [EducationHistoryController::class, 'destroy'])->name('education-history.destroy');
 
 Route::middleware([
     'auth:sanctum',
