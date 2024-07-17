@@ -67,6 +67,8 @@ Route::delete('/staffs/{staff}', [StaffController::class, 'destroy'])->name('sta
 
 Route::get('/education-history/create', [EducationHistoryController::class, 'create'])->name('education-history.create');
 Route::post('/education-history', [EducationHistoryController::class, 'store'])->name('education-history.store');
+Route::get('/education-history/{id}/edit', [EducationHistoryController::class, 'edit'])->name('education-history.edit');
+Route::patch('/education-history/{education_history}', [EducationHistoryController::class, 'update'])->name('education-history.update');
 
 Route::middleware([
     'auth:sanctum',

@@ -60,15 +60,31 @@ class EducationHistoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $education = EducationalHistory::find($id);
+
+        return view('education-histories.edit')->with('education', $education);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, EducationalHistory $education_history)
     {
-        //
+        $request->validate([
+            'previous_school' => ['required', 'string'],
+            'attended_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+            'level' => ['required'], 'string',
+        ]);
+
+        $education_history->update([
+            'previous_school' => $request->previous_school,
+            'attended_date' => $request->attended_date,
+            'end_date' => $request->end_date,
+            'level' => $request->level,
+        ]);
+
+        return redirect('/students/' . session('student_id'))->with('status', 'Record updated.');
     }
 
     /**
