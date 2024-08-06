@@ -62,6 +62,11 @@
                                         {{ __('Departments') }}
                                     </x-dropdown-link>
 
+                                    <!-- occupation -->
+                                    <x-dropdown-link href="/occupations">
+                                        {{ __('Occupations') }}
+                                    </x-dropdown-link>
+
                                 </div>
                             </x-slot>
                         </x-dropdown>
@@ -206,6 +211,11 @@
                 <!--department -->
                 <x-responsive-nav-link href="/departments" :active="request()->routeIs('departments.index') || request()->routeIs('departments.show') || request()->routeIs('departments.create')">
                     {{ __('Departments') }}
+                </x-responsive-nav-link>
+
+                <!--department -->
+                <x-responsive-nav-link href="/occupations" >
+                    {{ __('Occupations') }}
                 </x-responsive-nav-link>
             </div>
         </div>
