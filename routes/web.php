@@ -73,6 +73,8 @@ Route::patch('/education-history/{education_history}', [EducationHistoryControll
 Route::delete('/education-history/{education_history}', [EducationHistoryController::class, 'destroy'])->name('education-history.destroy');
 
 Route::get('/occupations', [OccupationController::class, 'index'])->name('occupations.index');
+Route::get('/occupations/create', [OccupationController::class, 'create'])->name('occupations.create');
+Route::post('/occupations', [OccupationController::class, 'store'])->name('occupations.store');
 
 Route::middleware([
     'auth:sanctum',

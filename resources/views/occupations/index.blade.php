@@ -17,7 +17,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
                         <div class="mt-2">
-                            <a href="{{route('departments.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New Occupation</a>
+                            <a href="{{route('occupations.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New Occupation</a>
                         </div>
                         <div class="">
                             <input type="text" class="rounded sm:w-96 w-full" placeholder="Search occupation">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\occupation;
+use App\Models\Occupation;
 use Illuminate\Http\Request;
 
 class OccupationController extends Controller
@@ -12,7 +12,7 @@ class OccupationController extends Controller
      */
     public function index()
     {
-        $occupations = occupation::paginate(20);
+        $occupations = Occupation::orderBy('occupation')->paginate(20);
 
         return view('occupations.index')->with('occupations', $occupations);
     }
@@ -22,7 +22,7 @@ class OccupationController extends Controller
      */
     public function create()
     {
-        //
+        return view('occupations.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class OccupationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'occupation' => ['required', 'string', 'unique:occupations']
+        ]);
+
+        Occupation::create([
+            'occupation' => $request->occupation,
+        ]);
+
+        return redirect(route('occupations.create'))->with('status', 'New occupation added.');
     }
 
     /**
