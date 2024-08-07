@@ -46,7 +46,7 @@
 
                         <div class="mt-4">
                             <x-button>
-                                {{ __('Add Course') }}
+                                {{ __('Add Department') }}
                             </x-button>
                         </div>
                     </form>
