@@ -16,6 +16,7 @@ class DepartmentController extends Controller
     {
         $departments = Department::leftJoin('staff', 'departments.department_head', 'staff.id')
                                   ->select('departments.*', 'last_name', 'first_name')
+                                  ->orderBy('department_name')
                                   ->paginate(10);
         return view('departments.index')->with('departments', $departments);
     }
