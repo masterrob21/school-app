@@ -88,6 +88,9 @@ Route::post('/guardians', [GuardianController::class, 'store'])->name('guardians
 Route::get('/relations', [RelationController::class, 'index'])->name('relations.index');
 Route::get('/relations/create', [RelationController::class, 'create'])->name('relations.create');
 Route::post('/relations', [RelationController::class, 'store'])->name('relations.store');
+Route::get('/relations/{id}/edit', [RelationController::class, 'edit'])->name('relations.edit');
+Route::patch('/relations/{relation}', [RelationController::class, 'update'])->name('relations.update');
+Route::delete('/relations/{relation}', [RelationController::class, 'destroy'])->name('relations.destroy');
 
 Route::middleware([
     'auth:sanctum',
