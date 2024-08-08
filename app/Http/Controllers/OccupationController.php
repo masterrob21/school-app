@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Occupation;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class OccupationController extends Controller
 {
@@ -54,15 +55,25 @@ class OccupationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $occupation = Occupation::find($id);
+
+        return view('occupations.edit')->with('occupation', $occupation);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Occupation $occupation)
     {
-        //
+        $request->validate([
+            'occupation' => ['required', 'string', Rule::unique('occupations')->ignore($occupation) ]
+        ]);
+
+        $occupation->update([
+            'occupation' => $request->occupation
+        ]);
+
+        return redirect(route('occupations.index'))->with('status', 'Record updated.');
     }
 
     /**
