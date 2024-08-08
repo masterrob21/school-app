@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
@@ -83,6 +84,10 @@ Route::delete('/occupations/{occupation}', [OccupationController::class, 'destro
 Route::get('/guardians', [GuardianController::class, 'index'])->name('guardians.index');
 Route::get('/guardians/create', [GuardianController::class, 'create'])->name('guardians.create');
 Route::post('/guardians', [GuardianController::class, 'store'])->name('guardians.store');
+
+Route::get('/relations', [RelationController::class, 'index'])->name('relations.index');
+Route::get('/relations/create', [RelationController::class, 'create'])->name('relations.create');
+Route::post('/relations', [RelationController::class, 'store'])->name('relations.store');
 
 Route::middleware([
     'auth:sanctum',
