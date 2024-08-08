@@ -79,8 +79,10 @@ class OccupationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Occupation $occupation)
     {
-        //
+        $occupation->delete();
+
+        return redirect(route('occupations.index'))->with('status', 'Record deleted.');
     }
 }

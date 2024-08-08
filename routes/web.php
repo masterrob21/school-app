@@ -77,6 +77,7 @@ Route::get('/occupations/create', [OccupationController::class, 'create'])->name
 Route::post('/occupations', [OccupationController::class, 'store'])->name('occupations.store');
 Route::get('/occupations/{id}/edit', [OccupationController::class, 'edit'])->name('occupations.edit');
 Route::patch('/occupations/{occupation}', [OccupationController::class, 'update'])->name('occupations.update');
+Route::delete('/occupations/{occupation}', [OccupationController::class, 'destroy'])->name('occupations.destroy');
 
 Route::middleware([
     'auth:sanctum',
