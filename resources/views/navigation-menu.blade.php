@@ -20,6 +20,10 @@
                         {{ __('Students') }}
                     </x-nav-link>
 
+                    <x-nav-link href="{{ route('guardians.index') }}" :active="request()->routeIs('guardians.index') || request()->routeIs('guardians.show') || request()->routeIs('guardians.create')">
+                        {{ __('Guardians') }}
+                    </x-nav-link>
+
                     <x-nav-link href="{{ route('staffs.index') }}" :active="request()->routeIs('staffs.index') || request()->routeIs('staffs.show') || request()->routeIs('staffs.create')">
                         {{ __('Staff') }}
                     </x-nav-link>
@@ -147,6 +151,10 @@
 
             <x-responsive-nav-link href="{{ route('students.index') }}" :active="request()->routeIs('students.index') || request()->routeIs('students.show') || request()->routeIs('students.create')">
                 {{ __('Students') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{ route('guardians.index') }}" :active="request()->routeIs('guardians.index') || request()->routeIs('guardians.show') || request()->routeIs('guardians.create')">
+                {{ __('Guardians') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link href="{{ route('staffs.index') }}" :active="request()->routeIs('staffs.index') || request()->routeIs('staffs.show') || request()->routeIs('staffs.create')">

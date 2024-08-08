@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
+use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
@@ -78,6 +79,10 @@ Route::post('/occupations', [OccupationController::class, 'store'])->name('occup
 Route::get('/occupations/{id}/edit', [OccupationController::class, 'edit'])->name('occupations.edit');
 Route::patch('/occupations/{occupation}', [OccupationController::class, 'update'])->name('occupations.update');
 Route::delete('/occupations/{occupation}', [OccupationController::class, 'destroy'])->name('occupations.destroy');
+
+Route::get('/guardians', [GuardianController::class, 'index'])->name('guardians.index');
+Route::get('/guardians/create', [GuardianController::class, 'create'])->name('guardians.create');
+Route::post('/guardians', [GuardianController::class, 'store'])->name('guardians.store');
 
 Route::middleware([
     'auth:sanctum',

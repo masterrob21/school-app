@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Guardian;
+use App\Models\Occupation;
+use Illuminate\Http\Request;
+
+class GuardianController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $guardians = Guardian::join('occupations', 'guardians.occupation_id', 'occupations.id')
+                                ->select('guardians.*', 'occupation')
+                                ->orderBy('occupation')
+                                ->paginate(20);
+
+        return view('guardians.index')->with('guardians', $guardians);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $occupations = Occupation::orderBy('occupation')->get();
+
+        return view('guardians.create')->with('occupations', $occupations);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'last_name' => ['required', 'string'],
+            'first_name' => ['required', 'string'],
+            'occupation_id' => ['required'],
+            'primary_number' => ['required', 'integer'],
+            'secondary_number' => ['nullable', 'integer'],
+            'email' => ['nullable', 'email'],
+            'address' => ['required', 'string'],
+        ]);
+
+        Guardian::create([
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'occupation_id' => $request->occupation_id,
+            'primary_number' => $request->primary_number,
+            'secondary_number' => $request->secondary_number,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
+
+        return redirect(route('guardians.create'))->with('status', 'Record added.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
