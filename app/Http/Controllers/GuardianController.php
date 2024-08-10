@@ -64,7 +64,12 @@ class GuardianController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $guardian = Guardian::join('occupations', 'guardians.occupation_id', 'occupations.id')
+                                ->select('guardians.*', 'occupation')
+                                ->where('guardians.id', $id)
+                                ->first();
+
+        return view('guardians.show')->with('guardian', $guardian);
     }
 
     /**
@@ -72,15 +77,43 @@ class GuardianController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $guardian = Guardian::join('occupations', 'guardians.occupation_id', 'occupations.id')
+                                ->select('guardians.*', 'occupation')
+                                ->where('guardians.id', $id)
+                                ->first();
+
+        $occupations = Occupation::where('id', '<>', $id)->get();
+
+        return view('guardians.edit')->with('guardian', $guardian)
+                                     ->with('occupations', $occupations);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Guardian $guardian)
     {
-        //
+        $request->validate([
+            'last_name' => ['required', 'string'],
+            'first_name' => ['required', 'string'],
+            'occupation_id' => ['required'],
+            'primary_number' => ['required', 'integer'],
+            'secondary_number' => ['nullable', 'integer'],
+            'email' => ['nullable', 'email'],
+            'address' => ['required', 'string'],
+        ]);
+
+        $guardian->update([
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'occupation_id' => $request->occupation_id,
+            'primary_number' => $request->primary_number,
+            'secondary_number' => $request->secondary_number,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
+
+        return redirect('/guardians/' . $guardian->id)->with('status', 'Record updated.');
     }
 
     /**
