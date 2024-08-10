@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->foreignId('occupation_id');
-            $table->integer('primary_number');
-            $table->integer('secondary_number')->nullable();
+            $table->bigInteger('primary_number');
+            $table->bigInteger('secondary_number')->nullable();
             $table->string('email')->nullable();
             $table->string('address');
             $table->timestamps();
