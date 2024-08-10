@@ -119,8 +119,10 @@ class GuardianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Guardian $guardian)
     {
-        //
+        $guardian->delete();
+
+        return redirect(route('guardians.index'))->with('status', 'Record deleted.');
     }
 }

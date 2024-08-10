@@ -87,6 +87,7 @@ Route::post('/guardians', [GuardianController::class, 'store'])->name('guardians
 Route::get('/guardians/{id}', [GuardianController::class, 'show'])->name('guardians.show');
 Route::get('/guardians/{id}/edit', [GuardianController::class, 'edit'])->name('guardians.edit');
 Route::patch('/guardians/{guardian}', [GuardianController::class, 'update'])->name('guardians.update');
+Route::delete('/guardians/{guardian}', [GuardianController::class, 'destroy'])->name('guardians.destroy');
 
 Route::get('/relations', [RelationController::class, 'index'])->name('relations.index');
 Route::get('/relations/create', [RelationController::class, 'create'])->name('relations.create');
