@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\EducationalHistory;
 use App\Models\Gender;
 use App\Models\Student;
+use App\Models\StudentGuardian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -102,13 +103,19 @@ class StudentController extends Controller
                                          
         $education_history = EducationalHistory::where('student_id', $id)->get();
 
+        $student_guardian = StudentGuardian::join('guardians', 'student_guardians.guardian_id', '=', 'guardians.id')
+                                            ->select('first_name', 'last_name', 'primary_number')
+                                            ->where('student_id', $id)
+                                            ->get();
+
         session([
             'student_id' => $id,
             'name' => $students->other_names . ' ' . $students->last_name,
         ]);
 
         return view('student.show')->with('student', $students)
-                                   ->with('education_histories', $education_history);
+                                   ->with('education_histories', $education_history)
+                                   ->with('student_guardians', $student_guardian);
     }
 
     /**
