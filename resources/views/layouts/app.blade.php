@@ -10,9 +10,11 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/assets/css/sidebar.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script type="module" src="/assets/js/sidebar.js"></script>
 
         <!-- Styles -->
         @livewireStyles
@@ -20,7 +22,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
@@ -33,9 +35,16 @@
             @endif
 
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="flex">
+                <div class=" bg-black min-h-screen py-10 flex-none">
+                @include('side-navbar')
+                </div>
+
+                <main class="flex-1">
+                    
+                    {{ $slot }}
+                </main>
+            </div>
         </div>
 
         @stack('modals')

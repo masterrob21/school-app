@@ -10,8 +10,14 @@
                     </a>
                 </div>
 
+                <!-- Institution name -->
+                <div class="flex items-center p-3 capitalize sm:font-bold sm:text-2xl">
+                    <h1>Masterrob institute</h1>
+                </div>
+
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <h1>hghghh</h1>
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
@@ -31,12 +37,12 @@
                     <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show') || request()->routeIs('user.create')">
                         {{ __('Users') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Setup Dropdown -->
-                    <div class="ms-3 relative">
+                    {{-- <div class="ms-3 relative">
                         <x-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -51,10 +57,10 @@
 
                             <x-slot name="content">
                                 <div class="w-60">
-                                    {{-- <!-- Team Management -->
+                                     <!-- Team Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Manage Team') }}
-                                    </div> --}}
+                                    </div>
 
                                     <!-- Course -->
                                     <x-dropdown-link href="/courses">
@@ -74,7 +80,7 @@
                                 </div>
                             </x-slot>
                         </x-dropdown>
-                    </div>
+                    </div> --}}
                 
 
                 <!-- Settings Dropdown -->
@@ -144,7 +150,7 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        {{-- <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
@@ -164,7 +170,7 @@
             <x-responsive-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index') || request()->routeIs('user.show') || request()->routeIs('user.create')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
-        </div>
+        </div> --}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -205,11 +211,11 @@
 
                 <!-- Setup -->
                 
-                <div class="border-t border-gray-200"></div>
+                {{-- <div class="border-t border-gray-200"></div>
 
-                {{-- <div class="block px-4 py-2 text-xs text-gray-400">
+                 <div class="block px-4 py-2 text-xs text-gray-400">
                     {{ __('Manage Team') }}
-                </div> --}}
+                </div>
 
                 <!--Courses -->
                 <x-responsive-nav-link href="/courses" :active="request()->routeIs('courses.index') || request()->routeIs('courses.show') || request()->routeIs('courses.create')">
@@ -224,7 +230,7 @@
                 <!--department -->
                 <x-responsive-nav-link href="/occupations" >
                     {{ __('Occupations') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
             </div>
         </div>
     </div>
