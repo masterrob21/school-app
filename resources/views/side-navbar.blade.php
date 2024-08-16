@@ -5,41 +5,41 @@
     </div>
     <!-- menu-wrapper -->
     <ul class="menu-list accordion">
-      <li id="" class="uppercase p-5"> 
+      <li id="nav1" class="uppercase p-5 hover:bg-lime-400"> 
          <a class="menu-link" href="/dashboard">Dashboard</a>
       </li>
 
-       <li id="nav1" class="toggle accordion-toggle"> 
+       <li id="nav2" class="toggle accordion-toggle hover:bg-lime-400"> 
           <span class="icon-plus"></span>
           <a class="menu-link" href="#">Bio-Data</a>
        </li>
        <!-- accordion-toggle -->
        <ul class="menu-submenu accordion-content space-y-2">
-          <li><a class="head p-4 hover:text-green-600" href="/students">Student</a></li>
-          <li><a class="head p-4 hover:text-green-600" href="/guardians">Parent/Guardian</a></li>
+          <li class="px-6"><a class="hover:text-lime-500" href="/students">Student</a></li>
+          <li class="px-6"><a class="hover:text-lime-500" href="/guardians">Parent/Guardian</a></li>
           {{-- <li><a class="head p-4" href="#">Submenu3</a></li> --}}
        </ul>
        <!-- menu-submenu accordon-content-->
-       <li id="nav2" class="toggle accordion-toggle"> 
+       <li id="nav3" class="toggle accordion-toggle hover:bg-lime-400"> 
           <span class="icon-plus"></span>
           <a class="menu-link" href="#">Menu2</a>
        </li>
        <!-- accordion-toggle -->
        <ul class="menu-submenu accordion-content">
-          <li><a class="head" href="#">Submenu1</a></li>
-          <li><a class="head" href="#">Submenu2</a></li>
+          <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu1</a></li>
+          <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li>
        </ul>
        <!-- menu-submenu accordon-content-->
-            <li id="nav3" class="toggle accordion-toggle"> 
+            <li id="nav4" class="toggle accordion-toggle hover:bg-lime-400"> 
           <span class="icon-plus"></span>
           <a class="menu-link" href="#">Setup</a>
        </li>
        <!-- accordion-toggle -->
        <ul class="menu-submenu accordion-content space-y-2">
-          <li><a class="head p-4 hover:text-green-600" href="/courses">Course</a></li>
-          <li><a class="head p-4 hover:text-green-600" href="/departments">Department</a></li>
-          <li><a class="head p-4 hover:text-green-600" href="/occupations">Occupation</a></li>
-          <li><a class="head p-4 hover:text-green-600" href="/relations">Relation</a></li>
+          <li class="px-6"><a class="hover:text-lime-500 " href="/courses">Course</a></li>
+          <li class="px-6"><a class="hover:text-lime-500 " href="/departments">Department</a></li>
+          <li class="px-6"><a class="hover:text-lime-500 " href="/occupations">Occupation</a></li>
+          <li class="px-6"><a class="hover:text-lime-500 " href="/relations">Relation</a></li>
        </ul>
        <!-- menu-submenu accordon-content-->
     </ul>
