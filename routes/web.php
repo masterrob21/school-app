@@ -99,6 +99,9 @@ Route::delete('/relations/{relation}', [RelationController::class, 'destroy'])->
 
 Route::get('/studentGuardian/create', [StudentGuardianController::class, 'create'])->name('studentGuardian.create');
 Route::post('/studentGuardian', [StudentGuardianController::class, 'store'])->name('studentGuardian.store');
+Route::get('/studentGuardian/{id}/edit', [StudentGuardianController::class, 'edit'])->name('studentGuardian.edit');
+Route::patch('/studentGuardian/{studentGuardian}', [StudentGuardianController::class, 'update'])->name('studentGuardian.update');
+Route::delete('/studentGuardian/{studentGuardian}', [StudentGuardianController::class, 'destroy'])->name('studentGuardian.destroy');
 
 Route::middleware([
     'auth:sanctum',

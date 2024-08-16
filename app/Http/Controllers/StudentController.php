@@ -104,7 +104,8 @@ class StudentController extends Controller
         $education_history = EducationalHistory::where('student_id', $id)->get();
 
         $student_guardian = StudentGuardian::join('guardians', 'student_guardians.guardian_id', '=', 'guardians.id')
-                                            ->select('first_name', 'last_name', 'primary_number')
+                                            ->join('relations', 'student_guardians.relation_id', '=', 'relations.id')
+                                            ->select('first_name', 'last_name', 'primary_number', 'relation', 'student_guardians.id')
                                             ->where('student_id', $id)
                                             ->get();
 
