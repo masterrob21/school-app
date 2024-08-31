@@ -13,7 +13,7 @@ class DefaultUserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::insert([
+        DB::table('users')->insert([
             'name' => 'Administrator',
             'email' => 'admin@noreply.com',
             'password' => bcrypt('admin1234'),
