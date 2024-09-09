@@ -35,12 +35,12 @@
             @endif
 
             <!-- Page Content -->
-            <div class="flex">
-                <div class=" bg-black min-h-screen py-10 flex-none">
+            <div class="grid grid-cols-6 gap-1 sm:grid-cols-12 sm:gap-0">
+                <div class=" bg-black min-h-screen py-10 w-14">
                 @include('side-navbar')
                 </div>
 
-                <main class="flex-1">
+                <main class="col-span-5 sm:col-span-11">
                     
                     {{ $slot }}
                 </main>
