@@ -60,7 +60,7 @@ class StudentController extends Controller
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'photo_path' => ['nullable' , 'image'],
+            'photo_path' => ['nullable' , 'image', 'max:2048'],
             ]);
 
         if ($request->has('photo_path')) {
