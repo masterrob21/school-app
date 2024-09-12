@@ -30,7 +30,24 @@
                 <div class="p-6 text-gray-900">
                     <div class=" overflow-x-auto">
                         <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                            <caption class=" caption-top mb-4 text-xl text-blue-600">Student Information</caption>
+                            <caption class=" caption-top mb-4 text-xl text-blue-600 text-left md:text-center">Student Information</caption>
+                            <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">Photo</th>
+                                <td class="p-3 border border-slate-300 text-xl">
+                                    @if ($student->photo_path)
+                                    <img class="rounded h-28 w-28 object-cover mb-2" src="{{asset('storage/'.$student->photo_path)}}" alt="no image">
+                                        <form action="" method="POST" id="remove_image">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button id="{{$student->id}}" class="rounded bg-red-500 p-2 text-sm remove_image">Remove</button>
+                                        </form>
+                                    @else
+                                        <a href="/updateStudentImage/{{$student->id}}/edit" class="rounded capitalize bg-green-500 text-white p-2 text-sm">insert image</a>                          
+                                    @endif
+                                </td>
+                            </tr>
+
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">EnrollmentDate</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y', strtotime($student->enrollment_date)) }}</td>
@@ -83,18 +100,14 @@
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Created At</th>
-                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y', strtotime($student->created_at)) }}</td>
+                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:s:i', strtotime($student->created_at)) }}</td>
                             </tr>
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">LastUpdated</th>
-                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y', strtotime($student->updated_at)) }}</td>
+                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:s:i', strtotime($student->updated_at)) }}</td>
                             </tr>
 
-                            <tr class=" whitespace-nowrap">
-                                <th class="p-3 border border-slate-300">Photo</th>
-                                <td class="p-3 border border-slate-300 text-xl"><img class="rounded h-16 w-16 object-cover" src="{{asset('storage/'.$student->photo_path)}}" alt="photo"></td>
-                            </tr>
                         </table>
                     </div>
 
@@ -246,6 +259,19 @@
                 form.action = '/studentGuardian/' + id;
                 if (dialog) {
                     $('#delete_form1').submit();
+                }
+            });
+
+            $(document).on('click', '.remove_image', function(event){
+                event.preventDefault();
+
+                const form = document.getElementById('remove_image');
+                const id = $(this).attr('id');
+                const dialog = confirm('You are about to remove student photo, Click "Ok" to proceed.');
+
+                form.action = '/updateStudentImage/' + id;
+                if (dialog) {
+                    $('#remove_image').submit();
                 }
             });
 

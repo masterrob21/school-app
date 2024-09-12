@@ -9,6 +9,7 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
+use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,6 +103,11 @@ Route::post('/studentGuardian', [StudentGuardianController::class, 'store'])->na
 Route::get('/studentGuardian/{id}/edit', [StudentGuardianController::class, 'edit'])->name('studentGuardian.edit');
 Route::patch('/studentGuardian/{studentGuardian}', [StudentGuardianController::class, 'update'])->name('studentGuardian.update');
 Route::delete('/studentGuardian/{studentGuardian}', [StudentGuardianController::class, 'destroy'])->name('studentGuardian.destroy');
+
+Route::get('/updateStudentImage/{id}/edit', [UpdateImageController::class, 'edit'])->name('updateStudentImage.edit');
+Route::patch('/updateStudentImage/{student}', [UpdateImageController::class, 'update'])->name('updateStudentImage.update');
+Route::delete('/updateStudentImage/{student}', [UpdateImageController::class, 'destroy'])->name('updateStudentImage.destroy');
+
 
 Route::middleware([
     'auth:sanctum',

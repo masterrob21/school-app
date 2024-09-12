@@ -24,7 +24,7 @@
                 <div class="p-6 text-gray-900">
                     <div class=" overflow-x-auto">
                         <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                            <caption class=" caption-top mb-4 text-xl text-blue-600 capitalize">guardian Information</caption>
+                            <caption class=" caption-top mb-4 text-xl text-blue-600 capitalize text-left md:text-center">guardian Information</caption>
 
                             <tr class=" whitespace-nowrap capitalize">
                                 <th class="p-3 border border-slate-300">LastName</th>
