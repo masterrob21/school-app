@@ -103,6 +103,6 @@ class DepartmentController extends Controller
     {
         $department->delete();
 
-        return redirect(route('departments.index'))->with('status', 'Record deleted.');
+        return redirect(route('departments.index'))->with('warning', 'Record deleted.');
     }
 }

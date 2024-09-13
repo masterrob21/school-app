@@ -97,6 +97,6 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return redirect('/courses')->with('status', 'Course deleted.');
+        return redirect('/courses')->with('warning', 'Course deleted.');
     }
 }

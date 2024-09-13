@@ -46,6 +46,6 @@ class UpdateImageController extends Controller
             ]);
         }
         
-        return redirect('/students/' . $student->id)->with('status', 'Image removed.');
+        return redirect('/students/' . $student->id)->with('warning', 'Image removed.');
     }
 }

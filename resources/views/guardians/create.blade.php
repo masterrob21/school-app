@@ -6,9 +6,9 @@
     </x-slot>
 
     @if (session('status'))
-        <x-alert class="bg-green-400">
+        <x-success-alert >
             {{ session('status') }}
-        </x-alert>
+        </x-success-alert>
     @endif
 
     <div class="py-10">
@@ -31,12 +31,12 @@
 
                         <div>
                             <x-label for="last_name" value="{{ __('LastName') }}" />
-                            <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
+                            <x-input id="last_name" class="block mt-1 w-full capitalize" type="text" name="last_name" :value="old('last_name')" required autofocus autocomplete="last_name" />
                         </div>
 
                         <div class="mt-4">
                             <x-label for="first_name" value="{{ __('FirstName') }}" />
-                            <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autocomplete="first_name" />
+                            <x-input id="first_name" class="block mt-1 w-full capitalize" type="text" name="first_name" :value="old('first_name')" required autocomplete="first_name" />
                         </div>
 
                         <div class="mt-4">
@@ -66,7 +66,7 @@
 
                         <div class="mt-4">
                             <x-label for="address" value="{{ __('Address') }}" />
-                            <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required autocomplete="address" />
+                            <x-input id="address" class="block mt-1 w-full capitalize" type="text" name="address" :value="old('address')" required autocomplete="address" />
                         </div>
 
                         <div class="mt-4 capitalize">

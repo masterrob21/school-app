@@ -73,7 +73,7 @@ class OccupationController extends Controller
             'occupation' => $request->occupation
         ]);
 
-        return redirect(route('occupations.index'))->with('status', 'Record updated.');
+        return redirect(route('occupations.index'))->with('info', 'Record updated.');
     }
 
     /**
@@ -83,6 +83,6 @@ class OccupationController extends Controller
     {
         $occupation->delete();
 
-        return redirect(route('occupations.index'))->with('status', 'Record deleted.');
+        return redirect(route('occupations.index'))->with('warning', 'Record deleted.');
     }
 }

@@ -6,9 +6,9 @@
     </x-slot>
 
     @if (session('success'))
-        <x-alert class="bg-green-400">
+        <x-success-alert>
             {{ session('success') }}
-        </x-alert>
+        </x-asuccess-lert>
     @endif
 
     <div class="py-10">

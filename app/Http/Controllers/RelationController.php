@@ -73,7 +73,7 @@ class RelationController extends Controller
             'relation' => $request->relation
         ]);
 
-        return redirect(route('relations.index'))->with('status', 'Record updated.');
+        return redirect(route('relations.index'))->with('info', 'Record updated.');
     }
 
     /**
@@ -83,6 +83,6 @@ class RelationController extends Controller
     {
         $relation->delete();
 
-        return redirect(route('relations.index'))->with('status', 'Record deleted');
+        return redirect(route('relations.index'))->with('warning', 'Record deleted');
     }
 }

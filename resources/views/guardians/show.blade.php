@@ -6,9 +6,9 @@
     </x-slot>
 
     @if (session('status'))
-    <x-alert class="bg-green-400">
+    <x-info-alert>
         {{ session('status') }}
-    </x-alert>
+    </x-info-alert>
     @endif
 
     <div class="py-10">
@@ -51,7 +51,7 @@
                                 <td class="p-3 border border-slate-300 text-xl">{{ $guardian->secondary_number }}</td>
                             </tr>
 
-                            <tr class=" whitespace-nowrap capitalize">
+                            <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Email</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $guardian->email }}</td>
                             </tr>

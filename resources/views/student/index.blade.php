@@ -6,9 +6,9 @@
     </x-slot>
 
     @if (session('status'))
-    <x-alert class="bg-red-400">
+    <x-success-alert>
         {{ session('status') }}
-    </x-alert>
+    </x-success-alert>
     @endif
 
     <div class="py-10">
@@ -49,14 +49,14 @@
                                 @foreach ($students as $student)
                                     <tr class="border-b even:bg-gray-50 whitespace-nowrap">
                                         <td class="p-2 flex items-center space-x-1">
-                                            <a href="students/{{$student->id}}" class="p-2 bg-slate-400 hover:bg-slate-300 rounded">
+                                            <a href="students/{{$student->id}}" class="p-2 bg-blue-300 hover:bg-blue-500 rounded">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>     
                                             </a> 
 
-                                            <form action="" method="POST" id="delete_form">
+                                            {{-- <form action="" method="POST" id="delete_form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button id="{{$student->id}}"  class="btn_remove p-2 bg-red-400 hover:bg-red-300 rounded">
@@ -65,7 +65,7 @@
                                                     </svg>
                                                 
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                         
                                         <td class="p-2"><img src="{{asset('storage/'.$student->photo_path)}}" class="h-12 w-12 rounded-full object-cover" alt="photo"></td>

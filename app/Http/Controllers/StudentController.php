@@ -59,7 +59,7 @@ class StudentController extends Controller
             'gender_id' => ['required'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            'email' => ['nullable', 'email'],
             'photo_path' => ['nullable' , 'image', 'max:2048'],
             ]);
 
@@ -87,7 +87,7 @@ class StudentController extends Controller
             'student_id' => $student_id,
         ]);
 
-        return redirect(route('students.create'))->with('success' , 'New student added.');
+        return redirect(route('students.create'))->with('status' , 'New student added.');
     }
 
     /**
@@ -151,7 +151,7 @@ class StudentController extends Controller
             'gender_id' => ['required'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'string'],
-            'email' => ['required', 'email'],
+            'email' => ['nullable', 'email'],
             
             ]);
 
@@ -167,7 +167,7 @@ class StudentController extends Controller
             'branch_id' => $request->branch_id,
         ]);
 
-        return redirect('/students/' . $student->id)->with('status', 'Record updated');
+        return redirect('/students/' . $student->id)->with('info', 'Record updated');
 
 
     }
@@ -177,17 +177,17 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        if(!empty($student->photo_path)){
-            Storage::delete($student->photo_path);
-            $student->delete();
+        // if(!empty($student->photo_path)){
+        //     Storage::delete($student->photo_path);
+        //     $student->delete();
 
-            return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
+        //     return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
             
-        }else{
-            $student->delete();
+        // }else{
+        //     $student->delete();
 
-            return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
-        }
+        //     return redirect(route('students.index'))->with('status', 'Record has being deleted successfully.');
+        // }
         
 
     }

@@ -6,15 +6,21 @@
     </x-slot>
 
     @if (session('status'))
-    <x-alert class="bg-green-400">
+    <x-success-alert>
         {{ session('status') }}
-    </x-alert>
+    </x-success-alert>
     @endif
 
     @if (session('warning'))
-    <x-alert class="bg-red-400">
+    <x-danger-alert>
         {{ session('warning') }}
-    </x-alert>
+    </x-danger-alert>
+    @endif
+
+    @if (session('info'))
+    <x-info-alert>
+        {{ session('info') }}
+    </x-info-alert>
     @endif
 
     <div class="py-10">
@@ -100,12 +106,12 @@
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Created At</th>
-                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:s:i', strtotime($student->created_at)) }}</td>
+                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:i:s', strtotime($student->created_at)) }}</td>
                             </tr>
 
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">LastUpdated</th>
-                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:s:i', strtotime($student->updated_at)) }}</td>
+                                <td class="p-3 border border-slate-300 text-xl">{{ date('d-M-Y H:i:s', strtotime($student->updated_at)) }}</td>
                             </tr>
 
                         </table>

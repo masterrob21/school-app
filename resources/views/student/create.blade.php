@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    @if (session('success'))
-        <x-alert class="bg-green-400">
-            {{ session('success') }}
-        </x-alert>
+    @if (session('status'))
+        <x-success-alert>
+            {{ session('status') }}
+        </x-success-alert>
     @endif
 
     <div class="py-10">
@@ -71,7 +71,7 @@
 
                         <div class="mt-4">
                             <x-label for="email" value="{{ __('Email') }}" />
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
                         </div>
 
                         <div class="mt-4">

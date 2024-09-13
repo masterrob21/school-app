@@ -123,6 +123,6 @@ class GuardianController extends Controller
     {
         $guardian->delete();
 
-        return redirect(route('guardians.index'))->with('status', 'Record deleted.');
+        return redirect(route('guardians.index'))->with('warning', 'Record deleted.');
     }
 }
