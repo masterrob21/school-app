@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('classroom')->unique();
-            $table->foreignId('staff_id');
+            $table->foreignId('staff_id')->nullable();
             $table->integer('capacity');
             $table->timestamps();
         });

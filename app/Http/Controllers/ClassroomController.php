@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -12,7 +13,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::paginate(25);
+        $classrooms = Classroom::leftJoin('staff', 'classrooms.id', 'staff.id')
+                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->paginate(25);
 
         return view('classrooms.index')->with('classrooms', $classrooms);
     }
@@ -22,7 +25,11 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+        $staffs = Staff::orderBy('last_name')
+                        ->select('id', 'first_name', 'last_name')
+                        ->get();
+
+        return view('classrooms.create')->with('staffs', $staffs);
     }
 
     /**
@@ -30,7 +37,19 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'classroom' => ['required', 'unique:classrooms', 'string'],
+            'staff_id' => ['nullable', 'integer'],
+            'capacity' => ['required', 'integer'],
+        ]);
+
+        Classroom::create([
+            'classroom' => $request->classroom,
+            'staff_id' => $request->staff_id,
+            'capacity' => $request->capacity
+        ]);
+
+        return redirect(route('classrooms.create'))->with('success', 'New record added.');
     }
 
     /**

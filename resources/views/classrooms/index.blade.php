@@ -66,8 +66,8 @@
                                             </form>
                                         </td>
                                         <td class="p-2 capitalize">{{ $classroom->classroom }}</td>
-                                        <td class="p-2 capitalize">{{ $classroom->staff_id }}</td>
-                                        <td class="p-2 capitalize">{{ $classroom->classroom_capacity }}</td>                                       
+                                        <td class="p-2 capitalize">{{ $classroom->last_name . ' '. $classroom->first_name }}</td>
+                                        <td class="p-2 capitalize">{{ $classroom->capacity }}</td>                                       
                                     </tr>
                                 @empty
                                     <tr class="border-b">
