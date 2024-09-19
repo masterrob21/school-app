@@ -63,6 +63,7 @@
 
     <script type="module">
         $(document).ready(function(){
+            
             setTimeout(() => {
                 $('#alert_message').fadeOut();
             }, 3000);

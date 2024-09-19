@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Branch;
+use App\Models\Classroom;
 use App\Models\Department;
 use App\Models\Gender;
 use App\Models\Staff;
@@ -20,9 +21,13 @@ class StaffController extends Controller
                                          ->join('branches', 'staff.branch_id', '=', 'branches.id')
                                          ->select('staff.id', 'staff.staff_id', 'last_name', 'first_name', 'date_of_birth', 'gender', 'branch_name')
                                          ->orderBy('last_name')
-                                         ->paginate(20);
+                                         ->paginate(25);
 
-        return view('staffs.index')->with('staffs', $staffs);
+        # check to see if staff has a reference to the classroom table
+        $check_classroom = Classroom::value('staff_id');
+
+        return view('staffs.index')->with('staffs', $staffs)
+                                    ->with('check_classroom', $check_classroom);
     }
 
     /**
@@ -157,8 +162,8 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        $staff->delete();
+        // $staff->delete();
 
-        return redirect(route('staffs.index'))->with('status', 'Record has being deleted.');
+        // return redirect(route('staffs.index'))->with('status', 'Record has being deleted.');
     }
 }

@@ -15,6 +15,7 @@ class ClassroomController extends Controller
     {
         $classrooms = Classroom::leftJoin('staff', 'classrooms.id', 'staff.id')
                                 ->select('classrooms.*', 'first_name', 'last_name')
+                                ->orderBy('classroom')
                                 ->paginate(25);
 
         return view('classrooms.index')->with('classrooms', $classrooms);

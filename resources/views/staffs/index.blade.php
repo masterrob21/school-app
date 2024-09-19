@@ -55,8 +55,10 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>     
                                             </a> 
-
-                                            <form action="" method="POST" id="delete_form">
+                                            
+                                            {{-- <!--check to see if staff has a reference table -->
+                                            @if ($staff->id !== $check_classroom)
+                                                <form action="" method="POST" id="delete_form">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button id="{{$staff->id}}"  class="btn_remove p-2 bg-red-400 hover:bg-red-300 rounded">
@@ -66,6 +68,8 @@
                                                 
                                                 </button>
                                             </form>
+                                            @endif --}}
+                                            
                                         </td>
                                         <td class="p-2 capitalize">{{ $staff->staff_id }}</td>
                                         <td class="p-2 capitalize">{{ $staff->last_name }}</td>
