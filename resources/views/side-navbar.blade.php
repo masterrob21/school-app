@@ -19,18 +19,31 @@
           <li class="px-6"><a class="hover:text-lime-500" href="/guardians">Parent/Guardian</a></li>
           {{-- <li><a class="head p-4" href="#">Submenu3</a></li> --}}
        </ul>
+
        <!-- menu-submenu accordon-content-->
        <li id="nav3" class="toggle accordion-toggle hover:bg-lime-400"> 
           <span class="icon-plus"></span>
-          <a class="menu-link" href="#">Menu2</a>
+          <a class="menu-link" href="#">HR</a>
        </li>
        <!-- accordion-toggle -->
        <ul class="menu-submenu accordion-content">
-          <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu1</a></li>
-          <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li>
+          <li class="px-6"><a class="hover:text-lime-500" href="/staffs">Staff</a></li>
+          {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
        </ul>
+
        <!-- menu-submenu accordon-content-->
-            <li id="nav4" class="toggle accordion-toggle hover:bg-lime-400"> 
+       <li id="nav4" class="toggle accordion-toggle hover:bg-lime-400"> 
+         <span class="icon-plus"></span>
+         <a class="menu-link" href="#">accounting</a>
+      </li>
+      <!-- accordion-toggle -->
+      <ul class="menu-submenu accordion-content">
+         {{-- <li class="px-6"><a class="hover:text-lime-500" href="/staffs">Staff</a></li> --}}
+         {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
+      </ul>
+
+       <!-- menu-submenu accordon-content-->
+            <li id="nav5" class="toggle accordion-toggle hover:bg-lime-400"> 
           <span class="icon-plus"></span>
           <a class="menu-link" href="#">Setup</a>
        </li>
@@ -40,6 +53,7 @@
           <li class="px-6"><a class="hover:text-lime-500 " href="/departments">Department</a></li>
           <li class="px-6"><a class="hover:text-lime-500 " href="/occupations">Occupation</a></li>
           <li class="px-6"><a class="hover:text-lime-500 " href="/relations">Relation</a></li>
+          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
        </ul>
        <!-- menu-submenu accordon-content-->
     </ul>
