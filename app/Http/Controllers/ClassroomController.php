@@ -106,8 +106,10 @@ class ClassroomController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Classroom $classroom)
     {
-        //
+        $classroom->delete();
+
+        return redirect(route('classrooms.index'))->with('warning', 'Record deleted.');
     }
 }
