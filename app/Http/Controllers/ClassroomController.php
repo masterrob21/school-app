@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classroom;
 use App\Models\Staff;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ClassroomController extends Controller
 {
@@ -13,7 +14,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classrooms = Classroom::leftJoin('staff', 'classrooms.id', 'staff.id')
+        $classrooms = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
                                 ->select('classrooms.*', 'first_name', 'last_name')
                                 ->orderBy('classroom')
                                 ->paginate(25);
@@ -58,7 +59,12 @@ class ClassroomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $classroom = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
+                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->where('classrooms.id', $id)
+                                ->first();
+
+        return view('classrooms.show')->with('classroom', $classroom);
     }
 
     /**
@@ -66,15 +72,35 @@ class ClassroomController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $classroom = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
+                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->where('classrooms.id', $id)
+                                ->first();
+
+        $staffs = Staff::where('id', '<>', $classroom->staff_id)->get();
+
+        return view('classrooms.edit')->with('classroom', $classroom)
+                                      ->with('staffs', $staffs);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Classroom $classroom)
     {
-        //
+        $request->validate([
+            'classroom' => ['required', Rule::unique('classrooms')->ignore($classroom), 'string'],
+            'staff_id' => ['nullable', 'integer'],
+            'capacity' => ['required', 'integer'],
+        ]);
+
+        $classroom->update([
+            'classroom' => $request->classroom,
+            'staff_id' => $request->staff_id,
+            'capacity' => $request->capacity
+        ]);
+
+        return redirect('/classrooms/' . $classroom->id)->with('info', 'Record updated.');
     }
 
     /**
