@@ -6,7 +6,7 @@
     </x-slot>
 
     @if (session('status'))
-    <x-info-alert>
+    <x-info-alert id="alert_message">
         {{ session('status') }}
     </x-info-alert>
     @endif
@@ -99,4 +99,12 @@
             </div>
         </div>
     </div>
+
+    <script type="module">
+        $(document).ready(function(){
+            setTimeout(() => {
+                $('#alert_message').fadeOut();
+            }, 3000);
+        })
+    </script>
 </x-app-layout>

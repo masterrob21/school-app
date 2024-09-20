@@ -6,7 +6,7 @@
     </x-slot>
 
     @if (session('status'))
-    <x-success-alert>
+    <x-success-alert id="alert_message">
         {{ session('status') }}
     </x-success-alert>
     @endif
@@ -90,6 +90,9 @@
 
     <script type="module">
         $(document).ready(function(){
+            setTimeout(() => {
+                $('#alert_message').fadeOut();
+            }, 3000);
 
             $(document).on('click', '.btn_remove', function(event){
                 event.preventDefault();

@@ -6,19 +6,19 @@
     </x-slot>
 
     @if (session('status'))
-    <x-success-alert>
+    <x-success-alert id="alert_message">
         {{ session('status') }}
     </x-success-alert>
     @endif
 
     @if (session('warning'))
-    <x-danger-alert>
+    <x-danger-alert id="alert_message">
         {{ session('warning') }}
     </x-danger-alert>
     @endif
 
     @if (session('info'))
-    <x-info-alert>
+    <x-info-alert id="alert_message">
         {{ session('info') }}
     </x-info-alert>
     @endif
@@ -241,6 +241,9 @@
 
     <script type="module">
         $(document).ready(function(){
+            setTimeout(() => {
+                $('#alert_message').fadeOut();
+            }, 3000);
 
             $(document).on('click', '.btn_remove', function(event){
                 event.preventDefault();

@@ -6,7 +6,7 @@
     </x-slot>
 
     @if (session('success'))
-        <x-success-alert>
+        <x-success-alert id="alert_message">
             {{ session('success') }}
         </x-asuccess-lert>
     @endif
@@ -105,4 +105,12 @@
             </div>
         </div>
     </div>
+
+    <script type="module">
+        $(document).ready(function(){
+            setTimeout(() => {
+                $('#alert_message').fadeOut();
+            }, 3000);
+        })
+    </script>
 </x-app-layout>

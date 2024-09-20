@@ -6,7 +6,7 @@
     </x-slot>
 
     @if (session('status'))
-    <x-alert id="alert_message">
+    <x-success-alert id="alert_message">
         {{ session('status') }}
     </x-success-alert>
     @endif
