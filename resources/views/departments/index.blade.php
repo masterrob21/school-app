@@ -6,15 +6,21 @@
     </x-slot>
 
     @if (session('status'))
-    <x-alert>
+    <x-alert id="alert_message">
         {{ session('status') }}
     </x-success-alert>
     @endif
 
     @if (session('warning'))
-    <x-danger-alert>
+    <x-danger-alert id="alert_message">
         {{ session('warning') }}
     </x-danger-alert>
+    @endif
+
+    @if (session('info'))
+    <x-info-alert id="alert_message">
+        {{ session('info') }}
+    </x-info-alert>
     @endif
 
     <div class="py-10">
@@ -44,7 +50,7 @@
                             <tbody>
                                 @if (count($departments)<1)
                                     <tr class="border-b">
-                                        <td colspan="5" class="p-2 text-xl font-bold text-red-400"><h2>No department found.</h2></td>
+                                        <td colspan="5" class="p-2 text-xl font-bold text-red-400 capitalize"><h2>No record found.</h2></td>
                                     </tr>
                                 @endif
                                 @foreach ($departments as $department)
@@ -56,7 +62,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>     
                                             </a> 
-
+                                            
                                             <form action="" method="POST" id="delete_form">
                                                 @csrf
                                                 @method('DELETE')
@@ -86,6 +92,10 @@
 
     <script type="module">
         $(document).ready(function(){
+
+            setTimeout(() => {
+                $('#alert_message').fadeOut();
+            }, 3000);
 
             $(document).on('click', '.btn_remove', function(event){
                 event.preventDefault();

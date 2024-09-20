@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('gender_id');
             $table->string('address');
             $table->string('phone_number');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->date('hire_date');
             $table->foreignId('department_id');
             $table->foreignId('branch_id');

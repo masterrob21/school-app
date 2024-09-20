@@ -17,7 +17,8 @@ class DepartmentController extends Controller
         $departments = Department::leftJoin('staff', 'departments.department_head', 'staff.id')
                                   ->select('departments.*', 'last_name', 'first_name')
                                   ->orderBy('department_name')
-                                  ->paginate(10);
+                                  ->paginate(25);
+        
         return view('departments.index')->with('departments', $departments);
     }
 
@@ -101,8 +102,18 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->delete();
+        //check to see if there is any relationship with the staff table
+        $staff = Staff::where('department_id', $department->id)->first();
 
-        return redirect(route('departments.index'))->with('warning', 'Record deleted.');
+        if ($staff) {
+            return redirect(route('departments.index'))->with('info', 'This record cannot be removed, it has relationship with the staff record.');
+
+        }
+        else{
+            $department->delete();
+            return redirect(route('departments.index'))->with('warning', 'Record deleted.');
+
+        }
+
     }
 }
