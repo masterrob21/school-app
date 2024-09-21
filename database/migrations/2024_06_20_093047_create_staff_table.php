@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('email')->nullable();
             $table->date('hire_date');
-            $table->foreignId('department_id');
+            $table->foreignId('department_id')->nullable();
             $table->foreignId('branch_id');
             $table->timestamps();
         });

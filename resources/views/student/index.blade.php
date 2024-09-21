@@ -43,7 +43,7 @@
                             <tbody>
                                 @if (count($students)<1)
                                     <tr class="border-b">
-                                        <td class="p-2 text-xl font-bold text-red-400"><h2>No records found.</h2></td>
+                                        <td colspan="7" class="p-2 text-xl font-bold text-red-400"><h2>No records found.</h2></td>
                                     </tr>
                                 @endif
                                 @foreach ($students as $student)
