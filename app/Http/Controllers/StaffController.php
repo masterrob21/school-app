@@ -58,9 +58,9 @@ class StaffController extends Controller
             'gender_id' => ['required'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'numeric', 'min_digits:11'],
-            'email' => ['required', 'email'],
+            'email' => ['nullable', 'email'],
             'branch_id' => ['required'],
-            'department_id' => ['required'],
+            'department_id' => ['nullable'],
             ]);
 
         //count staff and 1000.
@@ -136,9 +136,9 @@ class StaffController extends Controller
             'gender_id' => ['required'],
             'address' => ['required', 'string'],
             'phone_number' => ['required', 'numeric', 'min_digits:11'],
-            'email' => ['required', 'email'],
+            'email' => ['nullable', 'email'],
             'branch_id' => ['required'],
-            'department_id' => ['required'],
+            'department_id' => ['nullable'],
             ]);
 
         $staff->update([
