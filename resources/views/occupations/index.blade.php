@@ -12,7 +12,7 @@
     @endif
 
     @if (session('info'))
-        <x-info- id="alert_message">
+        <x-info-alert id="alert_message">
             {{ session('info') }}
         </x-info-alert>
     @endif
