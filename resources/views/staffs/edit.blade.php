@@ -73,7 +73,7 @@
 
                         <div class="mt-4">
                             <x-label for="email" value="{{ __('Email') }}" />
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$staff->email}}" required />
+                            <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$staff->email}}" />
                         </div>
 
                         <div class="mt-4">
@@ -88,7 +88,7 @@
 
                         <div class="mt-4">
                             <x-label for="department_id" value="{{ __('Department') }}" />
-                            <select name="department_id" id="department_id" class="block mt-1 w-full rounded" value="old('department_id')" required>
+                            <select name="department_id" id="department_id" class="block mt-1 w-full rounded" value="old('department_id')">
                                 <option value="{{$staff->department_id}}">{{$staff->department_name}}</option>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{$department->department_name}}</option>
