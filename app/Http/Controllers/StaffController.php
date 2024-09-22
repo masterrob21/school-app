@@ -93,7 +93,7 @@ class StaffController extends Controller
     {
         $staff = Staff::join('genders', 'staff.gender_id', '=', 'genders.id')
                        ->join('branches', 'staff.branch_id', '=', 'branches.id')
-                       ->join('departments', 'staff.department_id', '=', 'departments.id')
+                       ->leftJoin('departments', 'staff.department_id', '=', 'departments.id')
                        ->select('staff.*', 'genders.gender', 'branches.branch_name', 'departments.department_name')
                        ->where('staff.id', $id)
                        ->first();
