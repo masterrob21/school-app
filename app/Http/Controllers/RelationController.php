@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Relation;
+use App\Models\StudentGuardian;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -81,8 +82,16 @@ class RelationController extends Controller
      */
     public function destroy(Relation $relation)
     {
-        $relation->delete();
+        $studentGuardian = StudentGuardian::where('relation_id', $relation->id)->first();
 
-        return redirect(route('relations.index'))->with('warning', 'Record deleted');
+        if ($studentGuardian) {
+            return redirect(route('relations.index'))->with('info', 'This record cannot be removed, it has relationship with the student-guardian record.');
+        } else {
+            $relation->delete();
+            return redirect(route('relations.index'))->with('warning', 'Record deleted');
+        
+        }
+        
+
     }
 }
