@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guardian;
 use App\Models\Occupation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -81,8 +82,16 @@ class OccupationController extends Controller
      */
     public function destroy(Occupation $occupation)
     {
-        $occupation->delete();
+        $guardian = Guardian::where('occupation_id', $occupation->id)->first();
 
-        return redirect(route('occupations.index'))->with('warning', 'Record deleted.');
+        if ($guardian) {
+            return redirect(route('occupations.index'))->with('info', 'This record cannot be removed, it has relationship with the guardian record.');
+        } else {
+            $occupation->delete();
+            return redirect(route('occupations.index'))->with('warning', 'Record deleted.');
+            
+        }
+        
+
     }
 }
