@@ -24,7 +24,7 @@
                 <div class="p-6 text-gray-900">
                     <div class=" overflow-x-auto">
                         <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                            <caption class=" caption-top mb-4 text-xl text-blue-600">Staff Information</caption>
+                            <caption class=" caption-top mb-4 text-xl text-blue-600 text-left md:text-center">Staff Information</caption>
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">HireDate</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $staff->hire_date }}</td>
