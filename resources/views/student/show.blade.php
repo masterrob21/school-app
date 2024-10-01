@@ -84,7 +84,7 @@
                                 <td class="p-3 border border-slate-300 text-xl">{{ $student->gender }}</td>
                             </tr>
 
-                            <tr class=" whitespace-nowrap">
+                            <tr class=" ">
                                 <th class="p-3 border border-slate-300">Address</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $student->address }}</td>
                             </tr>

@@ -62,6 +62,7 @@ Route::middleware([
     Route::post('/students', [StudentController::class, 'store'])->name('students.store');
     Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
     Route::patch('/students/{student}', [StudentController::class, 'update'])->name('students.update');
+    Route::get('/getStudent', [StudentController::class, 'getStudent']);
     // Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');

@@ -8,6 +8,7 @@ use App\Models\Gender;
 use App\Models\Student;
 use App\Models\StudentGuardian;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -22,10 +23,10 @@ class StudentController extends Controller
     public function index(): View
     {
         $students = DB::table('students')->join('genders', 'students.gender_id', '=', 'genders.id')
-                                         ->join('branches', 'students.branch_id', '=', 'branches.id')
-                                         ->select('students.id', 'students.student_id', 'other_names', 'last_name', 'date_of_birth', 'photo_path', 'gender', 'branch_name')
-                                         ->orderBy('last_name')
-                                         ->paginate(20);
+                        ->join('branches', 'students.branch_id', '=', 'branches.id')
+                        ->select('students.id', 'students.student_id', 'other_names', 'last_name', 'date_of_birth', 'photo_path', 'gender', 'branch_name')
+                        ->orderBy('last_name')
+                        ->paginate(25);
 
         return view('student.index')->with('students', $students);
     }
@@ -191,4 +192,27 @@ class StudentController extends Controller
         
 
     }
+
+    public function getStudent(Request $request){
+        $text = $request->id;
+        
+        $students = DB::table('students')->join('genders', 'students.gender_id', '=', 'genders.id')
+                                            ->join('branches', 'students.branch_id', '=', 'branches.id')
+                                            ->select('students.id', 'students.student_id', 'other_names', 'last_name', 'date_of_birth', 'photo_path', 'gender', 'branch_name')
+                                            ->whereAny([
+                                                'last_name',
+                                                'other_names',
+                                                'student_id'
+                                            ], 'LIKE', '%'.$text.'%')
+                                            ->orderBy('last_name')
+                                            ->paginate(25);
+
+        if($request->ajax()){
+            return view('student.search-results', compact('students'))->render();
+
+        }
+        
+        return view('student.index')->with('students', $students);
+    }
+    
 }
