@@ -1,4 +1,4 @@
-<div class="overflow-x-auto" id="result_data">
+
     <table class="table-auto w-full text-left">
         <caption class="caption-top mb-4 text-xl font-bold text-left md:text-center">
             List of Students
@@ -45,4 +45,4 @@
     <div class="mt-3 overflow-x-auto">
         {{ $students->links() }}
     </div>
-</div>
+

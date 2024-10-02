@@ -16,7 +16,7 @@ class GuardianController extends Controller
         $guardians = Guardian::join('occupations', 'guardians.occupation_id', 'occupations.id')
                                 ->select('guardians.*', 'occupation')
                                 ->orderBy('occupation')
-                                ->paginate(20);
+                                ->paginate(25);
 
         return view('guardians.index')->with('guardians', $guardians);
     }
@@ -124,5 +124,25 @@ class GuardianController extends Controller
         $guardian->delete();
 
         return redirect(route('guardians.index'))->with('warning', 'Record deleted.');
+    }
+
+    #use ajax to search in guardian records.
+    public function fetch(Request $request){
+        $search = $request->id;
+
+        $guardians = Guardian::join('occupations', 'guardians.occupation_id', 'occupations.id')
+                                ->select('guardians.*', 'occupation')
+                                ->whereAny([
+                                    'last_name',
+                                    'first_name'
+                                ], 'LIKE', '%'.$search.'%')
+                                ->orderBy('occupation')
+                                ->paginate(25);
+                                
+        if ($request->ajax()){
+            return view('guardians.fetch')->with('guardians', $guardians);
+        }
+
+        return view('guardians.index')->with('guardians', $guardians);
     }
 }

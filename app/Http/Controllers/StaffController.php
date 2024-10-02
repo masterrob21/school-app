@@ -9,6 +9,7 @@ use App\Models\Classroom;
 use App\Models\Department;
 use App\Models\Gender;
 use App\Models\Staff;
+use GuzzleHttp\Psr7\Response;
 
 class StaffController extends Controller
 {
@@ -165,5 +166,27 @@ class StaffController extends Controller
         // $staff->delete();
 
         // return redirect(route('staffs.index'))->with('status', 'Record has being deleted.');
+    }
+
+    #using ajax to fetch data from database
+    public function fetch(Request $request){
+        $search = $request->id;
+
+        $staffs = DB::table('staff')->join('genders', 'staff.gender_id', '=', 'genders.id')
+                                         ->join('branches', 'staff.branch_id', '=', 'branches.id')
+                                         ->select('staff.id', 'staff.staff_id', 'last_name', 'first_name', 'date_of_birth', 'gender', 'branch_name')
+                                         ->whereAny([
+                                            'last_name',
+                                            'first_name',
+                                            'staff_id'
+                                         ], 'LIKE', '%'.$search.'%')
+                                         ->orderBy('last_name')
+                                         ->paginate(25);
+
+        if($request->ajax()){
+            return view('staffs.fetch')->with('staffs', $staffs);
+        }
+
+        return view('staffs.index')->with('staffs', $staffs);
     }
 }

@@ -56,7 +56,7 @@
                                 <td class="p-3 border border-slate-300 text-xl">{{ $guardian->email }}</td>
                             </tr>
 
-                            <tr class=" whitespace-nowrap capitalize">
+                            <tr class="capitalize">
                                 <th class="p-3 border border-slate-300">Address</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $guardian->address }}</td>
                             </tr>

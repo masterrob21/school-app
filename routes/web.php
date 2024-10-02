@@ -87,6 +87,7 @@ Route::middleware([
     Route::get('/staffs/{id}', [StaffController::class, 'show'])->name('staffs.show');
     Route::get('/staffs/{id}/edit', [StaffController::class, 'edit'])->name('staffs.edit');
     Route::patch('/staffs/{staff}', [StaffController::class, 'update'])->name('staffs.update');
+    Route::get('/staffs-fetch', [StaffController::class, 'fetch'])->name('staffs.fetch');
     // Route::delete('/staffs/{staff}', [StaffController::class, 'destroy'])->name('staffs.destroy');
 
     Route::get('/education-history/create', [EducationHistoryController::class, 'create'])->name('education-history.create');
@@ -109,6 +110,7 @@ Route::middleware([
     Route::get('/guardians/{id}/edit', [GuardianController::class, 'edit'])->name('guardians.edit');
     Route::patch('/guardians/{guardian}', [GuardianController::class, 'update'])->name('guardians.update');
     Route::delete('/guardians/{guardian}', [GuardianController::class, 'destroy'])->name('guardians.destroy');
+    Route::get('/guardiansfetch', [GuardianController::class, 'fetch'])->name('guardians.fetch');
 
     Route::get('/relations', [RelationController::class, 'index'])->name('relations.index');
     Route::get('/relations/create', [RelationController::class, 'create'])->name('relations.create');
