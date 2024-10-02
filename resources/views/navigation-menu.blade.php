@@ -12,7 +12,7 @@
 
                 <!-- Institution name -->
                 <div class="flex items-center p-3 capitalize sm:font-bold sm:text-2xl">
-                    <h1>Masterrob institute</h1>
+                    <h1>{{ config('app.name') }}</h1>
                 </div>
 
                 <!-- Navigation Links -->
