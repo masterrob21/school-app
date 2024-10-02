@@ -13,7 +13,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy('course_name')->paginate(15);
+        $courses = Course::orderBy('course_name')->paginate(25);
 
         return view('courses.index')->with('courses', $courses);
     }
@@ -98,5 +98,23 @@ class CourseController extends Controller
         $course->delete();
 
         return redirect('/courses')->with('warning', 'Course deleted.');
+    }
+
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $courses = Course::whereAny([
+                                'course_name',
+                                'course_code'
+                            ], 'LIKE', '%'.$search.'%')
+                            ->orderBy('course_name')
+                            ->paginate(25);
+
+        if($request->ajax()){
+            return view('courses.fetch')->with('courses', $courses);
+        }
+
+        return view('courses.index')->with('courses', $courses);
     }
 }

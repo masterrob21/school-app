@@ -94,4 +94,19 @@ class RelationController extends Controller
         
 
     }
+
+    #use ajax to search records in relations
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $relations = Relation::where('relation', 'LIKE', '%'.$search.'%')
+                                ->orderBy('relation')->get();
+
+        if ($request->ajax()){
+            return view('relations.fetch')->with('relations', $relations);
+        }
+
+        return view('relations.index')->with('relations', $relations);
+    }
 }

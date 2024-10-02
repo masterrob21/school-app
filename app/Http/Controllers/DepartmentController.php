@@ -116,4 +116,23 @@ class DepartmentController extends Controller
         }
 
     }
+
+    #use ajax to search for records in departments
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $departments = Department::leftJoin('staff', 'departments.department_head', 'staff.id')
+                                  ->select('departments.*', 'last_name', 'first_name')
+                                  ->where('department_name', 'LIKE', '%'.$search.'%')
+                                  ->orderBy('department_name')
+                                  ->paginate(25);
+
+        if($request->ajax())
+        {
+            return view('departments.fetch')->with('departments', $departments);
+        }
+
+        return view('departments.index')->with('departments', $departments);
+    }
 }

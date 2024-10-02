@@ -112,4 +112,22 @@ class ClassroomController extends Controller
 
         return redirect(route('classrooms.index'))->with('warning', 'Record deleted.');
     }
+
+    #use ajax to search records in classroom
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $classrooms = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
+                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->where('classroom', 'LIKE', '%'.$search.'%')
+                                ->orderBy('classroom')
+                                ->paginate(25);
+
+        if ($request->ajax()){
+            return view('classrooms.fetch')->with('classrooms', $classrooms);
+        }
+
+        return view('classrooms.index')->with('classrooms', $classrooms);
+    }
 }

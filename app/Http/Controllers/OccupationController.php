@@ -14,7 +14,7 @@ class OccupationController extends Controller
      */
     public function index()
     {
-        $occupations = Occupation::orderBy('occupation')->paginate(20);
+        $occupations = Occupation::orderBy('occupation')->paginate(25);
 
         return view('occupations.index')->with('occupations', $occupations);
     }
@@ -93,5 +93,21 @@ class OccupationController extends Controller
         }
         
 
+    }
+
+    #use ajax to search for records in occupations
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $occupations = Occupation::where('occupation', 'LIKE', '%'.$search.'%')
+                                    ->orderBy('occupation')
+                                    ->paginate(25);
+
+        if($request->ajax()){
+            return view('occupations.fetch')->with('occupations', $occupations);
+        }
+
+        return view('occupations.index')->with('occupations', $occupations);
     }
 }

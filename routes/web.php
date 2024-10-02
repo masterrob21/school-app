@@ -45,6 +45,7 @@ Route::middleware([
     Route::get('/classrooms/{id}/edit', [ClassroomController::class, 'edit'])->name('classrooms.edit');
     Route::patch('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('classrooms.update');
     Route::delete('/classrooms/{classroom}', [classroomController::class, 'destroy'])->name('classrooms.destroy');
+    Route::get('/classrooms-fetch', [classroomController::class, 'fetch'])->name('classrooms.fetch');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
@@ -72,6 +73,7 @@ Route::middleware([
     Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
     Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::get('/courses-fetch', [CourseController::class, 'fetch'])->name('courses.fetch');
 
     Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
@@ -80,6 +82,7 @@ Route::middleware([
     Route::get('/departments/{id}/edit', [DepartmentController::class, 'edit'])->name('departments.edit');
     Route::patch('/departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');
     Route::delete('/departments/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+    Route::get('/departments-fetch', [DepartmentController::class, 'fetch'])->name('departments.fetch');
 
     Route::get('/staffs', [StaffController::class, 'index'])->name('staffs.index');
     Route::get('/staffs/create', [StaffController::class, 'create'])->name('staffs.create');
@@ -102,6 +105,7 @@ Route::middleware([
     Route::get('/occupations/{id}/edit', [OccupationController::class, 'edit'])->name('occupations.edit');
     Route::patch('/occupations/{occupation}', [OccupationController::class, 'update'])->name('occupations.update');
     Route::delete('/occupations/{occupation}', [OccupationController::class, 'destroy'])->name('occupations.destroy');
+    Route::get('/occupations-fetch', [OccupationController::class, 'fetch'])->name('occupations.fetch');
 
     Route::get('/guardians', [GuardianController::class, 'index'])->name('guardians.index');
     Route::get('/guardians/create', [GuardianController::class, 'create'])->name('guardians.create');
@@ -118,6 +122,7 @@ Route::middleware([
     Route::get('/relations/{id}/edit', [RelationController::class, 'edit'])->name('relations.edit');
     Route::patch('/relations/{relation}', [RelationController::class, 'update'])->name('relations.update');
     Route::delete('/relations/{relation}', [RelationController::class, 'destroy'])->name('relations.destroy');
+    Route::get('/relations-fetch', [RelationController::class, 'fetch'])->name('relations.fetch');
 
     Route::get('/studentGuardian/create', [StudentGuardianController::class, 'create'])->name('studentGuardian.create');
     Route::post('/studentGuardian', [StudentGuardianController::class, 'store'])->name('studentGuardian.store');
