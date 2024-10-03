@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 
 class UserController extends Controller
@@ -20,7 +21,8 @@ class UserController extends Controller
     {
         $users = DB::table('users')->join('branches', 'users.branch_id', '=', 'branches.id')
                                    ->select('users.id', 'users.name', 'users.profile_photo_path', 'users.email', 'branches.branch_name')
-                                   ->paginate(20);
+                                   ->orderBy('name')
+                                   ->paginate(25);
                                    
         return view('user.index')->with('users', $users);
     }
@@ -42,7 +44,7 @@ class UserController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'unique:users,email']
+            'email' => ['required', 'unique:users', 'email']
         ]);
 
         $users = DB::table('users')->insert([
@@ -94,7 +96,7 @@ class UserController extends Controller
     {
         request()->validate([
             'name' => ['required', 'string'],
-            'email' => ['required']
+            'email' => ['required', Rule::unique('users')->ignore($user)]
         ]);
 
         $user->update([
@@ -122,5 +124,26 @@ class UserController extends Controller
             return redirect('/abort');
         }
 
+    }
+
+    #use ajax to search record in users
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $users = DB::table('users')->join('branches', 'users.branch_id', '=', 'branches.id')
+                                   ->select('users.id', 'users.name', 'users.profile_photo_path', 'users.email', 'branches.branch_name')
+                                   ->whereAny([
+                                    'name',
+                                    'email'
+                                   ], 'LIKE', '%'.$search.'%')
+                                   ->orderBy('name')
+                                   ->paginate(25);
+
+        if ($request->ajax()){
+            return view('user.fetch')->with('users', $users);
+        }
+
+        return view('user.index')->with('users', $users);
     }
 }
