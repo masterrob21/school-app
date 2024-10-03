@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guardian;
 use App\Models\Occupation;
+use App\Models\StudentGuardian;
 use Illuminate\Http\Request;
 
 class GuardianController extends Controller
@@ -121,6 +122,13 @@ class GuardianController extends Controller
      */
     public function destroy(Guardian $guardian)
     {
+        $check_relationship = StudentGuardian::where('guardian_id', $guardian->id)->first();
+
+        if ($check_relationship){
+        return redirect(route('guardians.index'))->with('info', 'This record cannot be deleted, it has relationship with a student.');
+            exit();
+        }
+        
         $guardian->delete();
 
         return redirect(route('guardians.index'))->with('warning', 'Record deleted.');
