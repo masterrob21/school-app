@@ -195,7 +195,13 @@ https://templatemo.com/tm-557-grad-school
         </div>
 
         <div class="col-md-6">   
-          <form id="contact" action="" method="post">
+          <form id="contact" action="/send-message" method="post">
+            @csrf
+            <div class="mb-2">
+              @if (session('status'))
+              <h4 class=" text-white">{{ session('status') }}</h4>
+              @endif
+            </div>
             <div class="row">
               <div class="col-md-6">
                   <fieldset>
@@ -204,7 +210,7 @@ https://templatemo.com/tm-557-grad-school
                 </div>
                 <div class="col-md-6">
                   <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" placeholder="Your Email" required>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Your Email" required>
                   </fieldset>
                 </div>
               <div class="col-md-12">
@@ -219,6 +225,7 @@ https://templatemo.com/tm-557-grad-school
               </div>
             </div>
           </form>
+
         </div>
 
         <div class="col-md-6">

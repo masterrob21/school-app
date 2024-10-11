@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\GuardianController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
@@ -12,6 +13,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
+use App\Mail\MessagePosted;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/send-message', [HomeController::class, 'sendMessage']);
 
 Route::middleware([
     'auth:sanctum',
