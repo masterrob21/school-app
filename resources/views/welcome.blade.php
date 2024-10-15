@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    @vite('resources/js/app.js')
 <!--
     
 TemplateMo 557 Grad School
@@ -33,7 +35,6 @@ https://templatemo.com/tm-557-grad-school
   </head>
 
 <body>
-   
   <!--header-->
   <header class="main-header clearfix" role="header">
 
@@ -197,11 +198,6 @@ https://templatemo.com/tm-557-grad-school
         <div class="col-md-6">   
           <form id="contact" action="/send-message" method="post">
             @csrf
-            <div class="mb-2">
-              @if (session('status'))
-              <h4 class=" text-white">{{ session('status') }}</h4>
-              @endif
-            </div>
             <div class="row">
               <div class="col-md-6">
                   <fieldset>
@@ -253,7 +249,7 @@ https://templatemo.com/tm-557-grad-school
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="assets/js/isotope.min.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
@@ -262,6 +258,7 @@ https://templatemo.com/tm-557-grad-school
     <script src="assets/js/video.js"></script>
     <script src="assets/js/slick-slider.js"></script>
     <script src="assets/js/custom.js"></script>
+    {{-- <script src="assets/js/simple-notify.js"></script> --}}
     <script>
         //according to loftblog tut
         $('.nav li:first').addClass('active');
@@ -312,5 +309,10 @@ https://templatemo.com/tm-557-grad-school
           checkSection();
         });
     </script>
+
+    @session('status')
+    <script src="assets/js/simple-notify.js"></script>
+    @endsession
+
 </body>
 </html>
