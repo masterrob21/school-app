@@ -17,7 +17,7 @@ class HomeController extends Controller
             'message' => ['required', 'string', 'max:255'],
         ]);
 
-        Mail::to('softdeveloperrob@outlook.com')->later(now()->addMinutes(3),
+        Mail::to('softdeveloperrob@outlook.com')->send(
             new MessagePosted($data)
         );
 
