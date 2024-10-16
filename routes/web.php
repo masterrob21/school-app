@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
@@ -43,6 +44,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/accountcharts', [AccountChartController::class, 'index'])->name('accountcharts.index');
+    Route::get('/accountcharts-fetch', [AccountChartController::class, 'fetch'])->name('accountcharts.fetch');
 
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
     Route::get('/classrooms/create', [ClassroomController::class, 'create'])->name('classrooms.create');
