@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RelationSeeder::class,
             DefaultUserSeeder::class,
             AccountTypeSeeder::class,
+            AccountChartSeeder::class
         ]);
         
         // \App\Models\User::factory(10)->create();

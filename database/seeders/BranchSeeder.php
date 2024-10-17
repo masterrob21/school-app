@@ -17,6 +17,8 @@ class BranchSeeder extends Seeder
             'branch_code' => '00',
             'branch_name' => 'Head Office',
             'location' => 'Accra',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
