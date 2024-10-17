@@ -51,6 +51,7 @@ Route::middleware([
     Route::post('/accountcharts', [AccountChartController::class, 'store'])->name('accountcharts.store');
     Route::get('/accountcharts/{id}', [AccountChartController::class, 'show'])->name('accountcharts.show');
     Route::get('/accountcharts/{id}/edit', [AccountChartController::class, 'edit'])->name('accountcharts.edit');
+    Route::patch('/accountcharts/{accountchart}', [AccountChartController::class, 'update'])->name('accountcharts.update');
 
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
     Route::get('/classrooms/create', [ClassroomController::class, 'create'])->name('classrooms.create');

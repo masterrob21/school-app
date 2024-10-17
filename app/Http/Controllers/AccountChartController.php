@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccountChart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class AccountChartController extends Controller
 {
@@ -68,15 +69,37 @@ class AccountChartController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $accountchart = AccountChart::join('account_types', 'account_charts.account_type_id', 'account_types.id')
+                                     ->select('account_charts.*', 'account_type')
+                                     ->where('account_charts.id', $id)
+                                     ->first();
+
+        $account_types = DB::table('account_types')
+                            ->where('id', '<>', $accountchart->account_type_id)
+                            ->get();
+
+        return view('chart-of-accounts.edit')->with('accountchart', $accountchart)
+                                             ->with('account_types', $account_types);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, AccountChart $accountchart)
     {
-        //
+        $request->validate([
+            'account_head' => ['required', 'string', Rule::unique('account_charts')->ignore($accountchart)],
+            'account_type_id' => ['required'],
+            'sort_order' => ['required', 'integer'],
+        ]);
+
+        $accountchart->update([
+            'account_head' => $request->account_head,
+            'account_type_id' => $request->account_type_id,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect('/accountcharts/' . $accountchart->id)->with('info', 'Record updated.');
     }
 
     /**
