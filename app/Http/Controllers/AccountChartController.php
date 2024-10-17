@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountChart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AccountChartController extends Controller
 {
@@ -24,7 +25,9 @@ class AccountChartController extends Controller
      */
     public function create()
     {
-        //
+        $account_types = DB::table('account_types')->get();
+
+        return view('chart-of-accounts.create')->with('account_types', $account_types);
     }
 
     /**
@@ -32,7 +35,19 @@ class AccountChartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'account_head' => ['required', 'string', 'unique:account_charts'],
+            'account_type_id' => ['required'],
+            'sort_order' => ['required', 'integer'],
+        ]);
+
+        AccountChart::create([
+            'account_head' => $request->account_head,
+            'account_type_id' => $request->account_type_id,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect(route('accountcharts.create'))->with('success', 'Record added.');
     }
 
     /**
