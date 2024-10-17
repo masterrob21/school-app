@@ -49,6 +49,8 @@ Route::middleware([
     Route::get('/accountcharts-fetch', [AccountChartController::class, 'fetch'])->name('accountcharts.fetch');
     Route::get('/accountcharts/create', [AccountChartController::class, 'create'])->name('accountcharts.create');
     Route::post('/accountcharts', [AccountChartController::class, 'store'])->name('accountcharts.store');
+    Route::get('/accountcharts/{id}', [AccountChartController::class, 'show'])->name('accountcharts.show');
+    Route::get('/accountcharts/{id}/edit', [AccountChartController::class, 'edit'])->name('accountcharts.edit');
 
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
     Route::get('/classrooms/create', [ClassroomController::class, 'create'])->name('classrooms.create');

@@ -55,7 +55,12 @@ class AccountChartController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $accountchart = AccountChart::join('account_types', 'account_charts.account_type_id', 'account_types.id')
+                                     ->select('account_charts.*', 'account_type')
+                                     ->where('account_charts.id', $id)
+                                     ->first();
+
+        return view('chart-of-accounts.show')->with('accountchart', $accountchart);
     }
 
     /**
