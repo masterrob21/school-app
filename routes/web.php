@@ -52,6 +52,7 @@ Route::middleware([
     Route::get('/accountcharts/{id}', [AccountChartController::class, 'show'])->name('accountcharts.show');
     Route::get('/accountcharts/{id}/edit', [AccountChartController::class, 'edit'])->name('accountcharts.edit');
     Route::patch('/accountcharts/{accountchart}', [AccountChartController::class, 'update'])->name('accountcharts.update');
+    Route::delete('/accountcharts/{accountchart}', [AccountChartController::class, 'destroy'])->name('accountcharts.destroy');
 
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
     Route::get('/classrooms/create', [ClassroomController::class, 'create'])->name('classrooms.create');

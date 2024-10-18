@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('account_head')->unique();
             $table->foreignId('account_type_id');
             $table->integer('sort_order');
-            $table->boolean('is_locked');
+            $table->boolean('is_locked')->nullable();
             $table->timestamps();
         });
     }

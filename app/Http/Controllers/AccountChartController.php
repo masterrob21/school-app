@@ -107,6 +107,19 @@ class AccountChartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete_record = AccountChart::where([
+                                        ['id', $id],
+                                        ['is_locked', false]
+        ])->first();
+
+        if ($delete_record){
+            $delete_record->delete();
+
+            return redirect('/accountcharts')->with('warning', 'Record deleted.');
+        } else{
+
+            return redirect('/accountcharts')->with('info', 'You cannot delete this record.');
+
+        }
     }
 }
