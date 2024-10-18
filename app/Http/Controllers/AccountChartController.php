@@ -122,4 +122,22 @@ class AccountChartController extends Controller
 
         }
     }
+
+    # use ajax to search for a resource
+    public function fetch(Request $request)
+    {
+        $search = $request->id;
+
+        $accountcharts = AccountChart::join('account_types', 'account_charts.account_type_id', 'account_types.id')
+                                        ->select('account_charts.*', 'account_type')
+                                        ->where('account_head', 'LIKE', '%'.$search.'%')
+                                        ->paginate(25);
+
+        if ($request->ajax()) {
+            return view('chart-of-accounts.fetch')->with('accountcharts', $accountcharts);
+        }
+
+        return view('chart-of-accounts.index')->with('accountcharts', $accountcharts);        
+
+    }
 }
