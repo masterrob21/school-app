@@ -7,7 +7,7 @@
             <th class="p-3">Action</th>
             <th class="p-3">Ledger Code</th>
             <th class="p-3">GL Account</th>
-            <th class="p-3">chart of Account</th>
+            <th class="p-3">Chart of Account</th>
             <th class="p-3">Sort Order</th>
         </tr>
     </thead>

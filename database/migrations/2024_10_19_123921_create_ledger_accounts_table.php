@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ledger_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('ledger_code')->unique();
-            $table->string('ledger_name');
+            $table->string('ledger_name')->unique();
             $table->foreignId('account_chart_id');
             $table->integer('sort_order');
             $table->timestamps();

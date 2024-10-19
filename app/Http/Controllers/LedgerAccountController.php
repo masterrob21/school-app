@@ -32,7 +32,9 @@ class LedgerAccountController extends Controller
      */
     public function create()
     {
-        //
+        $accountchart = AccountChart::find(session('account_chart_id'));
+
+        return view('gl-accounts.create')->with('accountchart', $accountchart);
     }
 
     /**
@@ -40,7 +42,21 @@ class LedgerAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ledger_code' => ['required', 'string', 'unique:ledger_accounts'],
+            'ledger_name' => ['required', 'string', 'unique:ledger_accounts'],
+            'account_chart_id' => ['required'],
+            'sort_order' => ['required'],
+        ]);
+
+        LedgerAccount::create([
+            'ledger_code' => $request->ledger_code,
+            'ledger_name' => $request->ledger_name,
+            'account_chart_id' => $request->account_chart_id,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect(route('ledgeraccounts.create'))->with('success', 'Record saved.');
     }
 
     /**

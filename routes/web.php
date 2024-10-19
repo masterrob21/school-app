@@ -49,6 +49,7 @@ Route::middleware([
     Route::get('/ledgeraccounts-getchartid/{id}', [LedgerAccountController::class, 'index'])->name('ledgeraccounts.index');
     Route::get('/ledgeraccounts-fetch', [LedgerAccountController::class, 'fetch'])->name('ledgeraccounts.fetch');
     Route::get('/ledgeraccounts/create', [LedgerAccountController::class, 'create'])->name('ledgeraccounts.create');
+    Route::post('/ledgeraccounts', [LedgerAccountController::class, 'store'])->name('ledgeraccounts.store');
     Route::get('/ledgeraccounts/{id}', [LedgerAccountController::class, 'show'])->name('ledgeraccounts.show');
 
     Route::get('/accountcharts', [AccountChartController::class, 'index'])->name('accountcharts.index');
