@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
@@ -44,6 +45,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/ledgeraccounts-getchartid/{id}', [LedgerAccountController::class, 'index'])->name('ledgeraccounts.index');
+    Route::get('/ledgeraccounts-fetch', [LedgerAccountController::class, 'fetch'])->name('ledgeraccounts.fetch');
+    Route::get('/ledgeraccounts/create', [LedgerAccountController::class, 'create'])->name('ledgeraccounts.create');
+    Route::get('/ledgeraccounts/{id}', [LedgerAccountController::class, 'show'])->name('ledgeraccounts.show');
 
     Route::get('/accountcharts', [AccountChartController::class, 'index'])->name('accountcharts.index');
     Route::get('/accountcharts-fetch', [AccountChartController::class, 'fetch'])->name('accountcharts.fetch');
