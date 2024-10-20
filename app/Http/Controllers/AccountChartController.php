@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountChart;
+use App\Models\LedgerAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -16,6 +17,8 @@ class AccountChartController extends Controller
     {
         $accountcharts = AccountChart::join('account_types', 'account_charts.account_type_id', 'account_types.id')
                                      ->select('account_charts.*', 'account_type')
+                                     ->orderBy('account_types.id')
+                                     ->orderBy('sort_order')
                                      ->paginate(25);
 
         return view('chart-of-accounts.index')->with('accountcharts', $accountcharts);
@@ -107,20 +110,31 @@ class AccountChartController extends Controller
      */
     public function destroy(string $id)
     {
+        #check to see if the resource is locked
         $delete_record = AccountChart::where([
                                         ['id', $id],
                                         ['is_locked', false]
-        ])->first();
+                        ])->first();
 
+        #checking if the resource has related records.                  
+        $check_gl_accounts = LedgerAccount::where('account_chart_id', $id)->first();
+ 
         if ($delete_record){
-            $delete_record->delete();
+            
+            if ($check_gl_accounts){
+                return redirect('/accountcharts')->with('info', 'This record cannot be deleted, it has related GL Account.');
+            } else{
+                $delete_record->delete();
 
-            return redirect('/accountcharts')->with('warning', 'Record deleted.');
+                return redirect('/accountcharts')->with('warning', 'Record deleted.');
+            }
+
         } else{
 
             return redirect('/accountcharts')->with('info', 'You cannot delete this record.');
 
         }
+
     }
 
     # use ajax to search for a resource
