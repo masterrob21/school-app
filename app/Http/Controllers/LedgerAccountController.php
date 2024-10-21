@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccountChart;
 use App\Models\LedgerAccount;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class LedgerAccountController extends Controller
 {
@@ -72,15 +73,32 @@ class LedgerAccountController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ledgeraccount = LedgerAccount::join('account_charts', 'ledger_accounts.account_chart_id', 'account_charts.id')
+                                        ->where('ledger_accounts.id', $id)
+                                        ->select('ledger_accounts.*', 'account_head')
+                                        ->first();
+
+        return view('gl-accounts.edit')->with('ledgeraccount', $ledgeraccount);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, LedgerAccount $ledgeraccount)
     {
-        //
+        $request->validate([
+            'ledger_code' => ['required', 'string', Rule::unique('ledger_accounts')->ignore($ledgeraccount)],
+            'ledger_name' => ['required', 'string', Rule::unique('ledger_accounts')->ignore($ledgeraccount)],
+            'sort_order' => ['required'],
+        ]);
+
+        $ledgeraccount->update([
+            'ledger_code' => $request->ledger_code,
+            'ledger_name' => $request->ledger_name,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect('/ledgeraccounts-getchartid/' . session('account_chart_id'))->with('info', 'Record updated.');
     }
 
     /**
