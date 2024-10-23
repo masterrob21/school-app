@@ -52,6 +52,7 @@ Route::middleware([
     Route::post('/ledgeraccounts', [LedgerAccountController::class, 'store'])->name('ledgeraccounts.store');
     Route::get('/ledgeraccounts/{id}/edit', [LedgerAccountController::class, 'edit'])->name('ledgeraccounts.edit');
     Route::patch('/ledgeraccounts/{ledgeraccount}', [LedgerAccountController::class, 'update'])->name('ledgeraccounts.update');
+    Route::delete('/ledgeraccounts/{ledgeraccount}', [LedgerAccountController::class, 'destroy'])->name('ledgeraccounts.destroy');
 
     Route::get('/accountcharts', [AccountChartController::class, 'index'])->name('accountcharts.index');
     Route::get('/accountcharts-fetch', [AccountChartController::class, 'fetch'])->name('accountcharts.fetch');

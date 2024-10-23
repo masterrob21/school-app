@@ -65,7 +65,7 @@
                 const id = $(this).attr('id');
                 const dialog = confirm('You are about to delete a record, Click "Ok" to proceed.');
 
-                form.action = 'ledgeraccounts/' + id;
+                form.action = '/ledgeraccounts/' + id;
                 if (dialog) {
                     $('#delete_form').submit();
                 }

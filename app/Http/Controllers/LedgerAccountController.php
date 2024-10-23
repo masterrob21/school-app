@@ -104,8 +104,10 @@ class LedgerAccountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(LedgerAccount $ledgeraccount)
     {
-        //
+        $ledgeraccount->delete();
+
+        return redirect('/ledgeraccounts-getchartid/' . session('account_chart_id'))->with('warning', 'Record deleted.');
     }
 }
