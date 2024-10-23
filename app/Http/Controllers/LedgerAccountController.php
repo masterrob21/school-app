@@ -18,6 +18,8 @@ class LedgerAccountController extends Controller
         $ledgeraccounts = LedgerAccount::join('account_charts', 'ledger_accounts.account_chart_id', 'account_charts.id')
                                         ->where('account_chart_id', $id)
                                         ->select('ledger_accounts.*', 'account_charts.account_head')
+                                        ->orderBy('ledger_name')
+                                        ->orderBy('ledger_accounts.sort_order')
                                         ->paginate(25);
 
         session([
