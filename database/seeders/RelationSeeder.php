@@ -14,11 +14,11 @@ class RelationSeeder extends Seeder
     public function run(): void
     {
         Relation::insert([
-            ['relation' => 'Father'],
-            ['relation' => 'Mother'],
-            ['relation' => 'Guardian'],
-            ['relation' => 'Uncle'],
-            ['relation' => 'Aunty'],
+            ['relation' => 'Father', 'created_at' => now(), 'updated_at' => now()],
+            ['relation' => 'Mother', 'created_at' => now(), 'updated_at' => now()],
+            ['relation' => 'Guardian', 'created_at' => now(), 'updated_at' => now()],
+            ['relation' => 'Uncle', 'created_at' => now(), 'updated_at' => now()],
+            ['relation' => 'Aunty', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

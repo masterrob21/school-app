@@ -38,7 +38,7 @@
       </li>
       <!-- accordion-toggle -->
       <ul class="menu-submenu accordion-content">
-         {{-- <li class="px-6"><a class="hover:text-lime-500" href="/staffs">Staff</a></li> --}}
+         <li class="px-6"><a class="hover:text-lime-500" href="/accountcharts">Chart of Accounts</a></li>
          {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
       </ul>
 

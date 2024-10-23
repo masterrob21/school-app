@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
@@ -43,6 +45,23 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/ledgeraccounts-getchartid/{id}', [LedgerAccountController::class, 'index'])->name('ledgeraccounts.index');
+    Route::get('/ledgeraccounts-fetch', [LedgerAccountController::class, 'fetch'])->name('ledgeraccounts.fetch');
+    Route::get('/ledgeraccounts/create', [LedgerAccountController::class, 'create'])->name('ledgeraccounts.create');
+    Route::post('/ledgeraccounts', [LedgerAccountController::class, 'store'])->name('ledgeraccounts.store');
+    Route::get('/ledgeraccounts/{id}/edit', [LedgerAccountController::class, 'edit'])->name('ledgeraccounts.edit');
+    Route::patch('/ledgeraccounts/{ledgeraccount}', [LedgerAccountController::class, 'update'])->name('ledgeraccounts.update');
+    Route::delete('/ledgeraccounts/{ledgeraccount}', [LedgerAccountController::class, 'destroy'])->name('ledgeraccounts.destroy');
+
+    Route::get('/accountcharts', [AccountChartController::class, 'index'])->name('accountcharts.index');
+    Route::get('/accountcharts-fetch', [AccountChartController::class, 'fetch'])->name('accountcharts.fetch');
+    Route::get('/accountcharts/create', [AccountChartController::class, 'create'])->name('accountcharts.create');
+    Route::post('/accountcharts', [AccountChartController::class, 'store'])->name('accountcharts.store');
+    Route::get('/accountcharts/{id}', [AccountChartController::class, 'show'])->name('accountcharts.show');
+    Route::get('/accountcharts/{id}/edit', [AccountChartController::class, 'edit'])->name('accountcharts.edit');
+    Route::patch('/accountcharts/{accountchart}', [AccountChartController::class, 'update'])->name('accountcharts.update');
+    Route::delete('/accountcharts/{accountchart}', [AccountChartController::class, 'destroy'])->name('accountcharts.destroy');
 
     Route::get('/classrooms', [ClassroomController::class, 'index'])->name('classrooms.index');
     Route::get('/classrooms/create', [ClassroomController::class, 'create'])->name('classrooms.create');

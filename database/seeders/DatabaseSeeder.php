@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             GenderSeeder::class,
             OccupationSeeder::class,
             RelationSeeder::class,
-            DefaultUserSeeder::class
+            DefaultUserSeeder::class,
+            AccountTypeSeeder::class,
+            AccountChartSeeder::class
         ]);
         
         // \App\Models\User::factory(10)->create();
