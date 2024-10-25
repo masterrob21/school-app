@@ -42,26 +42,16 @@
          {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
       </ul>
 
-       <!-- menu-submenu accordon-content-->
-         <li id="nav5" class="toggle accordion-toggle hover:bg-lime-400"> 
-          <span class="icon-plus"></span>
-          <a class="menu-link" href="#">Setup</a>
-       </li>
-       <!-- accordion-toggle -->
-       <ul class="menu-submenu accordion-content space-y-2">
-          <li class="px-6"><a class="hover:text-lime-500 " href="/user">Users</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/courses">Course</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/departments">Department</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/occupations">Occupation</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/relations">Relation</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-          <li class="px-6"><a class="hover:text-lime-500 " href="/classrooms">Classroom</a></li>
-       </ul>
-       <!-- menu-submenu accordon-content-->
+      <!-- menu-submenu accordon-content-->
+      <li id="nav5" class="uppercase p-5 hover:bg-lime-400"> 
+         <a class="menu-link" href="/user">Users</a>
+      </li>
+
+      <!-- menu-submenu accordon-content-->
+      <li id="nav6" class="uppercase p-5 hover:bg-lime-400"> 
+         <a class="menu-link" href="/settings">Settings</a>
+      </li>
+
     </ul>
     <!-- menu-list accordion-->
  </div>

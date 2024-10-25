@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\GuardianController;
@@ -45,6 +46,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/settings', [DashboardController::class, 'settings']);
 
     Route::get('/ledgeraccounts-getchartid/{id}', [LedgerAccountController::class, 'index'])->name('ledgeraccounts.index');
     Route::get('/ledgeraccounts-fetch', [LedgerAccountController::class, 'fetch'])->name('ledgeraccounts.fetch');
