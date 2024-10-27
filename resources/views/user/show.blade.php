@@ -55,9 +55,7 @@
                                 <td class="p-3 border border-slate-300">
                                     <input 
                                     type="checkbox" 
-                                    @if (($user->is_active)===1)
-                                        @checked(true)
-                                    @endif
+                                    @checked($user->is_active)
                                     @disabled(true)
                                     />
                                 </td>

@@ -56,9 +56,7 @@
                                 IsActive
                                 <input 
                                     id="is_active" type="checkbox" name="is_active" value="1"
-                                    @if (($user->is_active)===1)
-                                        @checked(true)
-                                    @endif
+                                        @checked($user->is_active)
                                 />
                             </label>
                             
