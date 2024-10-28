@@ -29,6 +29,7 @@ class User extends Authenticatable
         'password',
         'is_system',
         'is_active',
+        'branch_id',
     ];
 
     /**
