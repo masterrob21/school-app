@@ -18,8 +18,8 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/courses" class="text-blue-600 text-2xl font-bold hover:underline">Courses</a></h2>
-                                <p>Register, edit and remove classroom.</p>
+                                <h2"><a href="/courses" class="text-blue-600 text-2xl font-bold hover:underline">Course</a></h2>
+                                <p>List of courses.</p>
                             </div>
                        </div>
 
@@ -31,8 +31,8 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/departments" class="text-blue-600 text-2xl font-bold hover:underline">Departments</a></h2>
-                                <p>Register all departments here</p>
+                                <h2"><a href="/departments" class="text-blue-600 text-2xl font-bold hover:underline">Department</a></h2>
+                                <p>List of departments.</p>
                             </div>
                         </div>
 
@@ -44,8 +44,8 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/occupations" class="text-blue-600 text-2xl font-bold hover:underline">Occupations</a></h2>
-                                <p>List of occupations</p>
+                                <h2"><a href="/occupations" class="text-blue-600 text-2xl font-bold hover:underline">Occupation</a></h2>
+                                <p>List of occupations.</p>
                             </div>
                        </div>
 
@@ -58,8 +58,8 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/relations" class="text-blue-600 text-2xl font-bold hover:underline">Relations</a></h2>
-                                <p>Register, edit and remove relations.</p>
+                                <h2"><a href="/relations" class="text-blue-600 text-2xl font-bold hover:underline">Relation</a></h2>
+                                <p>List of relations.</p>
                             </div>
                         </div>
 
@@ -71,8 +71,8 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/classrooms" class="text-blue-600 text-2xl font-bold hover:underline">Classrooms</a></h2>
-                                <p>Register, edit and remove classrooms</p>
+                                <h2"><a href="/classrooms" class="text-blue-600 text-2xl font-bold hover:underline">Classroom</a></h2>
+                                <p>List of classrooms.</p>
                             </div>
                        </div>
                        
