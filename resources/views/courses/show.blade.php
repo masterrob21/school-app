@@ -24,7 +24,7 @@
                 <div class="p-6 text-gray-900">
                     <div class=" overflow-x-auto">
                         <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                            <caption class=" caption-top mb-4 text-xl text-blue-600">Course Information</caption>
+                            <caption class="caption-top mb-4 text-xl text-blue-600 text-left md:text-center">Course Information</caption>
                             <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Course Code:</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $course->course_code }}</td>
@@ -35,7 +35,7 @@
                                 <td class="p-3 border border-slate-300 text-xl">{{ $course->course_name }}</td>
                             </tr>
 
-                            <tr class=" whitespace-nowrap">
+                            <tr class="">
                                 <th class="p-3 border border-slate-300">Description</th>
                                 <td class="p-3 border border-slate-300 text-xl">{{ $course->course_description }}</td>
                             </tr>
