@@ -31,6 +31,11 @@
                             </tr>
 
                             <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">GL Code</th>
+                                <td class="p-3 border border-slate-300 text-xl capitalize">{{ $accountchart->gl_code }}</td>
+                            </tr>
+
+                            <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">Account Type</th>
                                 <td class="p-3 border border-slate-300 text-xl capitalize">{{ $accountchart->account_type }}</td>
                             </tr>

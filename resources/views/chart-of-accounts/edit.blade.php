@@ -36,6 +36,11 @@
                         </div>
 
                         <div class="mt-4">
+                            <x-label for="gl_code" value="{{ __('GL Code:') }}" />
+                            <x-input id="gl_code" class="block mt-1 w-full capitalize" type="text" name="gl_code" value="{{$accountchart->gl_code}}" required />
+                        </div>
+
+                        <div class="mt-4">
                             <x-label for="account_type_id" value="{{ __('Class Teacher:') }}" />
                             <x-select id="account_type_id" class="block mt-1 w-full" name="account_type_id">
                                 <option value="{{$accountchart->account_type_id}}">{{ $accountchart->account_type }}</option>

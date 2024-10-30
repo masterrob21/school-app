@@ -35,11 +35,16 @@
                         </div>
 
                         <div class="mt-4">
+                            <x-label for="gl_code" value="{{ __('GL Code:') }}" />
+                            <x-input id="gl_code" class="block mt-1 w-full capitalize" type="text" name="gl_code" :value="old('gl_code')" required />
+                        </div>
+
+                        <div class="mt-4">
                             <x-label for="account_type_id" value="{{ __('Account Type:') }}" />
                             <x-select id="account_type_id" class="block mt-1 w-full capitalize" name="account_type_id" required>
                                 <option value=""> ...</option>
                                 @foreach ($account_types as $account_type)
-                                    <option value="{{$account_type->id}}">{{ $account_type->account_type }}</option>
+                                    <option value="{{$account_type->id}}" @selected(old('account_type_id')==$account_type->id)>{{ $account_type->account_type }}</option>
                                 @endforeach
                             </x-select>
                         </div>

@@ -13,5 +13,6 @@ class AccountChart extends Model
         'account_head',
         'account_type_id',
         'sort_order',
+        'gl_code',
     ];
 }

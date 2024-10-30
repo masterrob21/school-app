@@ -43,12 +43,14 @@ class AccountChartController extends Controller
             'account_head' => ['required', 'string', 'unique:account_charts'],
             'account_type_id' => ['required'],
             'sort_order' => ['required', 'integer'],
+            'gl_code' => ['required', 'string', 'unique:account_charts'],
         ]);
 
         AccountChart::create([
             'account_head' => $request->account_head,
             'account_type_id' => $request->account_type_id,
             'sort_order' => $request->sort_order,
+            'gl_code' => $request->gl_code,
         ]);
 
         return redirect(route('accountcharts.create'))->with('success', 'Record added.');
@@ -94,12 +96,14 @@ class AccountChartController extends Controller
             'account_head' => ['required', 'string', Rule::unique('account_charts')->ignore($accountchart)],
             'account_type_id' => ['required'],
             'sort_order' => ['required', 'integer'],
+            'gl_code' => ['required', 'string', Rule::unique('account_charts')->ignore($accountchart)],
         ]);
 
         $accountchart->update([
             'account_head' => $request->account_head,
             'account_type_id' => $request->account_type_id,
             'sort_order' => $request->sort_order,
+            'gl_code' => $request->gl_code,
         ]);
 
         return redirect('/accountcharts/' . $accountchart->id)->with('info', 'Record updated.');

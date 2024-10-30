@@ -6,6 +6,7 @@
         <tr class="border-b  whitespace-nowrap">
             <th class="p-3">Action</th>
             <th class="p-3">Chart of Account</th>
+            <th class="p-3">GL Code</th>
             <th class="p-3">Account Type</th>
             <th class="p-3">Sort Order</th>
         </tr>
@@ -34,6 +35,7 @@
                     </form>
                 </td>
                 <td class="px-3 py-1 capitalize"><a href="/ledgeraccounts-getchartid/{{$accountchart->id}}" class="text-blue-600 hover:underline"> {{ $accountchart->account_head }} </a></td>
+                <td class="px-3 py-1 capitalize">{{ $accountchart->gl_code }}</td>
                 <td class="px-3 py-1 capitalize">{{ $accountchart->account_type }}</td>
                 <td class="px-3 py-1 capitalize">{{ $accountchart->sort_order }}</td>                                       
             </tr>
