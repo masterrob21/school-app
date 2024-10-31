@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('ledger_name')->unique();
             $table->foreignId('account_chart_id');
             $table->integer('sort_order');
+            $table->boolean('allow_journal_entry')->nullable();
             $table->timestamps();
         });
     }

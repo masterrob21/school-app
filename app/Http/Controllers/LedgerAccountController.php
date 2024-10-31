@@ -57,6 +57,7 @@ class LedgerAccountController extends Controller
             'ledger_name' => $request->ledger_name,
             'account_chart_id' => $request->account_chart_id,
             'sort_order' => $request->sort_order,
+            'allow_journal_entry' => $request->allow_journal_entry,
         ]);
 
         return redirect(route('ledgeraccounts.create'))->with('success', 'Record saved.');
@@ -98,6 +99,7 @@ class LedgerAccountController extends Controller
             'ledger_code' => $request->ledger_code,
             'ledger_name' => $request->ledger_name,
             'sort_order' => $request->sort_order,
+            'allow_journal_entry' => $request->allow_journal_entry,
         ]);
 
         return redirect('/ledgeraccounts-getchartid/' . session('account_chart_id'))->with('info', 'Record updated.');

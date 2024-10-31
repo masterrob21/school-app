@@ -44,7 +44,7 @@
                             <select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
                                 <option value=""> ...</option>
                                 @foreach ($branches as $branch)
-                                    <option value="{{ $branch->id }}" @selected(old('branch'))>{{ $branch->branch_name }}</option>
+                                    <option value="{{ $branch->id }}" @selected(old('branch')==$branch->id)>{{ $branch->branch_name }}</option>
                                 @endforeach
                             </select>
                         </div>

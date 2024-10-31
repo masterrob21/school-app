@@ -53,6 +53,13 @@
                         </div>
 
                         <div class="mt-4">
+                            <label for="allow_journal_entry">
+                                Allow Journal Entry:
+                                <input type="checkbox" id="allow_journal_entry" name="allow_journal_entry" value="1" @checked($ledgeraccount->allow_journal_entry)>
+                            </label>
+                        </div>
+
+                        <div class="mt-4">
                             <x-button>
                                 {{ __('Update Record') }}
                             </x-button>

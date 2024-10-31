@@ -8,6 +8,7 @@
             <th class="p-3">Ledger Code</th>
             <th class="p-3">GL Account</th>
             <th class="p-3">Chart of Account</th>
+            <th class="p-3">Journal Entry</th>
             <th class="p-3">Sort Order</th>
         </tr>
     </thead>
@@ -37,6 +38,7 @@
                 <td class="px-3 py-1 capitalize">{{ $ledgeraccount->ledger_code }}</td>
                 <td class="px-3 py-1 capitalize">{{ $ledgeraccount->ledger_name }}</td>
                 <td class="px-3 py-1 capitalize">{{ $ledgeraccount->account_head }}</td>                                       
+                <td class="px-3 py-1 capitalize">{{ $ledgeraccount->allow_journal_entry ? 'yes':'no' }}</td>                                       
                 <td class="px-3 py-1 capitalize">{{ $ledgeraccount->sort_order }}</td>                                       
             </tr>
         @empty

@@ -51,6 +51,13 @@
                             <x-input class="block mt-1 w-full" name="sort_order" id="sort_order" :value="old('sort_order')" required />
                         </div>
 
+                        <div class="mt-4">
+                            <label for="allow_journal_entry">
+                                Allow Journal Entry:
+                                <input type="checkbox" name="allow_journal_entry" id="allow_journal_entry" value="1" />
+                            </label>
+                        </div>
+
                         <div class="mt-4 capitalize">
                             <x-button>
                                 {{ __('Add record') }}

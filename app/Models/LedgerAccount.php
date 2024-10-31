@@ -14,5 +14,6 @@ class LedgerAccount extends Model
         'ledger_name',
         'account_chart_id',
         'sort_order',
+        'allow_journal_entry',
     ];
 }
