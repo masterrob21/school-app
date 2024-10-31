@@ -25,6 +25,13 @@
 
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mb-4">
+                <ul class="px-4 py-2 list-none bg-slate-200">
+                    <li class=" inline text-lg"><a href="/settings" class="text-blue-600 hover:underline capitalize">settings</a></li>
+                    <li class="inline text-lg before:p-2 before:content-['/']">List of Relations</li>
+                </ul>
+            </div>
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
