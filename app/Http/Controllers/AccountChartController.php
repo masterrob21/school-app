@@ -51,6 +51,7 @@ class AccountChartController extends Controller
             'account_type_id' => $request->account_type_id,
             'sort_order' => $request->sort_order,
             'gl_code' => $request->gl_code,
+            'is_locked' => false,
         ]);
 
         return redirect(route('accountcharts.create'))->with('success', 'Record added.');

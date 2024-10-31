@@ -14,5 +14,6 @@ class AccountChart extends Model
         'account_type_id',
         'sort_order',
         'gl_code',
+        'is_locked',
     ];
 }
