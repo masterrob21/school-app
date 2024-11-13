@@ -14,11 +14,11 @@ class AccountTypeSeeder extends Seeder
     public function run(): void
     {
         DB::table('account_types')->insert([
-            ['account_type' => 'Asset', 'created_at' => now(), 'updated_at' => now()],
-            ['account_type' => 'Liability', 'created_at' => now(), 'updated_at' => now()],
-            ['account_type' => 'Equity', 'created_at' => now(), 'updated_at' => now()],
-            ['account_type' => 'Revenue', 'created_at' => now(), 'updated_at' => now()],
-            ['account_type' => 'Expense', 'created_at' => now(), 'updated_at' => now()],
+            ['account_type' => 'Asset', 'is_credit' => false, 'created_at' => now(), 'updated_at' => now()],
+            ['account_type' => 'Liability', 'is_credit' => true, 'created_at' => now(), 'updated_at' => now()],
+            ['account_type' => 'Equity', 'is_credit' => true, 'created_at' => now(), 'updated_at' => now()],
+            ['account_type' => 'Revenue', 'is_credit' => true, 'created_at' => now(), 'updated_at' => now()],
+            ['account_type' => 'Expense', 'is_credit' => false, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
