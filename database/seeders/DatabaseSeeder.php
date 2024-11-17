@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             RelationSeeder::class,
             DefaultUserSeeder::class,
             AccountTypeSeeder::class,
-            AccountChartSeeder::class
+            AccountChartSeeder::class,
+            CurrencySeeder::class,
+            PaymentModeSeeder::class,
         ]);
         
         // \App\Models\User::factory(10)->create();

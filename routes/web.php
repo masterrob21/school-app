@@ -3,9 +3,11 @@
 use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
+use App\Http\Controllers\GeneralJournalController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LedgerAccountController;
@@ -46,6 +48,18 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
+    Route::get('/currency-fetch', [CurrencyController::class, 'fetch'])->name('currency.fetch');
+    Route::get('/currency/create', [CurrencyController::class, 'create'])->name('currency.create');
+    Route::post('/currency', [CurrencyController::class, 'store'])->name('currency.store');
+    Route::get('/currency/{id}/edit', [CurrencyController::class, 'edit'])->name('currency.edit');
+    Route::patch('/currency/{ledgeraccount}', [CurrencyController::class, 'update'])->name('currency.update');
+    Route::delete('/currency/{ledgeraccount}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
+    
+    Route::get('/general-journal/create', [GeneralJournalController::class, 'create'])->name('general-journal.create');
+    Route::get('/fetchledger', [GeneralJournalController::class, 'fetch'])->name('fetchledger.fetch');
+    Route::post('/general-journal', [GeneralJournalController::class, 'store'])->name('general-journal.store');
 
     Route::get('/settings', [DashboardController::class, 'settings']);
 

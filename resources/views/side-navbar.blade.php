@@ -39,7 +39,7 @@
       <!-- accordion-toggle -->
       <ul class="menu-submenu accordion-content space-y-2">
          <li class="px-6"><a class="hover:text-lime-500" href="/accountcharts">Chart of Accounts</a></li>
-         {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
+         <li class="px-6"><a class="hover:text-lime-500" href="{{route('general-journal.create')}}">Journal Entry</a></li>
       </ul>
 
       <!-- menu-submenu accordon-content-->

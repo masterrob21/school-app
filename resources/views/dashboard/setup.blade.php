@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-stretch">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-stretch ">
                        <div class="flex">
                             <span class="w-16 h-16 bg-blue-200 rounded-full inline-flex justify-center items-center">
                                 <svg class="w-[48px] h-[48px] dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -19,7 +19,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="/courses" class="text-blue-600 text-2xl font-bold hover:underline">Course</a></h2>
-                                <p>List of courses.</p>
+                                <p>Add, update & delete.</p>
                             </div>
                        </div>
 
@@ -32,7 +32,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="/departments" class="text-blue-600 text-2xl font-bold hover:underline">Department</a></h2>
-                                <p>List of departments.</p>
+                                <p>Add, update & delete.</p>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="/occupations" class="text-blue-600 text-2xl font-bold hover:underline">Occupation</a></h2>
-                                <p>List of occupations.</p>
+                                <p>Add, update & delete.</p>
                             </div>
                        </div>
 
@@ -59,7 +59,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="/relations" class="text-blue-600 text-2xl font-bold hover:underline">Relation</a></h2>
-                                <p>List of relations.</p>
+                                <p>Add, update & delete.</p>
                             </div>
                         </div>
 
@@ -72,9 +72,35 @@
 
                             <div class="ml-2">
                                 <h2"><a href="/classrooms" class="text-blue-600 text-2xl font-bold hover:underline">Classroom</a></h2>
-                                <p>List of classrooms.</p>
+                                <p>Add, update & delete.</p>
                             </div>
                        </div>
+
+                       <div class="flex">
+                            <span class="w-16 h-16 bg-blue-200 rounded-full inline-flex justify-center items-center">
+                                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 7V6a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1M3 18v-7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+                                </svg>                                                                                                      
+                            </span>
+
+                            <div class="ml-2">
+                                <h2"><a href="/currency" class="text-blue-600 text-2xl font-bold hover:underline">Currency</a></h2>
+                                <p>Add, update & delete.</p>
+                            </div>
+                        </div>
+
+                       <div class="flex">
+                            <span class="w-16 h-16 bg-blue-200 rounded-full inline-flex justify-center items-center">
+                                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 14h2m3 0h5M3 7v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Z"/>
+                                </svg>                                                                                  
+                            </span>
+
+                            <div class="ml-2">
+                                <h2"><a href="/currency" class="text-blue-600 text-2xl font-bold hover:underline">Payment Mode</a></h2>
+                                <p>Update.</p>
+                            </div>
+                        </div>
                        
                     </div>
 
