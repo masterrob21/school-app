@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CurrencyController extends Controller
 {
@@ -11,7 +13,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        //
+        return view('currency.index')->with('currencies', Currency::all());
     }
 
     /**
@@ -31,27 +33,27 @@ class CurrencyController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        return view('currency.edit')->with('currency', Currency::find($id));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Currency $currency)
     {
-        //
+        $request->validate([
+            'currency' => ['required', Rule::unique('currencies')->ignore($currency)]
+        ]);
+
+        $currency->update([
+            'currency' => $request->currency
+        ]);
+
+        return redirect(route('currency.index'))->with('info', 'Record updated.');
     }
 
     /**

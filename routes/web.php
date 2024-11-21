@@ -54,8 +54,8 @@ Route::middleware([
     Route::get('/currency/create', [CurrencyController::class, 'create'])->name('currency.create');
     Route::post('/currency', [CurrencyController::class, 'store'])->name('currency.store');
     Route::get('/currency/{id}/edit', [CurrencyController::class, 'edit'])->name('currency.edit');
-    Route::patch('/currency/{ledgeraccount}', [CurrencyController::class, 'update'])->name('currency.update');
-    Route::delete('/currency/{ledgeraccount}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
+    Route::patch('/currency/{currency}', [CurrencyController::class, 'update'])->name('currency.update');
+    Route::delete('/currency/{currency}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
     
     Route::get('/general-journal/create', [GeneralJournalController::class, 'create'])->name('general-journal.create');
     Route::get('/fetchledger', [GeneralJournalController::class, 'fetch'])->name('fetchledger.fetch');
