@@ -12,6 +12,7 @@ use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
@@ -48,6 +49,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    
+    Route::get('/paymentMethods', [PaymentModeController::class, 'index'])->name('paymentMethods.index');
+    Route::get('/paymentMethods/{paymentMode}/edit', [PaymentModeController::class, 'edit'])->name('paymentMethods.edit');
+    Route::patch('/paymentMethods/{paymentMode}', [PaymentModeController::class, 'update'])->name('paymentMethods.update');
 
     Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
     Route::get('/currency-fetch', [CurrencyController::class, 'fetch'])->name('currency.fetch');

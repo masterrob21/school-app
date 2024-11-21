@@ -97,7 +97,7 @@
                             </span>
 
                             <div class="ml-2">
-                                <h2"><a href="/currency" class="text-blue-600 text-2xl font-bold hover:underline">Payment Mode</a></h2>
+                                <h2"><a href="/paymentMethods" class="text-blue-600 text-2xl font-bold hover:underline">Payment Mode</a></h2>
                                 <p>Update.</p>
                             </div>
                         </div>

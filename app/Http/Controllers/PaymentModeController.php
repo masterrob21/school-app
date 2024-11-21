@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PaymentMode;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PaymentModeController extends Controller
 {
@@ -12,31 +13,7 @@ class PaymentModeController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(PaymentMode $paymentMode)
-    {
-        //
+        return view('payment-method.index')->with('paymentMethods', PaymentMode::all());
     }
 
     /**
@@ -44,7 +21,7 @@ class PaymentModeController extends Controller
      */
     public function edit(PaymentMode $paymentMode)
     {
-        //
+        return view('payment-method.edit')->with('paymentMethod', $paymentMode);
     }
 
     /**
@@ -52,14 +29,14 @@ class PaymentModeController extends Controller
      */
     public function update(Request $request, PaymentMode $paymentMode)
     {
-        //
-    }
+        $request->validate([
+            'payment_mode' => ['required', Rule::unique('payment_modes')->ignore($paymentMode)]
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PaymentMode $paymentMode)
-    {
-        //
+        $paymentMode->update([
+            'payment_mode' => $request->payment_mode,
+        ]);
+
+        return redirect(route('paymentMethods.index'))->with('info', 'Record Updated.');
     }
 }
