@@ -21,7 +21,7 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        //
+        return view('currency.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class CurrencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id' => ['required', 'unique:currencies', 'string'],
+            'currency' => ['required', 'unique:currencies', 'string'],
+        ]);
+
+        Currency::create([
+            'id' => $request->id,
+            'currency' => $request->currency,
+        ]);
+
+        return redirect(route('currency.create'))->with('success', 'Record saved.');
     }
 
     /**

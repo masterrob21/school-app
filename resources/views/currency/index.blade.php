@@ -36,7 +36,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
                         <div class="mt-2">
-                            <a href="{{route('currency.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New Currency</a>
+                            <a href="{{route('currency.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">Add Currency</a>
                         </div>
                         <div class="">
                             <input id="search" type="text" class="rounded sm:w-96 w-full" placeholder="Search by currency">
