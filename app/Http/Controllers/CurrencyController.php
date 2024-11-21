@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Currency;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -69,8 +70,31 @@ class CurrencyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Currency $currency)
     {
-        //
+        $check_currency = Transaction::where('currency_id', $currency)->first();
+
+        if (!$check_currency){
+            $currency->delete();
+
+            return redirect(route('currency.index'))->with('info', 'Record deleted.');
+        }
+
+        return redirect(route('currency.index'))->with('info', 'This record cannot be deleted, it has relationship with other records');
+    }
+
+    // search using ajax
+    public function fetch(Request $request)
+    {
+        $id = $request->id;
+        $currencies = Currency::where('currency', 'LIKE', '%'.$id.'%')
+                            ->orderBy('currency')
+                            ->get();
+
+        if ($request->ajax()){
+            return view('currency.fetch')->with('currencies', $currencies);
+        }
+        
+        return view('currency.index')->with('currencies', $currencies);
     }
 }
