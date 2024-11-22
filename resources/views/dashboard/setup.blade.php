@@ -101,6 +101,19 @@
                                 <p>Update.</p>
                             </div>
                         </div>
+
+                        <div class="flex p-4 hover:border-t-4 border-solid hover:border-indigo-500">
+                            <span class="w-16 h-16 bg-blue-200 rounded-full inline-flex justify-center items-center">
+                                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 14h2m3 0h5M3 7v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Z"/>
+                                </svg>                                                                                  
+                            </span>
+
+                            <div class="ml-2">
+                                <h2"><a href="/branches" class="text-blue-600 text-2xl font-bold hover:underline">Branch</a></h2>
+                                <p>view & Update.</p>
+                            </div>
+                        </div>
                        
                     </div>
 

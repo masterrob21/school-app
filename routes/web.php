@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountChartController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CurrencyController;
@@ -49,6 +50,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
+    Route::get('/branches/{id}', [BranchController::class, 'show'])->name('branches.show');
+    Route::get('/branches/{branch}/edit', [BranchController::class, 'edit'])->name('branches.edit');
+    Route::patch('/branches/{branch}', [BranchController::class, 'update'])->name('branches.update');
     
     Route::get('/paymentMethods', [PaymentModeController::class, 'index'])->name('paymentMethods.index');
     Route::get('/paymentMethods/{paymentMode}/edit', [PaymentModeController::class, 'edit'])->name('paymentMethods.edit');
