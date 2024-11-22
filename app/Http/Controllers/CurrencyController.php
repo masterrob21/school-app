@@ -72,7 +72,7 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        $check_currency = Transaction::where('currency_id', $currency)->first();
+        $check_currency = Transaction::where('currency_id', $currency->id)->first();
 
         if (!$check_currency){
             $currency->delete();
