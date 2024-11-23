@@ -134,7 +134,9 @@ class GeneralJournalController extends Controller
     {
         $id = $request->id;
 
-        $ledgerAccounts = LedgerAccount::where('account_chart_id', $id)->get();
+        $ledgerAccounts = LedgerAccount::where('account_chart_id', $id)
+                                        ->where('allow_journal_entry', true)
+                                        ->get();
 
         return view('journal.fetch')->with('ledgerAccounts', $ledgerAccounts);
     }
