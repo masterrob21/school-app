@@ -14,7 +14,7 @@ class ProgramTypeSeeder extends Seeder
     public function run(): void
     {
         DB::table('program_types')->insert([
-            ['program_type' => 'invoicing', 'created_at' => now(), 'updated_at' => now()],
+            ['program_type' => 'fees', 'created_at' => now(), 'updated_at' => now()],
             ['program_type' => 'bad debt', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }

@@ -55,6 +55,7 @@ Route::middleware([
     Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
     Route::get('/programs-fetch', [ProgramController::class, 'fetch'])->name('programs.fetch');
+    Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
 
     Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
     Route::get('/branches/{id}', [BranchController::class, 'show'])->name('branches.show');

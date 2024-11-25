@@ -12,5 +12,6 @@ class Program extends Model
     protected $fillable = [
         'program_type_id',
         'program',
+        'sort_order',
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use App\Models\ProgramType;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -14,6 +15,8 @@ class ProgramController extends Controller
     {
         $programs = Program::join('program_types', 'programs.program_type_id', 'program_types.id')
                             ->select('programs.*', 'program_type')
+                            ->orderBy('program_types.id')
+                            ->orderBy('sort_order')
                             ->get();
 
         return view('programs.index')->with('programs', $programs);
@@ -24,7 +27,9 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
+        $programTypes = ProgramType::all();
+
+        return view('programs.create')->with('programTypes', $programTypes);
     }
 
     /**
@@ -32,7 +37,19 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'program_type_id' => ['required', 'integer'],
+            'program' => ['required', 'string', 'unique:programs'],
+            'sort_order' => ['required', 'integer'],
+        ]);
+
+        Program::create([
+            'program_type_id' => $request->program_type_id,
+            'program' => $request->program,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect(route('programs.create'))->with('status', 'Record saved.');
     }
 
     /**
