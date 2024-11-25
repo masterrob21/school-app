@@ -12,7 +12,11 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        //
+        $programs = Program::join('program_types', 'programs.program_type_id', 'program_types.id')
+                            ->select('programs.*', 'program_type')
+                            ->get();
+
+        return view('programs.index')->with('programs', $programs);
     }
 
     /**

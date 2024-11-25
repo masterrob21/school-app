@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             AccountChartSeeder::class,
             CurrencySeeder::class,
             PaymentModeSeeder::class,
+            TransactionTypeSeeder::class,
+            ProgramTypeSeeder::class,
+            ProgramSeeder::class,
         ]);
         
         // \App\Models\User::factory(10)->create();

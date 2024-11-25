@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('program_type_id');
             $table->string('program')->unique();
+            $table->string('sort_order');
             $table->timestamps();
         });
     }

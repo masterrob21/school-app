@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\PaymentModeController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
@@ -50,6 +51,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+    Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
+    Route::get('/programs-fetch', [ProgramController::class, 'fetch'])->name('programs.fetch');
 
     Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
     Route::get('/branches/{id}', [BranchController::class, 'show'])->name('branches.show');
