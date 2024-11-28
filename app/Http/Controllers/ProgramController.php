@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use App\Models\ProgramType;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProgramController extends Controller
 {
@@ -57,7 +59,12 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
-        //
+        $programs = Program::join('program_types', 'programs.program_type_id', 'program_types.id')
+                        ->where('programs.id', $program->id)
+                        ->select('programs.*', 'program_type')
+                        ->first();
+
+        return view('programs.show')->with('program', $programs);
     }
 
     /**
@@ -65,7 +72,12 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        $programs = Program::join('program_types', 'programs.program_type_id', 'program_types.id')
+                        ->where('programs.id', $program->id)
+                        ->select('programs.*', 'program_type')
+                        ->first();
+
+        return view('programs.edit')->with('program', $programs);
     }
 
     /**
@@ -73,7 +85,19 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $request->validate([
+            'program_type_id' => ['required', 'integer'],
+            'program' => ['required', 'string', Rule::unique('programs')->ignore($program)],
+            'sort_order' => ['required', 'integer'],
+        ]);
+
+        $program->update([
+            'program_type_id' => $request->program_type_id,
+            'program' => $request->program,
+            'sort_order' => $request->sort_order,
+        ]);
+
+        return redirect('/programs/' . $program->id)->with('status', 'Record updated.');
     }
 
     /**
@@ -81,6 +105,14 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        $check_program = Transaction::where('program_id', $program->id)->first();
+
+        if (!$check_program){
+            $program->delete();
+
+            return redirect(route('programs.index'))->with('info', 'Record deleted.');
+        }
+
+        return redirect(route('programs.index'))->with('info', 'This record cannot be deleted. It has relationship with other records.');
     }
 }

@@ -56,6 +56,10 @@ Route::middleware([
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
     Route::get('/programs-fetch', [ProgramController::class, 'fetch'])->name('programs.fetch');
     Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
+    Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('programs.show');
+    Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
+    Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
+    Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
 
     Route::get('/branches', [BranchController::class, 'index'])->name('branches.index');
     Route::get('/branches/{id}', [BranchController::class, 'show'])->name('branches.show');
