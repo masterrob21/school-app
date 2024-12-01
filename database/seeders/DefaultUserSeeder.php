@@ -19,6 +19,7 @@ class DefaultUserSeeder extends Seeder
             'password' => bcrypt('admin1234'),
             'is_system' => 1,
             'branch_id' => 1,
+            'is_active' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
