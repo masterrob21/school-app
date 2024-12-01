@@ -15,6 +15,7 @@ use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProgramTypeController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\StudentGuardianController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
 use App\Mail\MessagePosted;
+use App\Models\ProgramType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +53,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/programTypes', [ProgramTypeController::class, 'index'])->name('programTypes.index');
+    Route::get('/programTypes-fetch', [ProgramTypeController::class, 'fetch'])->name('programTypes.fetch');
+    Route::get('/programTypes/{programType}/edit', [ProgramTypeController::class, 'edit'])->name('programTypes.edit');
+    Route::patch('/programTypes/{programType}', [ProgramTypeController::class, 'update'])->name('programTypes.update');
 
     Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
