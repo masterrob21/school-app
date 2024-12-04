@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramTypeController;
 use App\Http\Controllers\RelationController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
@@ -53,6 +54,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+    Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+    Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+    Route::patch('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    
+    Route::get('/security', [DashboardController::class, 'security']);
 
     Route::get('/programTypes', [ProgramTypeController::class, 'index'])->name('programTypes.index');
     Route::get('/programTypes-fetch', [ProgramTypeController::class, 'fetch'])->name('programTypes.fetch');

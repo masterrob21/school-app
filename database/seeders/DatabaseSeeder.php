@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ProgramTypeSeeder::class,
             ProgramSeeder::class,
             PermissionSeeder::class,
+            RoleSeeder::class,
         ]);
         
         // \App\Models\User::factory(10)->create();

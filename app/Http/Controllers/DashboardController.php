@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.setup');
     }
+
+    public function security()
+    {
+        return view('dashboard.security');
+    }
 }

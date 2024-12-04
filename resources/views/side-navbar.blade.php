@@ -44,7 +44,7 @@
 
       <!-- menu-submenu accordon-content-->
       <li id="nav5" class="uppercase p-5 hover:bg-lime-400"> 
-         <a class="menu-link" href="/user">Users</a>
+         <a class="menu-link" href="/security">Security</a>
       </li>
 
       <!-- menu-submenu accordon-content-->
