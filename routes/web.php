@@ -64,6 +64,7 @@ Route::middleware([
     Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
     Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
     Route::patch('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
     
     Route::get('/security', [DashboardController::class, 'security']);
 

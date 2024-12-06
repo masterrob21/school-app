@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -72,8 +73,19 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $userRole = DB::table('model_has_roles')
+                        ->where('role_id', $role->id)
+                        ->first();
+
+        if ($userRole){
+            return redirect()->route('roles.index')->with('status', 'The role cannot be deleted, it has related record.');
+            exit();
+        }
+
+        $role->delete();
+
+        return redirect()->route('roles.index')->with('status', 'Role deleted.');
     }
 }
