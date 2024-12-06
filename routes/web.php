@@ -18,6 +18,7 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramTypeController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
@@ -54,6 +55,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    
+    Route::get('/role-permissions/{role}/edit', [RolePermissionController::class, 'edit'])->name('role-permissions.edit');
+    Route::patch('/role-permissions/{id}', [RolePermissionController::class, 'update'])->name('role-permission.update');
 
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
