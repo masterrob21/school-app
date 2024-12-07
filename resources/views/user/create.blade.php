@@ -41,12 +41,21 @@
 
                         <div class="mt-4">
                             <x-label for="branch" value="{{ __('Branch') }}" />
-                            <select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
+                            <x-select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
                                 <option value=""> ...</option>
                                 @foreach ($branches as $branch)
                                     <option value="{{ $branch->id }}" @selected(old('branch')==$branch->id)>{{ $branch->branch_name }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
+                        </div>
+
+                        <div class="mt-4">
+                            <x-label for="role" value="{{ __('Role') }}" />
+                            <x-select name="role[]" class="block mt-1 w-full rounded-md" multiple required>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role }}">{{ $role }}</option>
+                                @endforeach
+                            </x-select>
                         </div>
 
 

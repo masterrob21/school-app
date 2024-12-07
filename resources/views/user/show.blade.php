@@ -61,6 +61,18 @@
                                 </td>
                             </tr>
 
+                            <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">Roles</th>
+                                <td class="p-3 border border-slate-300">
+                                   @if (!empty($user->getRoleNames()))
+                                    @foreach ($user->getRoleNames() as $roleName)
+                                        <label class="bg-blue-400 p-1 text-white mx-1 rounded-md">{{ $roleName }}</label>
+                                    @endforeach
+                                       
+                                   @endif
+                                </td>
+                            </tr>
+
                         </table>
                     </div>
 

@@ -44,9 +44,13 @@
                         <div class="mt-4">
                             <x-label for="branch" value="{{ __('Branch') }}" />
                             <select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
-                                <option value="{{$user->branch_id}}">{{$user->branch_name}} </option>
+                                <option value=""> ... </option>
                                 @foreach ($branches as $branch)
-                                    <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
+                                    <option value="{{ $branch->id }}" 
+                                        {{$branch->id == $user->branch_id ? 'selected':''}}
+                                    >
+                                    {{ $branch->branch_name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -59,7 +63,17 @@
                                         @checked($user->is_active)
                                 />
                             </label>
-                            
+                        </div>
+
+                        <div class="mt-4">
+                            <x-label for="role" value="{{ __('Role') }}" />
+                            <x-select name="role[]" class="block mt-1 w-full rounded-md" multiple required>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role }}" 
+                                    {{in_array($role, $userRoles) ? 'selected':''}}
+                                    >{{ $role }}</option>
+                                @endforeach
+                            </x-select>
                         </div>
 
                         <div class="mt-4">

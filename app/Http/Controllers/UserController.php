@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -33,8 +34,12 @@ class UserController extends Controller
     public function create()
     {
         $branches = Branch::orderBy('branch_name')->get();
+        $roles = Role::pluck('name', 'name')->all();
 
-        return view('user.create')->with('branches', $branches);
+        return view('user.create', [
+            'branches' => $branches,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -46,9 +51,10 @@ class UserController extends Controller
             'name' => ['required', 'string'],
             'email' => ['required', 'unique:users', 'email'],
             'branch' => ['required'],
+            'role' => ['required'],
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt('Password1234'),
@@ -56,6 +62,8 @@ class UserController extends Controller
             'is_system' => false,
             'is_active' => true
         ]);
+
+        $user->syncRoles($request->role);
 
         return redirect(route('user.create'))->with('success', 'New user added successfully');
     }
@@ -65,7 +73,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $users = DB::table('users')->where('users.id', $id)
+        $users = User::where('users.id', $id)
                                    ->join('branches', 'users.branch_id', '=', 'branches.id')
                                    ->select('users.id', 'name', 'email', 'branch_name', 'is_active', 'users.created_at', 'users.updated_at')
                                    ->first();
@@ -76,18 +84,24 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         
-        $users = DB::table('users')->where('users.id', $id)
+        $users = DB::table('users')->where('users.id', $user->id)
                                    ->join('branches', 'users.branch_id', '=', 'branches.id')
                                    ->select('users.id', 'name', 'email','branch_id', 'branch_name', 'is_active')
                                    ->first();
 
-        $branches = Branch::where('id', '<>', $users->branch_id)
-                            ->orderBy('branch_name')->get();
-
-        return view('user.edit')->with('user', $users)->with('branches', $branches);
+        $branches = Branch::orderBy('branch_name')->get();
+        $roles = Role::pluck('name', 'name')->all();
+        $userRoles = $user->roles->pluck('name', 'name')->all();
+ 
+        return view('user.edit', [
+            'user' => $users,
+            'branches' => $branches,
+            'roles' => $roles,
+            'userRoles' => $userRoles
+        ]);
     }
 
     /**
@@ -97,7 +111,8 @@ class UserController extends Controller
     {
         request()->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', Rule::unique('users')->ignore($user)]
+            'email' => ['required', Rule::unique('users')->ignore($user)],
+            'role' => ['required']
         ]);
 
         $user->update([
@@ -106,6 +121,8 @@ class UserController extends Controller
             'branch_id' => $request->branch,
             'is_active' => $request->is_active,
         ]);
+
+        $user->syncRoles($request->role);
 
         return redirect('/user/' . $user->id)->with('status', 'Record updated successfully.');
     }
