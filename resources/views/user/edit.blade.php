@@ -43,7 +43,7 @@
 
                         <div class="mt-4">
                             <x-label for="branch" value="{{ __('Branch') }}" />
-                            <select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
+                            <x-select name="branch" id="branch" class="block mt-1 w-full rounded-md" required>
                                 <option value=""> ... </option>
                                 @foreach ($branches as $branch)
                                     <option value="{{ $branch->id }}" 
@@ -52,7 +52,7 @@
                                     {{ $branch->branch_name }}
                                     </option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="mt-4">
@@ -66,14 +66,17 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-label for="role" value="{{ __('Role') }}" />
-                            <x-select name="role[]" class="block mt-1 w-full rounded-md" multiple required>
+                            <fieldset class="border-2 p-2 rounded-md">
+                                <legend>Role</legend>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role }}" 
-                                    {{in_array($role, $userRoles) ? 'selected':''}}
-                                    >{{ $role }}</option>
+                                <label >
+                                    <input type="checkbox" value="{{ $role }}" name="role[]"
+                                    {{in_array($role, $userRoles) ? 'checked':''}}
+                                    >
+                                    {{ $role }}    
+                                </label> <br>
                                 @endforeach
-                            </x-select>
+                            </fieldset>
                         </div>
 
                         <div class="mt-4">

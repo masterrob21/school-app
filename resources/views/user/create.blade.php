@@ -50,12 +50,15 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-label for="role" value="{{ __('Role') }}" />
-                            <x-select name="role[]" class="block mt-1 w-full rounded-md" multiple required>
+                            <fieldset class="border-2 p-2 rounded-md">
+                                <legend>Role</legend>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role }}">{{ $role }}</option>
+                                <label >
+                                    <input type="checkbox" value="{{ $role }}" name="role[]" >
+                                    {{ $role }}    
+                                </label> <br>
                                 @endforeach
-                            </x-select>
+                            </fieldset>
                         </div>
 
 
