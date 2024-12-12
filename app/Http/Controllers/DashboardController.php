@@ -15,4 +15,14 @@ class DashboardController extends Controller
     {
         return view('dashboard.security');
     }
+
+    public function biodata()
+    {
+        return view('dashboard.biodata');
+    }
+
+    public function accounting()
+    {
+        return view('dashboard.accounting');
+    }
 }

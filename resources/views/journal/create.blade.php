@@ -13,12 +13,12 @@
 
     <div class="py-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <div class="mb-4">
+            <div class="mb-4">
                 <ul class="px-4 py-2 list-none bg-slate-200">
-                    <li class=" inline text-lg"><a href="/guardians" class="text-blue-600 hover:underline capitalize">guardian</a></li>
-                    <li class="inline text-lg capitalize before:p-2 before:content-['/']">New guardian</li>
+                    <li class=" inline text-lg"><a href="/accounting" class="text-blue-600 hover:underline capitalize">accounting</a></li>
+                    <li class="inline text-lg capitalize before:p-2 before:content-['/']">Journal Transaction</li>
                 </ul>
-            </div> --}}
+            </div>
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">

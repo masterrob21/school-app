@@ -9,38 +9,19 @@
          <a class="menu-link" href="/dashboard">Dashboard</a>
       </li>
 
-       <li id="nav2" class="toggle accordion-toggle hover:bg-lime-400"> 
-          <span class="icon-plus"></span>
-          <a class="menu-link" href="#">Bio-Data</a>
+       <li id="nav2" class="uppercase p-5 hover:bg-lime-400"> 
+          <a class="menu-link" href="/biodata">Bio-Data</a>
        </li>
-       <!-- accordion-toggle -->
-       <ul class="menu-submenu accordion-content space-y-2">
-          <li class="px-6"><a class="hover:text-lime-500" href="/students">Student</a></li>
-          <li class="px-6"><a class="hover:text-lime-500" href="/guardians">Parent/Guardian</a></li>
-          {{-- <li><a class="head p-4" href="#">Submenu3</a></li> --}}
-       </ul>
 
        <!-- menu-submenu accordon-content-->
-       <li id="nav3" class="toggle accordion-toggle hover:bg-lime-400"> 
-          <span class="icon-plus"></span>
+       <li id="nav3" class="uppercase p-5 hover:bg-lime-400">
           <a class="menu-link" href="#">HR</a>
        </li>
-       <!-- accordion-toggle -->
-       <ul class="menu-submenu accordion-content space-y-2">
-          <li class="px-6"><a class="hover:text-lime-500" href="/staffs">Staff</a></li>
-          {{-- <li class="px-6"><a class="hover:text-lime-500" href="#">Submenu2</a></li> --}}
-       </ul>
 
        <!-- menu-submenu accordon-content-->
-       <li id="nav4" class="toggle accordion-toggle hover:bg-lime-400"> 
-         <span class="icon-plus"></span>
-         <a class="menu-link" href="#">accounting</a>
+       <li id="nav4" class="uppercase p-5 hover:bg-lime-400"> 
+         <a class="menu-link" href="/accounting">accounting</a>
       </li>
-      <!-- accordion-toggle -->
-      <ul class="menu-submenu accordion-content space-y-2">
-         <li class="px-6"><a class="hover:text-lime-500" href="/accountcharts">Chart of Accounts</a></li>
-         <li class="px-6"><a class="hover:text-lime-500" href="{{route('general-journal.create')}}">Journal Entry</a></li>
-      </ul>
 
       <!-- menu-submenu accordon-content-->
       <li id="nav5" class="uppercase p-5 hover:bg-lime-400"> 
