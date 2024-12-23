@@ -67,8 +67,9 @@ Route::middleware([
     Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('permission:delete role');
     
     Route::get('/security', [DashboardController::class, 'security']);
-    Route::get('/biodata', [DashboardController::class, 'biodata']);
+    Route::get('/student-dashboard', [DashboardController::class, 'biodata']);
     Route::get('/accounting', [DashboardController::class, 'accounting']);
+    Route::get('/staff-dashboard', [DashboardController::class, 'staff']);
 
     Route::get('/programTypes', [ProgramTypeController::class, 'index'])->name('programTypes.index')->middleware('permission:view program type');
     Route::get('/programTypes-fetch', [ProgramTypeController::class, 'fetch'])->name('programTypes.fetch');

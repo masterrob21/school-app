@@ -27,7 +27,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-4">
                 <ul class="px-4 py-2 list-none bg-slate-200">
-                    <li class=" inline text-lg"><a href="/biodata" class="text-blue-600 hover:underline capitalize">Bio data</a></li>
+                    <li class=" inline text-lg"><a href="/student-dashboard" class="text-blue-600 hover:underline capitalize">student dashboard</a></li>
                     <li class="inline text-lg before:p-2 before:content-['/']">Guardian</li>
                 </ul>
             </div>

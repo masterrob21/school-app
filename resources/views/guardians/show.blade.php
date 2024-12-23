@@ -82,7 +82,7 @@
     </div>
 
     <script type="module">
-        $(documemt).ready(function(){
+        $(document).ready(function(){
             setTimeout(() => {
                 $('#alert_message').fadeOut();
             }, 3000);

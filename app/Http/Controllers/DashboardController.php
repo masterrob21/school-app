@@ -25,4 +25,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.accounting');
     }
+
+    public function staff()
+    {
+        return view('dashboard.staff-dashboard');
+    }
 }

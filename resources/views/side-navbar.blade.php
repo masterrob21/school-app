@@ -10,12 +10,12 @@
       </li>
 
        <li id="nav2" class="uppercase p-5 hover:bg-lime-400"> 
-          <a class="menu-link" href="/biodata">Bio-Data</a>
+          <a class="menu-link" href="/student-dashboard">student</a>
        </li>
 
        <!-- menu-submenu accordon-content-->
        <li id="nav3" class="uppercase p-5 hover:bg-lime-400">
-          <a class="menu-link" href="#">HR</a>
+          <a class="menu-link" href="/staff-dashboard">staff</a>
        </li>
 
        <!-- menu-submenu accordon-content-->
