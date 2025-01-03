@@ -6,6 +6,7 @@ use App\Models\AccountChart;
 use App\Models\Currency;
 use App\Models\LedgerAccount;
 use App\Models\PaymentMode;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,16 @@ class GeneralJournalController extends Controller
      */
     public function index()
     {
-        //
+        $branch_id = Auth()->user()->branch_id;
+        $transactions = Transaction::join('ledger_accounts', 'transactions.ledger_account_id', 'ledger_accounts.id')
+                                    ->where('branch_id', $branch_id)
+                                    ->select('transactions.*', 'ledger_name')
+                                    ->orderBy('valued_date', 'desc')
+                                    ->paginate(25);
+
+        return view('journal.index', [
+            'transactions' => $transactions,
+        ]);
     }
 
     /**
@@ -100,9 +110,26 @@ class GeneralJournalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function getTransactions(Request $request)
     {
-        //
+        $from = $request->from;
+        $to = $request->to;
+
+        $branch_id = Auth()->user()->branch_id;
+        $transactions = Transaction::join('ledger_accounts', 'transactions.ledger_account_id', 'ledger_accounts.id')
+                                    ->where('branch_id', $branch_id)
+                                    ->where('valued_date', '>=', $from)
+                                    ->where('valued_date', '<=', $to)
+                                    ->select('transactions.*', 'ledger_name')
+                                    ->orderBy('valued_date', 'desc')
+                                    ->paginate(25);
+
+        if ($request->ajax()){
+            return view('journal.get-transaction', [
+                'transactions' => $transactions
+            ]);
+        }
+
     }
 
     /**
