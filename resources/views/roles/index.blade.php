@@ -39,7 +39,7 @@
                         <a href="{{route('roles.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New role</a>
                     </div>
                        
-                    <div class="overflow-x-auto" id="search_results">
+                    <div class="overflow-x-auto mt-4" id="search_results">
                         <table class="table-auto w-full text-left">
                             <caption class="caption-top mb-4 text-xl font-bold text-left md:text-center capitalize">
                                 List of roles

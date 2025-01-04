@@ -31,6 +31,6 @@
         @endforelse
     </tbody>
 </table>
-<div class="mt-3 overflow-x-auto">
+{{-- <div class="mt-3 overflow-x-auto">
     {{ $transactions->links() }}
-</div>
+</div> --}}

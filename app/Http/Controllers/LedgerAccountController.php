@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AccountChart;
 use App\Models\LedgerAccount;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -110,6 +111,12 @@ class LedgerAccountController extends Controller
      */
     public function destroy(LedgerAccount $ledgeraccount)
     {
+        $transactions = Transaction::where('ledger_account_id', $ledgeraccount->id)->first();
+
+        if ($transactions){
+            return redirect('/ledgeraccounts-getchartid/' . session('account_chart_id'))->with('info', 'Record cannot be deleted, it has related records.'); 
+        }
+        
         $ledgeraccount->delete();
 
         return redirect('/ledgeraccounts-getchartid/' . session('account_chart_id'))->with('warning', 'Record deleted.');

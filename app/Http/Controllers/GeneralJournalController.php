@@ -23,7 +23,8 @@ class GeneralJournalController extends Controller
                                     ->where('branch_id', $branch_id)
                                     ->select('transactions.*', 'ledger_name')
                                     ->orderBy('valued_date', 'desc')
-                                    ->paginate(25);
+                                    ->orderBy('entry_date', 'desc')
+                                    ->get();
 
         return view('journal.index', [
             'transactions' => $transactions,
@@ -116,19 +117,23 @@ class GeneralJournalController extends Controller
         $to = $request->to;
 
         $branch_id = Auth()->user()->branch_id;
-        $transactions = Transaction::join('ledger_accounts', 'transactions.ledger_account_id', 'ledger_accounts.id')
+        $transactions = Transaction::join('ledger_accounts', 'transactions.ledger_account_id', '=', 'ledger_accounts.id')
                                     ->where('branch_id', $branch_id)
-                                    ->where('valued_date', '>=', $from)
-                                    ->where('valued_date', '<=', $to)
+                                    ->whereBetween('valued_date', [$from, $to])
                                     ->select('transactions.*', 'ledger_name')
                                     ->orderBy('valued_date', 'desc')
-                                    ->paginate(25);
+                                    ->orderBy('entry_date', 'desc')
+                                    ->get();
 
         if ($request->ajax()){
             return view('journal.get-transaction', [
                 'transactions' => $transactions
             ]);
         }
+
+        return view('journal.index', [
+            'transactions' => $transactions
+        ]);
 
     }
 

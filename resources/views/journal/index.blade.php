@@ -48,7 +48,7 @@
                         <button class="p-2 bg-blue-300 rounded-md" id="load">Load</button>
                     </div>
 
-                    <div class="overflow-x-auto" id="search_results">
+                    <div class="overflow-x-auto h-screen" id="search_results">
                         @include('journal.get-transaction')
                     </div>
 

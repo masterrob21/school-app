@@ -102,7 +102,7 @@ Route::middleware([
     Route::patch('/currency/{currency}', [CurrencyController::class, 'update'])->name('currency.update');
     Route::delete('/currency/{currency}', [CurrencyController::class, 'destroy'])->name('currency.destroy')->middleware('permission:delete currency');
     
-    Route::get('/general-journal', [GeneralJournalController::class, 'index'])->name('general-journal.index');
+    Route::get('/general-journal', [GeneralJournalController::class, 'index'])->name('general-journal.index')->middleware('permission:view transaction');
     Route::get('/get-transactions', [GeneralJournalController::class, 'getTransactions'])->name('general-journal.getTransactions');
     Route::get('/general-journal/create', [GeneralJournalController::class, 'create'])->name('general-journal.create')->middleware('permission:add journal transaction');
     Route::get('/fetchledger', [GeneralJournalController::class, 'fetch'])->name('fetchledger.fetch');

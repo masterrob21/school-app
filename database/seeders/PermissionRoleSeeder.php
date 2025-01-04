@@ -52,6 +52,7 @@ class PermissionRoleSeeder extends Seeder
         Permission::create(['name' => 'update ledger account', 'module' => 'accounting']);
         Permission::create(['name' => 'delete ledger account', 'module' => 'accounting']);
         Permission::create(['name' => 'add journal transaction', 'module' => 'accounting']);
+        Permission::create(['name' => 'view transaction', 'module' => 'accounting']);
 
         Permission::create(['name' => 'add course', 'module' => 'course']);
         Permission::create(['name' => 'view course', 'module' => 'course']);
