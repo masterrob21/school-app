@@ -19,7 +19,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="{{ route('accountcharts.index') }}" class="text-blue-600 text-2xl font-bold hover:underline">Chart of Account</a></h2>
-                                <p>Add & update.</p>
+                                <p>Add, update & update.</p>
                             </div>
                        </div>
 
@@ -32,7 +32,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="{{ route('general-journal.create') }}" class="text-blue-600 text-2xl font-bold hover:underline">Journal Entries</a></h2>
-                                <p>Add, update & delete.</p>
+                                <p>Add</p>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
 
                             <div class="ml-2">
                                 <h2"><a href="{{ route('general-journal.index') }}" class="text-blue-600 text-2xl font-bold hover:underline">Transactions</a></h2>
-                                <p>Add, update & delete.</p>
+                                <p>view</p>
                             </div>
                        </div>
                        
