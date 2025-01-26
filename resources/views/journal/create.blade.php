@@ -114,14 +114,13 @@
 
                         </div>
                         
-
-                       
-
+                        @can('add journal transaction')    
                         <div class="mt-4 capitalize">
                             <x-button>
                                 {{ __('Add journal') }}
                             </x-button>
                         </div>
+                        @endcan
                     </form>
                     
                 </div>

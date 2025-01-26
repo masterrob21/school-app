@@ -44,9 +44,12 @@
                             <input type="date" class="rounded-md" id="to">
                         </div>
                     </div>
+                    
+                    @can('view transaction')   
                     <div class="mb-4" align="center">
                         <button class="p-2 bg-blue-300 rounded-md" id="load">Load</button>
                     </div>
+                    @endcan
 
                     <div class="overflow-x-auto h-screen" id="search_results">
                         @include('journal.get-transaction')

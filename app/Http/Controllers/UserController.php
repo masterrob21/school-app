@@ -132,6 +132,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $userRole = DB::table('model_has_roles')
+                        ->where('model_id', $user->id)
+                        ->first();
+
         if (Auth()->user()->id !== $user->id) 
         {
             $user->delete();

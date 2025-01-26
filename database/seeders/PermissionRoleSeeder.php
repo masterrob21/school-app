@@ -54,56 +54,6 @@ class PermissionRoleSeeder extends Seeder
         Permission::create(['name' => 'add journal transaction', 'module' => 'accounting']);
         Permission::create(['name' => 'view transaction', 'module' => 'accounting']);
 
-        Permission::create(['name' => 'add course', 'module' => 'course']);
-        Permission::create(['name' => 'view course', 'module' => 'course']);
-        Permission::create(['name' => 'update course', 'module' => 'course']);
-        Permission::create(['name' => 'delete course', 'module' => 'course']);
-
-        Permission::create(['name' => 'add department', 'module' => 'department']);
-        Permission::create(['name' => 'view department', 'module' => 'department']);
-        Permission::create(['name' => 'update department', 'module' => 'department']);
-        Permission::create(['name' => 'delete department', 'module' => 'department']);
-
-        Permission::create(['name' => 'add occupation', 'module' => 'occupation']);
-        Permission::create(['name' => 'view occupation', 'module' => 'occupation']);
-        Permission::create(['name' => 'update occupation', 'module' => 'occupation']);
-        Permission::create(['name' => 'delete occupation', 'module' => 'occupation']);
-
-        Permission::create(['name' => 'add relation', 'module' => 'relation']);
-        Permission::create(['name' => 'view relation', 'module' => 'relation']);
-        Permission::create(['name' => 'update relation', 'module' => 'relation']);
-        Permission::create(['name' => 'delete relation', 'module' => 'relation']);
-
-        Permission::create(['name' => 'add classroom', 'module' => 'classroom']);
-        Permission::create(['name' => 'view classroom', 'module' => 'classroom']);
-        Permission::create(['name' => 'update classroom', 'module' => 'classroom']);
-        Permission::create(['name' => 'delete classroom', 'module' => 'classroom']);
-
-        Permission::create(['name' => 'add currency', 'module' => 'currency']);
-        Permission::create(['name' => 'view currency', 'module' => 'currency']);
-        Permission::create(['name' => 'update currency', 'module' => 'currency']);
-        Permission::create(['name' => 'delete currency', 'module' => 'currency']);
-
-        Permission::create(['name' => 'view payment method', 'module' => 'payment method']);
-        Permission::create(['name' => 'update payment method', 'module' => 'payment method']);
-
-        Permission::create(['name' => 'view branch', 'module' => 'branch']);
-        Permission::create(['name' => 'update branch', 'module' => 'branch']);
-
-        Permission::create(['name' => 'view program type', 'module' => 'program']);
-        Permission::create(['name' => 'update program type', 'module' => 'program']);
-        Permission::create(['name' => 'add program', 'module' => 'program']);
-        Permission::create(['name' => 'view program', 'module' => 'program']);
-        Permission::create(['name' => 'update program', 'module' => 'program']);
-        Permission::create(['name' => 'delete program', 'module' => 'program']);
-
-        Permission::create(['name' => 'update role permission', 'module' => 'role-permission']);
-
-        Permission::create(['name' => 'add role', 'module' => 'role']);
-        Permission::create(['name' => 'view role', 'module' => 'role']);
-        Permission::create(['name' => 'update role', 'module' => 'role']);
-        Permission::create(['name' => 'delete role', 'module' => 'role']);
-
         // create roles
         Role::create(['name' => 'admin'])->givePermissionTo(Permission::all());
         Role::create(['name' => 'teacher']);

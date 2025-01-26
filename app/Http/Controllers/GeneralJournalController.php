@@ -20,7 +20,7 @@ class GeneralJournalController extends Controller
     {
         $branch_id = Auth()->user()->branch_id;
         $transactions = Transaction::join('ledger_accounts', 'transactions.ledger_account_id', 'ledger_accounts.id')
-                                    ->where('branch_id', $branch_id)
+                                    ->where('branch_id', '00')
                                     ->select('transactions.*', 'ledger_name')
                                     ->orderBy('valued_date', 'desc')
                                     ->orderBy('entry_date', 'desc')

@@ -50,6 +50,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        if($role->name == 'admin'){
+        return view('messages.abort');
+        }
+        
         return view('roles.edit', [
             'role' => $role
         ]);
@@ -76,13 +80,17 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        if($role->name == 'admin'){
+            return redirect()->route('roles.index')->with('status', 'The is a system default role and cannot be deleted.');
+        }
+
         $userRole = DB::table('model_has_roles')
                         ->where('role_id', $role->id)
                         ->first();
 
         if ($userRole){
             return redirect()->route('roles.index')->with('status', 'The role cannot be deleted, it has related record.');
-            exit();
+    
         }
 
         $role->delete();

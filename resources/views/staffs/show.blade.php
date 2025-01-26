@@ -92,9 +92,11 @@
                         </table>
                     </div>
 
+                    @can('update staff') 
                     <div class="mt-4">
                         <a href="/staffs/{{$staff->id}}/edit" class=" rounded bg-blue-300 py-2 px-3 text-lg">Edit</a>
                     </div>
+                    @endcan
                 </div>
             </div>
         </div>

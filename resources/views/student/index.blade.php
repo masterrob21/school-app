@@ -23,9 +23,12 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
+                        @can('add student')
                         <div class="mt-2">
-                            <a href="{{route('students.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New Student</a>
+                            <a href="{{route('students.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">Add Student</a>
                         </div>
+                        @endcan
+                        
                         <div class="">
                             <input type="text"  id="search_student" class="rounded sm:w-96 w-full" placeholder="Search by last name or first name or student id">
                         </div>

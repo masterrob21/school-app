@@ -42,14 +42,19 @@
                                 <td class="p-3 border border-slate-300 text-xl">
                                     @if ($student->photo_path)
                                     <img class="rounded h-28 w-28 object-cover mb-2" src="{{asset('storage/'.$student->photo_path)}}" alt="no image">
+                                        @can('add student photo')
                                         <form action="" method="POST" id="remove_image">
                                             @csrf
                                             @method('DELETE')
 
                                             <button id="{{$student->id}}" class="rounded bg-red-500 p-2 text-sm remove_image">Remove</button>
-                                        </form>
+                                        </form>   
+                                        @endcan
+                                        
                                     @else
-                                        <a href="/updateStudentImage/{{$student->id}}/edit" class="rounded capitalize bg-green-500 text-white p-2 text-sm">insert image</a>                          
+                                        @can('delete student photo')
+                                        <a href="/updateStudentImage/{{$student->id}}/edit" class="rounded capitalize bg-green-500 text-white p-2 text-sm">insert image</a>                      
+                                        @endcan
                                     @endif
                                 </td>
                             </tr>
@@ -117,20 +122,24 @@
                         </table>
                     </div>
 
+                    @can('update student')
                     <div class="mt-4">
                         <a href="/students/{{$student->id}}/edit" class=" rounded bg-blue-300 py-2 px-3 text-lg">Edit</a>
-                    </div>
+                    </div>    
+                    @endcan
+                    
                 </div>
             </div>
 
             <div class="py-3">
                 <div class="bg-white shadow-xl sm:rounded-lg">
                     <div class="p-6 text-gray-900">
+                        @can('add educational history')
                         <div class="mb-3">
                             <a href="{{route('education-history.create')}}" class="p-3 rounded bg-blue-400 text-white font-bold">Add Education</a>
-                        </div>
+                        </div>  
+                        @endcan
                         
-                        @if (count($education_histories)>0)
                         <div class="overflow-x-auto">
                             <table class="table-auto border-collapse border border-slate-400 w-full text-left">
                                 <caption class="text-xl mb-4 text-left md:text-center">Educational History</caption>
@@ -148,12 +157,16 @@
                                     @forelse ($education_histories as $education_history)
                                     <tr class="border-b whitespace-nowrap">
                                         <td class="p-2 flex items-center space-x-1">
+                                            @can('update educational history')
+                                                
                                             <a href="/education-history/{{$education_history->id}}/edit" class="p-1 bg-slate-400 hover:bg-slate-300 rounded">
                                                 <svg class="w-6 h-6 text-gray-800 dark:text-white inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                                                 </svg>     
                                             </a> 
+                                            @endcan
 
+                                            @can('delete educational history') 
                                             <form action="" method="POST" id="delete_form">
                                                 @csrf
                                                 @method('DELETE')
@@ -163,6 +176,7 @@
                                                     </svg>
                                                 </button>
                                             </form>
+                                            @endcan
                                         </td> 
                                         <td class="p-3 capitalize">{{ $education_history->previous_school }}</td>
                                         <td class="p-3">{{ date('d-M-Y', strtotime($education_history->attended_date)) }}</td>
@@ -177,7 +191,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @endif
+                    
                     </div>
                 </div>
             </div>
@@ -185,11 +199,12 @@
             <div class="py-3">
                 <div class="bg-white shadow-xl sm:rounded-lg">
                     <div class="p-6 text-gray-900">
+                        @can('add guardian to student')
                         <div class="mb-3">
                             <a href="{{route('studentGuardian.create')}}" class="p-3 rounded bg-blue-400 text-white font-bold">Add Guardian</a>
-                        </div>
+                        </div>   
+                        @endcan
                         
-                        @if (count($student_guardians)>0)
                         <div class="overflow-x-auto">
                             <table class="table-auto border-collapse border border-slate-400 w-full text-left">
                                 <caption class="text-xl mb-4 text-left md:text-center">List of Guardian</caption>
@@ -203,15 +218,18 @@
                                 </thead>
 
                                 <tbody> 
-                                    @foreach ($student_guardians as $student_guardian)
+                                    @forelse ($student_guardians as $student_guardian)
                                     <tr class="border-b whitespace-nowrap">
                                         <td class="p-2 flex items-center space-x-1">
+                                            @can('update guardian to student')  
                                             <a href="/studentGuardian/{{$student_guardian->id}}/edit" class="p-1 bg-slate-400 hover:bg-slate-300 rounded">
                                                 <svg class="w-6 h-6 text-gray-800 dark:text-white inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                                                 </svg>     
                                             </a> 
+                                            @endcan
 
+                                            @can('delete guardian from student')  
                                             <form action="" method="POST" id="delete_form1">
                                                 @csrf
                                                 @method('DELETE')
@@ -221,16 +239,21 @@
                                                     </svg>
                                                 </button>
                                             </form>
+                                            @endcan
                                         </td> 
                                         <td class="p-3 capitalize">{{ $student_guardian->first_name . ' ' . $student_guardian->last_name }}</td>
                                         <td class="p-3">{{ $student_guardian->relation }}</td>
                                         <td class="p-3">{{ $student_guardian->primary_number }}</td>
-                                    </tr>   
-                                    @endforeach
+                                    </tr>
+                                    @empty
+                                    <tr class=" whitespace-nowrap">
+                                        <td colspan="4" class="p-3 text-xl text-red-400 font-bold"><h2>No record found</h2></td> 
+                                     </tr>   
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        @endif
+                
                     </div>
                 </div>
             </div>

@@ -73,9 +73,11 @@
                         </table>
                     </div>
 
+                    @can('update guardian') 
                     <div class="mt-4">
                         <a href="/guardians/{{$guardian->id}}/edit" class=" rounded bg-blue-300 py-2 px-3 text-lg">Edit</a>
                     </div>
+                    @endcan
                 </div>
             </div>
         </div>

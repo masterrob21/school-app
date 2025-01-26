@@ -35,9 +35,11 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between mb-3">
+                        @can('add ledger account')     
                         <div class="mt-2">
-                            <a href="{{route('ledgeraccounts.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">New ledger account</a>
+                            <a href="{{route('ledgeraccounts.create')}}" class="p-3 capitalize rounded bg-green-300 hover:bg-green-500 whitespace-nowrap">Add ledger account</a>
                         </div>
+                        @endcan
                         <div class="">
                             <input id="search" type="text" class="rounded sm:w-96 w-full" placeholder="Search chart of account">
                         </div>

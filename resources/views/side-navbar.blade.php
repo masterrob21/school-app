@@ -24,14 +24,18 @@
       </li>
 
       <!-- menu-submenu accordon-content-->
+      @role('admin')
       <li id="nav5" class="uppercase p-5 hover:bg-lime-400"> 
          <a class="menu-link" href="/security">Security</a>
       </li>
+      @endrole
 
       <!-- menu-submenu accordon-content-->
+      @role('admin')
       <li id="nav6" class="uppercase p-5 hover:bg-lime-400"> 
          <a class="menu-link" href="/settings">Settings</a>
       </li>
+      @endrole
 
     </ul>
     <!-- menu-list accordion-->
