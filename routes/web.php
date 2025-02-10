@@ -8,6 +8,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GeneralJournalController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
@@ -55,6 +56,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
+    Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store')->middleware('permission:add expense');
     
     Route::group(['middleware' => ['role:admin']], function(){
         Route::get('/role-permissions/{role}/edit', [RolePermissionController::class, 'edit'])->name('role-permissions.edit');
@@ -150,15 +154,14 @@ Route::middleware([
         Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
         Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
 
+        Route::get('/security', [DashboardController::class, 'security']);
+        Route::get('/settings', [DashboardController::class, 'settings']);
     });
     
-    Route::get('/security', [DashboardController::class, 'security'])->middleware('role:admin');
     Route::get('/student-dashboard', [DashboardController::class, 'biodata']);
     Route::get('/accounting', [DashboardController::class, 'accounting']);
     Route::get('/staff-dashboard', [DashboardController::class, 'staff']);
-    Route::get('/settings', [DashboardController::class, 'settings'])->middleware('role:admin');
 
-   
     Route::get('/general-journal', [GeneralJournalController::class, 'index'])->name('general-journal.index');
     Route::get('/get-transactions', [GeneralJournalController::class, 'getTransactions'])->name('general-journal.getTransactions');
     Route::get('/general-journal/create', [GeneralJournalController::class, 'create'])->name('general-journal.create');

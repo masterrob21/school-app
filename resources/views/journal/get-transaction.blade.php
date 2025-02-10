@@ -16,7 +16,7 @@
     <tbody>
         @forelse ($transactions as $transaction)
         <tr class="border-b even:bg-gray-50 whitespace-nowrap capitalize">
-            <td class="px-3 py-1 ">{{ $transaction->valued_date }}</td>
+            <td class="px-3 py-1 ">{{ date("d-M-Y", strtotime($transaction->valued_date))  }}</td>
             <td class="px-3 py-1 ">{{ $transaction->entry_date }}</td>
             <td class="px-3 py-1 ">{{ $transaction->ledger_name }}</td>
             <td class="px-3 py-1 ">{{ $transaction->description }}</td>
