@@ -7,16 +7,20 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Bootstrap CSS -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/assets/css/sidebar.css">
 
         <!-- Scripts -->
+        @stack('script')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script type="module" src="/assets/js/sidebar.js"></script>
 
         <!-- Styles -->
+        @stack('styles')
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
@@ -35,16 +39,17 @@
             @endif
 
             <!-- Page Content -->
-            <div class="grid grid-cols-6 gap-1 sm:grid-cols-12 sm:gap-0">
-                <div class=" bg-black min-h-screen py-10 w-14">
+            {{-- <div class="grid grid-cols-6 gap-1 sm:grid-cols-12 sm:gap-0"> --}}
+                {{-- <div class=" bg-black min-h-screen py-10 w-14">
                 @include('side-navbar')
-                </div>
+                </div> --}}
 
-                <main class="col-span-5 sm:col-span-11">
+                    {{-- col-span-5 sm:col-span-11 --}}
+                <main>
                     
                     {{ $slot }}
                 </main>
-            </div>
+            {{-- </div> --}}
         </div>
 
         @stack('modals')
