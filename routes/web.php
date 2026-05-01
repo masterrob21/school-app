@@ -10,6 +10,7 @@ use App\Http\Controllers\DashController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\FeeTypeController;
 use App\Http\Controllers\GeneralJournalController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
@@ -202,6 +203,13 @@ Route::get('/', function () {
 
         Route::get('/security', [DashboardController::class, 'security']);
         Route::get('/settings', [DashboardController::class, 'settings']);
+
+        Route::get('/fee-types', [FeeTypeController::class, 'index'])->name('fee_types.index');
+        Route::get('/fee-types/create', [FeeTypeController::class, 'create'])->name('fee_types.create');
+        Route::post('/fee-types', [FeeTypeController::class, 'store'])->name('fee_types.store');
+        Route::get('/fee-types/{feeType}/edit', [FeeTypeController::class, 'edit'])->name('fee_types.edit');
+        Route::match(['put', 'patch'], '/fee-types/{feeType}', [FeeTypeController::class, 'update'])->name('fee_types.update');
+        Route::delete('/fee-types/{feeType}', [FeeTypeController::class, 'destroy'])->name('fee_types.destroy');
     });
     
     Route::get('/student-dashboard', [DashboardController::class, 'biodata']);
