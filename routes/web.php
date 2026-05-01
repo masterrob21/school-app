@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\DiscountStudentController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FeeTypeController;
@@ -214,6 +215,13 @@ Route::middleware([
         Route::get('/discounts/{discount}/edit', [DiscountController::class, 'edit'])->name('discounts.edit');
         Route::match(['put', 'patch'], '/discounts/{discount}', [DiscountController::class, 'update'])->name('discounts.update');
         Route::delete('/discounts/{discount}', [DiscountController::class, 'destroy'])->name('discounts.destroy');
+
+        Route::get('/discount-students', [DiscountStudentController::class, 'index'])->name('discount_students.index');
+        Route::get('/discount-students/create', [DiscountStudentController::class, 'create'])->name('discount_students.create');
+        Route::post('/discount-students', [DiscountStudentController::class, 'store'])->name('discount_students.store');
+        Route::get('/discount-students/{discountStudent}/edit', [DiscountStudentController::class, 'edit'])->name('discount_students.edit');
+        Route::match(['put', 'patch'], '/discount-students/{discountStudent}', [DiscountStudentController::class, 'update'])->name('discount_students.update');
+        Route::delete('/discount-students/{discountStudent}', [DiscountStudentController::class, 'destroy'])->name('discount_students.destroy');
     });
 
     Route::get('/student-dashboard', [DashboardController::class, 'biodata']);

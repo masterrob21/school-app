@@ -2,9 +2,7 @@
 	<x-slot name="header">
 		<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 			<h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Discounts') }}</h2>
-			<a href="{{ route('discounts.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 transition">
-				{{ __('Add Discount') }}
-			</a>
+			
 		</div>
 	</x-slot>
 
@@ -15,6 +13,22 @@
 					<p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
 				</div>
 			@endif
+
+            @if($discounts->count() > 0)
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
+                <div class="p-6 text-gray-900">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">{{ __('Manage Discounts') }}</h3>
+                            <p class="text-sm text-gray-500 mt-1">{{ __('View, show, and delete records.') }}</p>
+                        </div>
+                        <a href="{{ route('discounts.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 transition">
+                            {{ __('Add Discount') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endif
 
 			<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 				<div class="p-6 text-gray-900">

@@ -9,7 +9,7 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'enrollment_date',
         'last_name',
         'other_names',
@@ -26,5 +26,10 @@ class Student extends Model
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany(DiscountStudent::class);
     }
 }
