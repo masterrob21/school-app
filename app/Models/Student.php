@@ -22,4 +22,9 @@ class Student extends Model
         'branch_id',
         'student_id',
     ];
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

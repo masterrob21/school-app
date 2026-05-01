@@ -13,17 +13,22 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\GeneralJournalController;
 use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LedgerAccountController;
 use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramTypeController;
+use App\Http\Controllers\RecurringInvoiceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
+use App\Http\Controllers\TaxRateController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
 use App\Mail\MessagePosted;
@@ -54,6 +59,48 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    // Resource routes
+
+Route::resource('services', ServiceController::class);
+Route::resource('invoices', InvoiceController::class);
+Route::resource('tax-rates', TaxRateController::class);
+Route::resource('recurring_invoices', RecurringInvoiceController::class)->only(['index', 'destroy']);
+
+// Payment routes
+Route::prefix('invoices/{invoice}')->group(function () {
+    Route::get('payments/create', [PaymentController::class, 'create'])->name('invoices.payments.create');
+    Route::post('payments', [PaymentController::class, 'store'])->name('invoices.payments.store');
+});
+
+// Payment delete route
+Route::delete('payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+
+// Recurring invoice status update
+Route::put('recurring_invoices/{recurring_invoice}/update-status', [RecurringInvoiceController::class, 'updateStatus'])
+    ->name('recurring_invoices.update_status');
+
+// Invoice download
+Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])
+    ->name('invoices.download');
+
+// Dashboard route
+Route::get('/', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+// Reports routes
+    Route::prefix('reports')->group(function () {
+    Route::get('invoices', [InvoiceController::class, 'report'])->name('reports.invoices');
+    Route::get('payments', [PaymentController::class, 'report'])->name('reports.payments');
+});
+
+    // Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
+    
+    // Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+    // Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
+    // Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
+
     Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
 
     Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
