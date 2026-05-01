@@ -8,6 +8,7 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\EducationHistoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FeeTypeController;
@@ -32,10 +33,6 @@ use App\Http\Controllers\StudentGuardianController;
 use App\Http\Controllers\TaxRateController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
-use App\Mail\MessagePosted;
-use App\Models\ProgramType;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,41 +60,41 @@ Route::middleware([
 
     // Resource routes
 
-Route::resource('services', ServiceController::class);
-Route::resource('invoices', InvoiceController::class);
-Route::resource('tax-rates', TaxRateController::class);
-Route::resource('recurring_invoices', RecurringInvoiceController::class)->only(['index', 'destroy']);
+    Route::resource('services', ServiceController::class);
+    Route::resource('invoices', InvoiceController::class);
+    Route::resource('tax-rates', TaxRateController::class);
+    Route::resource('recurring_invoices', RecurringInvoiceController::class)->only(['index', 'destroy']);
 
-// Payment routes
-Route::prefix('invoices/{invoice}')->group(function () {
-    Route::get('payments/create', [PaymentController::class, 'create'])->name('invoices.payments.create');
-    Route::post('payments', [PaymentController::class, 'store'])->name('invoices.payments.store');
-});
+    // Payment routes
+    Route::prefix('invoices/{invoice}')->group(function () {
+        Route::get('payments/create', [PaymentController::class, 'create'])->name('invoices.payments.create');
+        Route::post('payments', [PaymentController::class, 'store'])->name('invoices.payments.store');
+    });
 
-// Payment delete route
-Route::delete('payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+    // Payment delete route
+    Route::delete('payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
 
-// Recurring invoice status update
-Route::put('recurring_invoices/{recurring_invoice}/update-status', [RecurringInvoiceController::class, 'updateStatus'])
-    ->name('recurring_invoices.update_status');
+    // Recurring invoice status update
+    Route::put('recurring_invoices/{recurring_invoice}/update-status', [RecurringInvoiceController::class, 'updateStatus'])
+        ->name('recurring_invoices.update_status');
 
-// Invoice download
-Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])
-    ->name('invoices.download');
+    // Invoice download
+    Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])
+        ->name('invoices.download');
 
-// Dashboard route
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+    // Dashboard route
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// Reports routes
+    // Reports routes
     Route::prefix('reports')->group(function () {
-    Route::get('invoices', [InvoiceController::class, 'report'])->name('reports.invoices');
-    Route::get('payments', [PaymentController::class, 'report'])->name('reports.payments');
-});
+        Route::get('invoices', [InvoiceController::class, 'report'])->name('reports.invoices');
+        Route::get('payments', [PaymentController::class, 'report'])->name('reports.payments');
+    });
 
     // Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
-    
+
     // Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
     // Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
     // Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
@@ -106,11 +103,11 @@ Route::get('/', function () {
 
     Route::get('/expenses/create', [ExpenseController::class, 'create'])->name('expenses.create');
     Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store')->middleware('permission:add expense');
-    
-    Route::group(['middleware' => ['role:admin']], function(){
+
+    Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/role-permissions/{role}/edit', [RolePermissionController::class, 'edit'])->name('role-permissions.edit');
         Route::patch('/role-permissions/{id}', [RolePermissionController::class, 'update'])->name('role-permission.update');
-    
+
         Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
         Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
         Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
@@ -191,7 +188,7 @@ Route::get('/', function () {
         Route::get('/programTypes-fetch', [ProgramTypeController::class, 'fetch'])->name('programTypes.fetch');
         Route::get('/programTypes/{programType}/edit', [ProgramTypeController::class, 'edit'])->name('programTypes.edit');
         Route::patch('/programTypes/{programType}', [ProgramTypeController::class, 'update'])->name('programTypes.update');
-    
+
         Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
         Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
         Route::get('/programs-fetch', [ProgramController::class, 'fetch'])->name('programs.fetch');
@@ -210,8 +207,15 @@ Route::get('/', function () {
         Route::get('/fee-types/{feeType}/edit', [FeeTypeController::class, 'edit'])->name('fee_types.edit');
         Route::match(['put', 'patch'], '/fee-types/{feeType}', [FeeTypeController::class, 'update'])->name('fee_types.update');
         Route::delete('/fee-types/{feeType}', [FeeTypeController::class, 'destroy'])->name('fee_types.destroy');
+
+        Route::get('/discounts', [DiscountController::class, 'index'])->name('discounts.index');
+        Route::get('/discounts/create', [DiscountController::class, 'create'])->name('discounts.create');
+        Route::post('/discounts', [DiscountController::class, 'store'])->name('discounts.store');
+        Route::get('/discounts/{discount}/edit', [DiscountController::class, 'edit'])->name('discounts.edit');
+        Route::match(['put', 'patch'], '/discounts/{discount}', [DiscountController::class, 'update'])->name('discounts.update');
+        Route::delete('/discounts/{discount}', [DiscountController::class, 'destroy'])->name('discounts.destroy');
     });
-    
+
     Route::get('/student-dashboard', [DashboardController::class, 'biodata']);
     Route::get('/accounting', [DashboardController::class, 'accounting']);
     Route::get('/staff-dashboard', [DashboardController::class, 'staff']);
@@ -221,7 +225,6 @@ Route::get('/', function () {
     Route::get('/general-journal/create', [GeneralJournalController::class, 'create'])->name('general-journal.create');
     Route::get('/fetchledger', [GeneralJournalController::class, 'fetch'])->name('fetchledger.fetch');
     Route::post('/general-journal', [GeneralJournalController::class, 'store'])->name('general-journal.store');
-
 
     Route::get('/ledgeraccounts-getchartid/{id}', [LedgerAccountController::class, 'index'])->name('ledgeraccounts.index');
     Route::get('/ledgeraccounts-fetch', [LedgerAccountController::class, 'fetch'])->name('ledgeraccounts.fetch');
