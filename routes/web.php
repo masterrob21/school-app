@@ -62,7 +62,7 @@ Route::middleware([
     // Resource routes
 
     Route::resource('services', ServiceController::class);
-    Route::resource('invoices', InvoiceController::class);
+    Route::resource('invoices', InvoiceController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
     Route::resource('tax-rates', TaxRateController::class);
     Route::resource('recurring_invoices', RecurringInvoiceController::class)->only(['index', 'destroy']);
 
@@ -87,12 +87,6 @@ Route::middleware([
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-
-    // Reports routes
-    Route::prefix('reports')->group(function () {
-        Route::get('invoices', [InvoiceController::class, 'report'])->name('reports.invoices');
-        Route::get('payments', [PaymentController::class, 'report'])->name('reports.payments');
-    });
 
     // Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
 

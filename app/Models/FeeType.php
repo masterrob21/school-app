@@ -14,4 +14,9 @@ class FeeType extends Model
         'frequency',
         'is_mandatory',
     ];
+
+    public function invoiceItems()
+    {
+        return $this->hasMany(InvoiceItem::class);
+    }
 }
