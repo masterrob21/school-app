@@ -104,7 +104,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice): View
     {
-        $invoice->load(['student', 'invoiceItems.feeType']);
+        $invoice->load(['student', 'invoiceItems.feeType', 'payments.paymentMode']);
 
         return view('invoices.show')->with('invoice', $invoice);
     }
@@ -188,6 +188,10 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice): RedirectResponse
     {
+        if ((float) $invoice->amount_paid > 0) {
+            return redirect()->route('invoices.index')->with('error', 'Cannot delete an invoice that has payment records.');
+        }
+
         $invoice->delete();
 
         return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully.');

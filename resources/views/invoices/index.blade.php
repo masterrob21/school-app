@@ -14,6 +14,12 @@
 				</div>
 			@endif
 
+			@if(session('error'))
+				<div id="error-message" class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+					<p class="text-sm font-medium text-red-800">{{ session('error') }}</p>
+				</div>
+			@endif
+
             @if($invoices->count() > 0)
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
                 <div class="p-6 text-gray-900">
@@ -49,6 +55,12 @@
 								</thead>
 								<tbody class="bg-white divide-y divide-gray-200">
 									@foreach($invoices as $index => $invoice)
+										@php
+											$hasPayment = (float) $invoice->amount_paid > 0;
+											$isFullyPaid = $invoice->status === 'paid';
+											$disablePayAndEdit = $isFullyPaid;
+											$disableDelete = $hasPayment || $isFullyPaid;
+										@endphp
 										<tr class="hover:bg-gray-50">
 											<td class="px-2 py-2 whitespace-nowrap text-sm text-gray-900">{{ $index + 1 }}</td>
 											<td class="px-2 py-2 whitespace-nowrap text-sm text-gray-900">{{ trim(($invoice->student?->other_names ?? '') . ' ' . ($invoice->student?->last_name ?? '')) ?: __('N/A') }}</td>
@@ -59,12 +71,21 @@
 											<td class="px-2 py-2 whitespace-nowrap text-sm text-gray-700">{{ $invoice->due_date ? \Illuminate\Support\Carbon::parse($invoice->due_date)->format('Y-m-d') : __('N/A') }}</td>
 											<td class="px-2 py-2 text-sm">
 												<a href="{{ route('invoices.show', $invoice) }}" class="inline-flex items-center px-3 py-1.5 bg-slate-100 text-slate-700 rounded-md hover:bg-slate-200 transition font-medium text-xs mb-1">{{ __('Show') }}</a>
-												<a href="{{ route('invoices.payments.create', $invoice) }}" class="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition font-medium text-xs mb-1">{{ __('Pay') }}</a>
-												<a href="{{ route('invoices.edit', $invoice) }}" class="inline-flex items-center px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-md hover:bg-yellow-200 transition font-medium text-xs mb-1">{{ __('Edit') }}</a>
+												@if($disablePayAndEdit)
+													<span class="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-700 rounded-md font-medium text-xs mb-1 opacity-50 cursor-not-allowed" title="{{ __('Invoice is fully paid') }}">{{ __('Pay') }}</span>
+												@else
+													<a href="{{ route('invoices.payments.create', $invoice) }}" class="inline-flex items-center px-3 py-1.5 bg-green-100 text-green-700 rounded-md hover:bg-green-200 transition font-medium text-xs mb-1">{{ __('Pay') }}</a>
+												@endif
+
+												@if($disablePayAndEdit)
+													<span class="inline-flex items-center px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-md font-medium text-xs mb-1 opacity-50 cursor-not-allowed" title="{{ __('Invoice is fully paid') }}">{{ __('Edit') }}</span>
+												@else
+													<a href="{{ route('invoices.edit', $invoice) }}" class="inline-flex items-center px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-md hover:bg-yellow-200 transition font-medium text-xs mb-1">{{ __('Edit') }}</a>
+												@endif
 												<form action="{{ route('invoices.destroy', $invoice) }}" method="POST" class="inline" onsubmit="return confirm('{{ __('Are you sure you want to delete this invoice?') }}');">
 													@csrf
 													@method('DELETE')
-													<button type="submit" class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition font-medium text-xs">{{ __('Delete') }}</button>
+													<button type="submit" @disabled($disableDelete) class="inline-flex items-center px-3 py-1.5 bg-red-100 text-red-700 rounded-md transition font-medium text-xs disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-100 hover:bg-red-200" title="{{ $disableDelete ? __('Cannot delete invoice with payment entries') : '' }}">{{ __('Delete') }}</button>
 												</form>
 											</td>
 										</tr>
@@ -87,6 +108,10 @@
 	<script type="module">
 		$(document).ready(function() {
 			$('#success-message').delay(5000).fadeOut('slow', function() {
+				$(this).remove();
+			});
+
+			$('#error-message').delay(5000).fadeOut('slow', function() {
 				$(this).remove();
 			});
 		});

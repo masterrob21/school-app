@@ -59,26 +59,20 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    // Resource routes
+    Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+    Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+    Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
+    Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
+    Route::get('/invoices/{invoice}/edit', [InvoiceController::class, 'edit'])->name('invoices.edit');
+    Route::patch('/invoices/{invoice}', [InvoiceController::class, 'update'])->name('invoices.update');
+    Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
-    Route::resource('services', ServiceController::class);
-    Route::resource('invoices', InvoiceController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
-    Route::resource('tax-rates', TaxRateController::class);
-    Route::resource('recurring_invoices', RecurringInvoiceController::class)->only(['index', 'destroy']);
-
-    // Payment routes
-    Route::prefix('invoices/{invoice}')->group(function () {
-        Route::get('payments/create', [PaymentController::class, 'create'])->name('invoices.payments.create');
-        Route::post('payments', [PaymentController::class, 'store'])->name('invoices.payments.store');
-    });
-
-    // Payment delete route
-    Route::delete('payments/{payment}', [PaymentController::class, 'destroy'])->name('payments.destroy');
-
-    // Recurring invoice status update
-    Route::put('recurring_invoices/{recurring_invoice}/update-status', [RecurringInvoiceController::class, 'updateStatus'])
-        ->name('recurring_invoices.update_status');
-
+    Route::get('/invoices/{invoice}/payments/create', [PaymentController::class, 'create'])->name('invoices.payments.create');
+    Route::post('/invoices/{invoice}/payments', [PaymentController::class, 'store'])->name('invoices.payments.store');
+    Route::get('/invoices/{invoice}/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('invoices.payments.edit');
+    Route::patch('/invoices/{invoice}/payments/{payment}', [PaymentController::class, 'update'])->name('invoices.payments.update');
+    Route::delete('/invoices/{invoice}/payments/{payment}', [PaymentController::class, 'destroy'])->name('invoices.payments.destroy');
+   
     // Invoice download
     Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])
         ->name('invoices.download');
@@ -87,12 +81,6 @@ Route::middleware([
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-
-    // Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
-
-    // Route::get('/invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
-    // Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
-    // Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])->name('invoices.download');
 
     Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
 

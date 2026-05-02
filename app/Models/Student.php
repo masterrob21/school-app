@@ -32,4 +32,12 @@ class Student extends Model
     {
         return $this->hasMany(DiscountStudent::class);
     }
+
+    public function getBalanceAttribute()
+    {
+        $totalInvoiced = $this->invoices()->where('status', '!=', 'paid')->sum('grand_amount');
+        $totalPaid = $this->invoices()->sum('amount_paid');
+
+        return $totalInvoiced - $totalPaid;
+    }
 }
