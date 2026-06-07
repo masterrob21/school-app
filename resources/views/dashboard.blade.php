@@ -8,7 +8,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                 <div class="bg-white shadow-sm rounded-lg p-5 border-l-4 border-blue-500">
                     <p class="text-sm text-gray-500">{{ __('Students') }}</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ number_format($studentsCount) }}</p>
+                    {{-- <p class="text-2xl font-bold text-gray-900">{{ number_format($studentsCount) }}</p> --}}
                 </div>
                 <div class="bg-white shadow-sm rounded-lg p-5 border-l-4 border-indigo-500">
                     <p class="text-sm text-gray-500">{{ __('Staff') }}</p>

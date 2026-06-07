@@ -78,9 +78,9 @@ Route::middleware([
         ->name('invoices.download');
 
     // Dashboard route
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 
     Route::get('/dashboard', [DashController::class, 'index'])->name('dashboard');
 
