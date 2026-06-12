@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ClassroomController;
@@ -23,15 +24,12 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentModeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramTypeController;
-use App\Http\Controllers\RecurringInvoiceController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
-use App\Http\Controllers\TaxRateController;
 use App\Http\Controllers\UpdateImageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -72,7 +70,7 @@ Route::middleware([
     Route::get('/invoices/{invoice}/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('invoices.payments.edit');
     Route::patch('/invoices/{invoice}/payments/{payment}', [PaymentController::class, 'update'])->name('invoices.payments.update');
     Route::delete('/invoices/{invoice}/payments/{payment}', [PaymentController::class, 'destroy'])->name('invoices.payments.destroy');
-   
+
     // Invoice download
     Route::get('invoices/{invoice}/download', [InvoiceController::class, 'download'])
         ->name('invoices.download');
@@ -180,6 +178,13 @@ Route::middleware([
         Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
         Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
         Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
+
+        Route::get('/academic-years', [AcademicYearController::class, 'index'])->name('academic_years.index');
+        Route::get('/academic-years/create', [AcademicYearController::class, 'create'])->name('academic_years.create');
+        Route::post('/academic-years', [AcademicYearController::class, 'store'])->name('academic_years.store');
+        Route::get('/academic-years/{academicYear}/edit', [AcademicYearController::class, 'edit'])->name('academic_years.edit');
+        Route::match(['put', 'patch'], '/academic-years/{academicYear}', [AcademicYearController::class, 'update'])->name('academic_years.update');
+        Route::delete('/academic-years/{academicYear}', [AcademicYearController::class, 'destroy'])->name('academic_years.destroy');
 
         Route::get('/security', [DashboardController::class, 'security']);
         Route::get('/settings', [DashboardController::class, 'settings']);
