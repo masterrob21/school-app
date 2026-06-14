@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\SchoolClass;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -15,7 +16,8 @@ class ClassroomController extends Controller
     public function index()
     {
         $classrooms = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
-                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->leftJoin('school_classes', 'classrooms.school_class_id', 'school_classes.id')
+                                ->select('classrooms.*', 'first_name', 'last_name', 'school_classes.name as school_class_name')
                                 ->orderBy('classroom')
                                 ->paginate(25);
 
@@ -31,7 +33,11 @@ class ClassroomController extends Controller
                         ->select('id', 'first_name', 'last_name')
                         ->get();
 
-        return view('classrooms.create')->with('staffs', $staffs);
+        $schoolClasses = SchoolClass::query()->orderBy('name')->get();
+
+        return view('classrooms.create')
+            ->with('staffs', $staffs)
+            ->with('schoolClasses', $schoolClasses);
     }
 
     /**
@@ -39,17 +45,20 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'classroom' => ['required', 'unique:classrooms', 'string'],
+        $validated = $request->validate([
+            'school_class_id' => ['required', 'exists:school_classes,id'],
+            'classroom' => [
+                'required',
+                'string',
+                Rule::unique('classrooms', 'classroom')->where(function ($query) use ($request) {
+                    return $query->where('school_class_id', $request->school_class_id);
+                }),
+            ],
             'staff_id' => ['nullable', 'integer'],
             'capacity' => ['required', 'integer'],
         ]);
 
-        Classroom::create([
-            'classroom' => $request->classroom,
-            'staff_id' => $request->staff_id,
-            'capacity' => $request->capacity
-        ]);
+        Classroom::create($validated);
 
         return redirect(route('classrooms.create'))->with('success', 'New record added.');
     }
@@ -60,7 +69,8 @@ class ClassroomController extends Controller
     public function show(string $id)
     {
         $classroom = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
-                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->leftJoin('school_classes', 'classrooms.school_class_id', 'school_classes.id')
+                                ->select('classrooms.*', 'first_name', 'last_name', 'school_classes.name as school_class_name')
                                 ->where('classrooms.id', $id)
                                 ->first();
 
@@ -73,14 +83,17 @@ class ClassroomController extends Controller
     public function edit(string $id)
     {
         $classroom = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
-                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->leftJoin('school_classes', 'classrooms.school_class_id', 'school_classes.id')
+                                ->select('classrooms.*', 'first_name', 'last_name', 'school_classes.name as school_class_name')
                                 ->where('classrooms.id', $id)
                                 ->first();
 
         $staffs = Staff::where('id', '<>', $classroom->staff_id)->get();
+        $schoolClasses = SchoolClass::query()->where('id', '<>', $classroom->school_class_id)->orderBy('name')->get();
 
         return view('classrooms.edit')->with('classroom', $classroom)
-                                      ->with('staffs', $staffs);
+                                      ->with('staffs', $staffs)
+                                      ->with('schoolClasses', $schoolClasses);
     }
 
     /**
@@ -88,17 +101,22 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, Classroom $classroom)
     {
-        $request->validate([
-            'classroom' => ['required', Rule::unique('classrooms')->ignore($classroom), 'string'],
+        $validated = $request->validate([
+            'school_class_id' => ['required', 'exists:school_classes,id'],
+            'classroom' => [
+                'required',
+                'string',
+                Rule::unique('classrooms', 'classroom')
+                    ->where(function ($query) use ($request) {
+                        return $query->where('school_class_id', $request->school_class_id);
+                    })
+                    ->ignore($classroom),
+            ],
             'staff_id' => ['nullable', 'integer'],
             'capacity' => ['required', 'integer'],
         ]);
 
-        $classroom->update([
-            'classroom' => $request->classroom,
-            'staff_id' => $request->staff_id,
-            'capacity' => $request->capacity
-        ]);
+        $classroom->update($validated);
 
         return redirect('/classrooms/' . $classroom->id)->with('info', 'Record updated.');
     }
@@ -119,7 +137,8 @@ class ClassroomController extends Controller
         $search = $request->id;
 
         $classrooms = Classroom::leftJoin('staff', 'classrooms.staff_id', 'staff.id')
-                                ->select('classrooms.*', 'first_name', 'last_name')
+                                ->leftJoin('school_classes', 'classrooms.school_class_id', 'school_classes.id')
+                                ->select('classrooms.*', 'first_name', 'last_name', 'school_classes.name as school_class_name')
                                 ->where('classroom', 'LIKE', '%'.$search.'%')
                                 ->orderBy('classroom')
                                 ->paginate(25);

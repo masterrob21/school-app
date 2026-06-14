@@ -29,6 +29,7 @@ use App\Http\Controllers\RelationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\SchoolClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGuardianController;
 use App\Http\Controllers\UpdateImageController;
@@ -148,6 +149,13 @@ Route::middleware([
         Route::patch('/classrooms/{classroom}', [ClassroomController::class, 'update'])->name('classrooms.update');
         Route::delete('/classrooms/{classroom}', [classroomController::class, 'destroy'])->name('classrooms.destroy');
         Route::get('/classrooms-fetch', [classroomController::class, 'fetch'])->name('classrooms.fetch');
+
+        Route::get('/classes', [SchoolClassController::class, 'index'])->name('classes.index');
+        Route::get('/classes/create', [SchoolClassController::class, 'create'])->name('classes.create');
+        Route::post('/classes', [SchoolClassController::class, 'store'])->name('classes.store');
+        Route::get('/classes/{schoolClass}/edit', [SchoolClassController::class, 'edit'])->name('classes.edit');
+        Route::patch('/classes/{schoolClass}', [SchoolClassController::class, 'update'])->name('classes.update');
+        Route::delete('/classes/{schoolClass}', [SchoolClassController::class, 'destroy'])->name('classes.destroy');
 
         Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
         Route::get('/currency-fetch', [CurrencyController::class, 'fetch'])->name('currency.fetch');

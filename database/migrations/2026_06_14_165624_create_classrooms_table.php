@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('classroom')->unique();
+            $table->foreignId('school_class_id')->constrained()->onDelete('cascade');
+            $table->string('classroom');
             $table->foreignId('staff_id')->nullable();
             $table->integer('capacity');
             $table->timestamps();
+
+            $table->unique(['school_class_id', 'classroom']);
         });
     }
 

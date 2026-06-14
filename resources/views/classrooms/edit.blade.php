@@ -31,6 +31,16 @@
                         @csrf
                         @method('PATCH')
                         <div>
+                            <x-label for="school_class_id" value="{{ __('School Class:') }}" />
+                            <x-select id="school_class_id" class="block mt-1 w-full capitalize" name="school_class_id" required>
+                                <option value="{{ $classroom->school_class_id }}">{{ $classroom->school_class_name }}</option>
+                                @foreach ($schoolClasses as $schoolClass)
+                                    <option value="{{ $schoolClass->id }}">{{ $schoolClass->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+
+                        <div>
                             <x-label for="classroom" value="{{ __('classroom:') }}" />
                             <x-input id="classroom" class="block mt-1 w-full" type="text" name="classroom" value="{{$classroom->classroom}}" required />
                         </div>

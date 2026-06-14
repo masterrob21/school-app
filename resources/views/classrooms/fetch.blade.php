@@ -5,6 +5,7 @@
     <thead class="bg-blue-200">
         <tr class="border-b  whitespace-nowrap">
             <th class="p-3">Action</th>
+            <th class="p-3">School Class</th>
             <th class="p-3">Classroom</th>
             <th class="p-3">Class Teacher</th>
             <th class="p-3">Class Capacity</th>
@@ -33,6 +34,7 @@
                         </button>
                     </form>
                 </td>
+                <td class="p-2 capitalize">{{ $classroom->school_class_name }}</td>
                 <td class="p-2 capitalize">{{ $classroom->classroom }}</td>
                 <td class="p-2 capitalize">{{ $classroom->last_name . ' '. $classroom->first_name }}</td>
                 <td class="p-2 capitalize">{{ $classroom->capacity }}</td>                                       

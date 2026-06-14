@@ -26,6 +26,11 @@
                         <table class="table-auto border-collapse border border-slate-400 w-full text-left">
                             <caption class=" caption-top mb-4 text-xl text-blue-600 text-left md:text-center capitalize">classroom Information</caption>
                             <tr class=" whitespace-nowrap">
+                                <th class="p-3 border border-slate-300">school class</th>
+                                <td class="p-3 border border-slate-300 text-xl capitalize">{{ $classroom->school_class_name }}</td>
+                            </tr>
+
+                            <tr class=" whitespace-nowrap">
                                 <th class="p-3 border border-slate-300">classroom</th>
                                 <td class="p-3 border border-slate-300 text-xl capitalize">{{ $classroom->classroom }}</td>
                             </tr>

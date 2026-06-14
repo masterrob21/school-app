@@ -29,6 +29,16 @@
                     <form method="POST" action="{{ route('classrooms.store') }}">
                         @csrf
 
+                        <div>
+                            <x-label for="school_class_id" value="{{ __('School Class:') }}" />
+                            <x-select id="school_class_id" class="block mt-1 w-full capitalize" name="school_class_id" required>
+                                <option value="">{{ __('Select school class') }}</option>
+                                @foreach ($schoolClasses as $schoolClass)
+                                    <option value="{{ $schoolClass->id }}" @selected((string) old('school_class_id') === (string) $schoolClass->id)>{{ $schoolClass->name }}</option>
+                                @endforeach
+                            </x-select>
+                        </div>
+
                         <div >
                             <x-label for="classroom" value="{{ __('Classroom:') }}" />
                             <x-input id="classroom" class="block mt-1 w-full capitalize" type="text" name="classroom" :value="old('classroom')" required autofocus />
