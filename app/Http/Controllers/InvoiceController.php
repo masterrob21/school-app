@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcademicTerm;
 use App\Models\FeeType;
 use App\Models\DiscountStudent;
 use App\Models\Invoice;
@@ -39,6 +40,7 @@ class InvoiceController extends Controller
 
         return view('invoices.create')
             ->with('students', $students)
+            ->with('academicTerms', AcademicTerm::query()->orderByDesc('is_current')->orderByDesc('start_date')->get())
             ->with('feeTypes', FeeType::orderBy('name')->get())
             ->with('studentDiscounts', $this->studentDiscountMap());
     }
@@ -50,12 +52,13 @@ class InvoiceController extends Controller
     {
         $validated = $request->validate([
             'student_id' => ['required', 'exists:students,id'],
+            'academic_term_id' => ['required', 'exists:academic_terms,id'],
             'title' => ['required', 'string', 'max:255'],
-            'due_date' => ['nullable', 'date'],
+            'due_date' => ['required', 'date'],
             'invoice_items' => ['required', 'array', 'min:1'],
             'invoice_items.*.name' => ['required', 'string', 'max:255'],
             'invoice_items.*.amount' => ['required', 'numeric', 'min:0.01'],
-            'invoice_items.*.fee_type_id' => ['nullable', 'exists:fee_types,id'],
+            'invoice_items.*.fee_type_id' => ['required', 'exists:fee_types,id'],
         ]);
 
         $subTotal = collect($validated['invoice_items'])->sum(function (array $item): float {
@@ -73,6 +76,7 @@ class InvoiceController extends Controller
         DB::transaction(function () use ($validated, $subTotal, $discountTotal, $grandAmount, $amountPaid): void {
             $invoice = Invoice::create([
                 'student_id' => $validated['student_id'],
+                'academic_term_id' => $validated['academic_term_id'],
                 'title' => $validated['title'],
                 'sub_total' => $subTotal,
                 'discount_total' => $discountTotal,
@@ -121,6 +125,7 @@ class InvoiceController extends Controller
         return view('invoices.edit')
             ->with('invoice', $invoice)
             ->with('students', $students)
+            ->with('academicTerms', AcademicTerm::query()->orderByDesc('is_current')->orderByDesc('start_date')->get())
             ->with('feeTypes', FeeType::orderBy('name')->get())
             ->with('studentDiscounts', $this->studentDiscountMap());
     }
@@ -132,12 +137,13 @@ class InvoiceController extends Controller
     {
         $validated = $request->validate([
             'student_id' => ['required', 'exists:students,id'],
+            'academic_term_id' => ['required', 'exists:academic_terms,id'],
             'title' => ['required', 'string', 'max:255'],
-            'due_date' => ['nullable', 'date'],
+            'due_date' => ['required', 'date'],
             'invoice_items' => ['required', 'array', 'min:1'],
             'invoice_items.*.name' => ['required', 'string', 'max:255'],
             'invoice_items.*.amount' => ['required', 'numeric', 'min:0.01'],
-            'invoice_items.*.fee_type_id' => ['nullable', 'exists:fee_types,id'],
+            'invoice_items.*.fee_type_id' => ['required', 'exists:fee_types,id'],
         ]);
 
         $subTotal = collect($validated['invoice_items'])->sum(function (array $item): float {
@@ -155,6 +161,7 @@ class InvoiceController extends Controller
         DB::transaction(function () use ($validated, $invoice, $subTotal, $discountTotal, $grandAmount, $amountPaid): void {
             $invoice->update([
                 'student_id' => $validated['student_id'],
+                'academic_term_id' => $validated['academic_term_id'],
                 'title' => $validated['title'],
                 'sub_total' => $subTotal,
                 'discount_total' => $discountTotal,

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('amount_paid', 10, 2)->default(0);
             $table->enum('status', ['unpaid', 'partially_paid', 'paid'])->default('unpaid');
             $table->date('due_date')->nullable();
+            $table->foreignId('academic_term_id')->constrained();
             $table->timestamps();
         });
     }

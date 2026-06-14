@@ -17,4 +17,9 @@ class AcademicYear extends Model
     protected $casts = [
         'is_current' => 'boolean',
     ];
+
+    public function academicTerms()
+    {
+        return $this->hasMany(AcademicTerm::class);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcademicTermController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\AccountChartController;
 use App\Http\Controllers\BranchController;
@@ -185,6 +186,14 @@ Route::middleware([
         Route::get('/academic-years/{academicYear}/edit', [AcademicYearController::class, 'edit'])->name('academic_years.edit');
         Route::match(['put', 'patch'], '/academic-years/{academicYear}', [AcademicYearController::class, 'update'])->name('academic_years.update');
         Route::delete('/academic-years/{academicYear}', [AcademicYearController::class, 'destroy'])->name('academic_years.destroy');
+
+        Route::get('/academic-terms', [AcademicTermController::class, 'index'])->name('academic_terms.index');
+        Route::get('/academic-terms/create', [AcademicTermController::class, 'create'])->name('academic_terms.create');
+        Route::post('/academic-terms', [AcademicTermController::class, 'store'])->name('academic_terms.store');
+        Route::get('/academic-terms/{academicTerm}', [AcademicTermController::class, 'show'])->name('academic_terms.show');
+        Route::get('/academic-terms/{academicTerm}/edit', [AcademicTermController::class, 'edit'])->name('academic_terms.edit');
+        Route::match(['put', 'patch'], '/academic-terms/{academicTerm}', [AcademicTermController::class, 'update'])->name('academic_terms.update');
+        Route::delete('/academic-terms/{academicTerm}', [AcademicTermController::class, 'destroy'])->name('academic_terms.destroy');
 
         Route::get('/security', [DashboardController::class, 'security']);
         Route::get('/settings', [DashboardController::class, 'settings']);

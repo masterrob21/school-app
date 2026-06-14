@@ -17,11 +17,17 @@ class Invoice extends Model
         'amount_paid',
         'status',
         'due_date',
+        'academic_term_id',
     ];
 
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function academicTerm()
+    {
+        return $this->belongsTo(AcademicTerm::class);
     }
 
     public function invoiceItems()

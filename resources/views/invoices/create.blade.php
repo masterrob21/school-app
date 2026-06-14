@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="md:col-span-2">
+                            <div>
                                 <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Title') }}</label>
                                 <input type="text" name="title" id="title" value="{{ old('title') }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" required>
                                 @error('title')
@@ -50,8 +50,21 @@
                             </div>
 
                             <div>
+                                <label for="academic_term_id" class="block text-sm font-medium text-gray-700">{{ __('Academic Term') }}</label>
+                                <select name="academic_term_id" id="academic_term_id" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" required>
+                                    <option value="">{{ __('Select academic term') }}</option>
+                                    @foreach($academicTerms as $academicTerm)
+                                        <option value="{{ $academicTerm->id }}" @selected((string) old('academic_term_id') === (string) $academicTerm->id)>{{ $academicTerm->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('academic_term_id')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
                                 <label for="due_date" class="block text-sm font-medium text-gray-700">{{ __('Due Date') }}</label>
-                                <input type="date" name="due_date" id="due_date" value="{{ old('due_date') }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500">
+                                <input type="date" name="due_date" id="due_date" value="{{ old('due_date') }}" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" required>
                                 @error('due_date')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -71,7 +84,7 @@
                                 @foreach($oldItems as $itemIndex => $item)
                                     <div class="grid grid-cols-1 md:grid-cols-12 gap-3 item-row">
                                         <div class="md:col-span-3">
-                                            <select name="invoice_items[{{ $itemIndex }}][fee_type_id]" class="item-fee-type block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500">
+                                            <select name="invoice_items[{{ $itemIndex }}][fee_type_id]" class="item-fee-type block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" required>
                                                 <option value="">{{ __('Fee type') }}</option>
                                                 @foreach($feeTypes as $feeType)
                                                     <option value="{{ $feeType->id }}" data-fee-name="{{ $feeType->name }}" data-fee-amount="{{ number_format((float) $feeType->amount, 2, '.', '') }}" @selected(($item['fee_type_id'] ?? '') == $feeType->id)>{{ $feeType->name }}</option>
@@ -90,7 +103,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @error('invoice_items')
+                            @error('invoice_items.*.fee_type_id')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                             @error('invoice_items.*.name')
@@ -133,20 +146,21 @@
 
     <template id="invoice-item-template">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3 item-row">
+            <div class="md:col-span-3">
+                <select data-name="fee_type_id" class="item-fee-type block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" required>
+                    <option value="">{{ __('Fee type') }}</option>
+                    @foreach($feeTypes as $feeType)
+                        <option value="{{ $feeType->id }}" data-fee-name="{{ $feeType->name }}" data-fee-amount="{{ number_format((float) $feeType->amount, 2, '.', '') }}">{{ $feeType->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="md:col-span-5">
                 <input type="text" data-name="name" class="item-name block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" placeholder="{{ __('Item name') }}" required>
             </div>
             <div class="md:col-span-3">
                 <input type="number" step="0.01" min="0.01" data-name="amount" class="item-amount block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500" placeholder="{{ __('Amount') }}" required>
             </div>
-            <div class="md:col-span-3">
-                <select data-name="fee_type_id" class="item-fee-type block w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-blue-500">
-                    <option value="">{{ __('Optional fee type') }}</option>
-                    @foreach($feeTypes as $feeType)
-                        <option value="{{ $feeType->id }}" data-fee-name="{{ $feeType->name }}" data-fee-amount="{{ number_format((float) $feeType->amount, 2, '.', '') }}">{{ $feeType->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            
             <div class="md:col-span-1">
                 <button type="button" class="remove-item w-full inline-flex items-center justify-center px-2 py-2 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition text-xs font-semibold">{{ __('X') }}</button>
             </div>

@@ -92,6 +92,11 @@ class AcademicYearController extends Controller
      */
     public function destroy(AcademicYear $academicYear)
     {
+        // prevent deletion if it has related records to academic terms
+        if ($academicYear->academicTerms()->exists()) {
+            return redirect()->route('academic_years.index')->with('error', 'Cannot delete academic year with related academic terms.');
+        }
+
         $academicYear->delete();
 
         return redirect()->route('academic_years.index')->with('success', 'Academic year deleted successfully.');

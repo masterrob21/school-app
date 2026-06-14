@@ -6,8 +6,14 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			@if (session('success'))
-				<div id="success-message" class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+				<div id="display_msg" class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
 					<p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+				</div>
+			@endif
+
+			@if (session('error'))
+				<div id="display_msg" class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+					<p class="text-sm font-medium text-red-800">{{ session('error') }}</p>
 				</div>
 			@endif
 
@@ -75,7 +81,7 @@
 
 	<script type="module">
 		$(document).ready(function () {
-			$('#success-message').delay(5000).fadeOut('slow', function () {
+			$('#display_msg').delay(5000).fadeOut('slow', function () {
 				$(this).remove();
 			});
 		});
