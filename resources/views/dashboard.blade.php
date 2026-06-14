@@ -7,38 +7,38 @@
         <div class="mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                 <div class="bg-blue-100 shadow-sm rounded-lg p-5 border-l-4 border-blue-500">
-                    <p class="text-sm text-gray-500">{{ __('Students') }}</p>
+                    <p class="text-gray-500">{{ __('Students') }}</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($studentsCount) }}</p>
                 </div>
                 <div class="bg-indigo-100 shadow-sm rounded-lg p-5 border-l-4 border-indigo-500">
-                    <p class="text-sm text-gray-500">{{ __('Staff') }}</p>
+                    <p class="text-gray-500">{{ __('Staff') }}</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($staffCount) }}</p>
                 </div>
                 <div class="bg-emerald-100 shadow-sm rounded-lg p-5 border-l-4 border-emerald-500">
-                    <p class="text-sm text-gray-500">{{ __('Total Collected') }}</p>
+                    <p class="text-gray-500">{{ __('Total Collected') }}</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($totalCollected, 2) }}</p>
                 </div>
                 <div class="bg-amber-100 shadow-sm rounded-lg p-5 border-l-4 border-amber-500">
-                    <p class="text-sm text-gray-500">{{ __('Outstanding Balance') }}</p>
+                    <p class="text-gray-500">{{ __('Outstanding Balance') }}</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($totalOutstanding, 2) }}</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                 <div class="bg-yellow-100 shadow-sm rounded-lg p-5 border-l-4 border-yellow-500">
-                    <p class="text-sm text-gray-500">{{ __('Total Invoices') }}</p>
+                    <p class="text-gray-500">{{ __('Total Invoices') }}</p>
                     <p class="text-xl font-semibold text-gray-900">{{ number_format($totalInvoices) }}</p>
                 </div>
                 <div class="bg-green-100 shadow-sm rounded-lg p-5 border-l-4 border-green-500">
-                    <p class="text-sm text-gray-500">{{ __('Paid Invoices') }}</p>
+                    <p class="text-gray-500">{{ __('Paid Invoices') }}</p>
                     <p class="text-xl font-semibold text-gray-900">{{ number_format($paidInvoices) }}</p>
                 </div>
                 <div class="bg-red-100 shadow-sm rounded-lg p-5 border-l-4 border-red-500">
-                    <p class="text-sm text-gray-500">{{ __('Open Invoices') }}</p>
+                    <p class="text-gray-500">{{ __('Open Invoices') }}</p>
                     <p class="text-xl font-semibold text-gray-900">{{ number_format($openInvoices) }}</p>
                 </div>
                 <div class="bg-purple-100 shadow-sm rounded-lg p-5 border-l-4 border-purple-500">
-                    <p class="text-sm text-gray-500">{{ __('Total Billed') }}</p>
+                    <p class="text-gray-500">{{ __('Total Billed') }}</p>
                     <p class="text-xl font-semibold text-gray-900">{{ number_format($totalBilled, 2) }}</p>
                 </div>
             </div>
