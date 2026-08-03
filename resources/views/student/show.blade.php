@@ -142,7 +142,7 @@
                         
                         <div class="overflow-x-auto">
                             <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                                <caption class="text-xl mb-4 text-left md:text-center">Educational History</caption>
+                                <caption class="text-xl mb-4 text-left md:text-center caption-top">Educational History</caption>
                                 <thead class="bg-blue-300">
                                     <tr class="border-b whitespace-nowrap">
                                         <th class="p-3">Action</th>
@@ -207,7 +207,7 @@
                         
                         <div class="overflow-x-auto">
                             <table class="table-auto border-collapse border border-slate-400 w-full text-left">
-                                <caption class="text-xl mb-4 text-left md:text-center">List of Guardian</caption>
+                                <caption class="text-xl mb-4 text-left md:text-center caption-top">List of Guardian</caption>
                                 <thead class="bg-blue-300">
                                     <tr class="border-b whitespace-nowrap">
                                         <th class="p-3">Action</th>

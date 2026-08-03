@@ -51,7 +51,7 @@
                     </div>
                     @endcan
 
-                    <div class="overflow-x-auto h-24" id="search_results">
+                    <div class="overflow-x-auto h-auto " id="search_results">
                         @include('journal.get-transaction')
                     </div>
 
