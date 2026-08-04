@@ -117,7 +117,7 @@ https://templatemo.com/tm-557-grad-school
           <div class="features-post third-features">
             <div class="features-content">
               <div class="content-show">
-                <h4><i class="fa fa-book"></i>Ledger Account</h4>
+                <h4><i class="fa fa-book"></i>Ledger Management</h4>
               </div>
               <div class="content-hide">
                 <p>Keep your finances in check with tools for fee collection, expense tracking, and generating financial reports.</p>
