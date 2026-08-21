@@ -27,32 +27,33 @@
                     <form method="POST" action="/role-permissions/{{$role->id}}" >
                         @csrf
                         @method('PATCH')
-                        <div>
-                            <table class="table-auto w-full border-collapse border border-slate-400">
-                                <caption class="mb-2 text-red-600 uppercase text-xl text-left md:text-center"><h2>{{$role->name}}</h2></caption>
-                                <thead>
-                                    <tr>
-                                        <th class="p-3 text-left text-xl">Permissions</th>
-                                    </tr>
-                                </thead>
-    
-                                <tbody>
-                                    @foreach ($permissions as $permission)
-                                    <tr>
-                                        <td class="p-3 border border-slate-400">
-                                            <label>
-                                                <input 
-                                                    type="checkbox" 
-                                                    name="permission[]" value="{{$permission->name}}"
-                                                    {{in_array($permission->id, $rolePermissions) ? 'checked':''}}
+
+                        @php
+                            $groupedPermissions = $permissions->groupBy('module')->sortKeys();
+                        @endphp
+
+                        <div class="space-y-4">
+                            @foreach ($groupedPermissions as $module => $modulePermissions)
+                                <fieldset class="border border-slate-300 rounded-md p-4">
+                                    <legend class="px-2 text-lg font-semibold capitalize text-gray-700">
+                                        {{ $module }}
+                                    </legend>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        @foreach ($modulePermissions as $permission)
+                                            <label class="flex items-center gap-2 rounded border border-slate-200 p-2 hover:bg-slate-50">
+                                                <input
+                                                    type="checkbox"
+                                                    name="permission[]"
+                                                    value="{{$permission->name}}"
+                                                    {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}
                                                 >
-                                                {{$permission->name}}
+                                                <span class="capitalize">{{$permission->name}}</span>
                                             </label>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        @endforeach
+                                    </div>
+                                </fieldset>
+                            @endforeach
                         </div>
     
                         <div class="mt-4">
